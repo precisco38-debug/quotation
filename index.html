@@ -1,1 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping Rate Calculator & PDF Exporter</title>
+    <!-- Tailwind CSS for modern, clean UI styling -->
+    <script src="https://jsdelivr.net"></script>
+    <!-- jsPDF and jsPDF-AutoTable libraries for client-side PDF generation -->
+    <script src="https://cloudflare.com"></script>
+    <script src="https://cloudflare.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Header Navigation -->
+    <header class="bg-blue-900 text-white shadow-md py-5 px-6">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold tracking-tight">Interasia Line Rate Portal</h1>
+            <span class="bg-blue-800 text-xs px-3 py-1.5 rounded-md font-mono border border-blue-700">Validity: Sep 2026</span>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-4xl mx-auto my-10 p-8 bg-white rounded-xl shadow-xs border border-gray-100 w-full flex-grow">
+        <h2 class="text-xl font-semibold mb-2">Generate Freight Quotation</h2>
+        <p class="text-sm text-gray-500 mb-6">Select a country or specific destination port to instantly extract rates and download a formal PDF document.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <!-- Filter Option Layout -->
+            <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-2">Filter By Country</label>
+                <select id="countrySelect" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-blue-600 focus:bg-white transition" onchange="updatePortDropdown()">
+                    <option value="ALL">All Countries</option>
+                    <option value="JAPAN">Japan (日本)</option>
+                    <option value="TAIWAN">Taiwan (台灣)</option>
+                    <option value="CHINA">China (中國)</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-xs font-semibold uppercase tracking-wider text-gray-600 mb-2">Specific Port (Optional)</label>
+                <select id="portSelect" class="w-full p-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-hidden focus:ring-2 focus:ring-blue-600 focus:bg-white transition">
+                    <option value="ALL">All Ports</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Call to Action Button -->
+        <button onclick="generatePDF()" class="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white font-medium py-3.5 px-8 rounded-lg shadow-sm hover:shadow-md transition flex items-center justify-center gap-2 cursor-pointer">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+            Export Selected Rates as PDF
+        </button>
+    </main>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 border-t border-gray-100 text-xs text-gray-400">
+        © 2026 Interasia Line Automation Core. All Local Charges Reflected in SGD/USD.
+    </footer>
+
+    <!-- Logic Engine -->
+    <script>
+        // structured structural database mapped exactly from your CSV file source
+        const shippingDatabase = [
+            { country: "JAPAN", port: "OSAKA", gp20: 250, gp40: 400, dg20: 100, dg40: 200, rf20: 400, rf40: 600, notes: "Subject to B/L, Seal, AFR" },
+            { country: "JAPAN", port: "KOBE", gp20: 150, gp40: 300, dg20: 100, dg40: 200, rf20: 400, rf40: 600, notes: "Subject to B/L, Seal, AFR" },
+            { country: "JAPAN", port: "NAGOYA", gp20: 150, gp40: 300, dg20: 100, dg40: 200, rf20: 400, rf40: 600, notes: "Subject to B/L, Seal, AFR" },
+            { country: "JAPAN", port: "YOKOHAMA", gp20: 150, gp40: 300, dg20: 100, dg40: 200, rf20: 400, rf40: 600, notes: "Subject to B/L, Seal, AFR" },
+            { country: "JAPAN", port: "TOKYO", gp20: 250, gp40: 400, dg20: 100, dg40: 200, rf20: 400, rf40: 600, notes: "Subject to B/L, Seal, AFR" },
+            { country: "TAIWAN", port: "TAIPEI", gp20: 300, gp40: 500, dg20: "NO DG", dg40: "NO DG", rf20: 600, rf40: 1000, notes: "Subject to Seal, B/L" },
+            { country: "TAIWAN", port: "KAOHSIUNG", gp20: 150, gp40: 250, dg20: "NO DG", dg40: "NO DG", rf20: 600, rf40: 1000, notes: "Subject to Seal, B/L" },
+            { country: "CHINA", port: "HONG KONG", gp20: 90, gp40: 120, dg20: 100, dg40: 200, rf20: 300, rf40: 500, notes: "Subject to B/L, Seal" },
+            { country: "CHINA", port: "SHANGHAI", gp20: 80, gp40: 100, dg20: 100, dg40: 200, rf20: 400, rf40: 500, notes: "Subject to B/L, Seal, AMS" }
+        ];
+
+        // Updates ports automatically dynamically based on chosen country filter 
+        function updatePortDropdown() {
+            const country = document.getElementById("countrySelect").value;
+            const portSelect = document.getElementById("portSelect");
+            
+            portSelect.innerHTML = '<option value="ALL">All Ports</option>';
+            
+            const filtered = country === "ALL" ? shippingDatabase : shippingDatabase.filter(x => x.country === country);
+            filtered.forEach(item => {
+                const opt = document.createElement("option");
+                opt.value = item.port;
+                opt.textContent = item.port;
+                portSelect.appendChild(opt);
+            });
+        }
+
+        // Engine that dynamically builds and compiles the clean PDF document on user side
+        function generatePDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF('l', 'mm', 'a4'); // Landscape layout configuration
+            
+            const selectedCountry = document.getElementById("countrySelect").value;
+            const selectedPort = document.getElementById("portSelect").value;
+
+            // Filter out internal structured database records
+            let records = shippingDatabase;
+            if (selectedCountry !== "ALL") records = records.filter(x => x.country === selectedCountry);
+            if (selectedPort !== "ALL") records = records.filter(x => x.port === selectedPort);
+
+            // Document branding headers setup
+            doc.setFillColor(15, 32, 67); // Navy blue header strip
+            doc.rect(0, 0, 297, 24, 'F');
+            doc.setTextColor(255, 255, 255);
+            doc.setFontSize(16);
+            doc.setFont("helvetica", "bold");
+            doc.text("INTERASIA LINE — FREIGHT TARIFF SHEET", 14, 15);
+
+            // Sub-context layout info strings
+            doc.setTextColor(80, 80, 80);
+            doc.setFontSize(10);
+            doc.setFont("helvetica", "normal");
+            doc.text(`Generated on: ${new Date().toLocaleDateString()} | Validity Window: 01 SEP 2026 - 30 SEP 2026`, 14, 33);
+            doc.text("Origin Matrix Location: Singapore (POL SIN)", 14, 38);
+
+            // Transform raw object datasets cleanly down into nested matrices for AutoTable parser
+            const tableRows = records.map(r => [
+                r.country, r.port, `$${r.gp20}`, `$${r.gp40}`, 
+                typeof r.dg20 === 'number' ? `$${r.dg20}` : r.dg20,
+                typeof r.dg40 === 'number' ? `$${r.dg40}` : r.dg40,
+                `$${r.rf20}`, `$${r.rf40}`
+            ]);
+
+            // Construct main freight pricing rendering module tables
+            doc.autoTable({
+                startY: 45,
+                head: [['Country', 'Port of Discharge', '20\' GP', '40\' GP', '20\' DG Surch.', '40\' DG Surch.', '20\' Reefer', '40\' Reefer']],
+                body: tableRows,
+                theme: 'striped',
+                headStyles: { fillBox: true, fillColor:, textColor:, fontStyle: 'bold' },
+                styles: { fontSize: 9, cellPadding: 3.5 }
+            });
+
+            // Append standard local surcharge table matrix values cleanly below freight blocks
+            let finalY = doc.lastAutoTable.finalY + 10;
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(11);
+            doc.text("Standard Singapore Local Surcharges (Mandatory Outbound Costs)", 14, finalY);
+
+            const localCharges = [
+                ["Bill of Lading Fee (B/L)", "SGD 180.00 / BL Set", "Container Seal Charge", "SGD 23.00 / Container Unit"],
+                ["AFR / AMS Filing Surcharge", "USD 30.00 / BL Set", "Telex Surrender Fee", "SGD 180.00 / Request Set"],
+                ["Dry Local Terminal Handling (LTHC)", "SGD 250 (20') / SGD 380 (40')", "Reefer Terminal Handling (LTHC)", "SGD 320 (20') / SGD 490 (40')"]
+            ];
+
+            doc.autoTable({
+                startY: finalY + 4,
+                body: localCharges,
+                theme: 'plain',
+                styles: { fontSize: 8.5, cellPadding: 2 },
+                columnStyles: { 0: { fontStyle: 'bold', width: 60 }, 1: { width: 50 }, 2: { fontStyle: 'bold', width: 60 }, 3: { width: 50 } }
+            });
+
+            // Automatically download final product output directly onto user storage drive
+            doc.save(`Interasia_Rates_${selectedCountry}_${selectedPort}.pdf`);
+        }
+
+        // Initialize view matching logic sequence on initial page boots
+        updatePortDropdown();
+    </script>
+</body>
+</html>
 
