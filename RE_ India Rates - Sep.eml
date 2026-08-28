@@ -1,0 +1,2350 @@
+Received: from SE1PPFF8A3E524C.apcprd04.prod.outlook.com
+ (2603:1096:108:1::533) by SEYPR04MB8947.apcprd04.prod.outlook.com with HTTPS;
+ Mon, 24 Aug 2026 07:32:10 +0000
+Received: from PS2PR01CA0042.apcprd01.prod.exchangelabs.com
+ (2603:1096:300:58::30) by SE1PPFF8A3E524C.apcprd04.prod.outlook.com
+ (2603:1096:108:1::533) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.360.3; Mon, 24 Aug
+ 2026 07:32:07 +0000
+Received: from TY2PEPF0000AB83.apcprd03.prod.outlook.com
+ (2603:1096:300:58:cafe::a3) by PS2PR01CA0042.outlook.office365.com
+ (2603:1096:300:58::30) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.339.12 via Frontend Transport; Mon,
+ 24 Aug 2026 07:32:07 +0000
+Received: from TYPPR03CU001.outbound.protection.outlook.com
+ (2a01:111:f403:c405::5) by TY2PEPF0000AB83.mail.protection.outlook.com
+ (2603:1096:408::d04) with Microsoft SMTP Server (version=TLS1_3,
+ cipher=TLS_AES_256_GCM_SHA384) id 15.21.360.3 via Frontend Transport; Mon, 24
+ Aug 2026 07:32:06 +0000
+Received: from KUZPR06MB8895.apcprd06.prod.outlook.com (2603:1096:d10:89::13)
+ by TYZPR06MB6021.apcprd06.prod.outlook.com (2603:1096:400:336::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.339.12; Mon, 24 Aug
+ 2026 07:32:01 +0000
+Received: from KUZPR06MB8895.apcprd06.prod.outlook.com
+ ([fe80::1260:8df7:52:1b80]) by KUZPR06MB8895.apcprd06.prod.outlook.com
+ ([fe80::1260:8df7:52:1b80%5]) with mapi id 15.21.0339.012; Mon, 24 Aug 2026
+ 07:32:01 +0000
+From: "phoebe.huang@msc.com" <phoebe.huang@msc.com>
+To: Sherlyn Chua <sherlyn@precisco.net>
+CC: ops <ops@precisco.net>
+Subject: RE: India Rates - Sep
+Thread-Topic: India Rates - Sep
+Thread-Index: Ad0xVfQxdYwaZeIRTRqrjjB25TiHGACRKV0Q
+Date: Mon, 24 Aug 2026 07:32:01 +0000
+Message-ID:
+ <KUZPR06MB8895D6B88E2B63255C9047A186A02@KUZPR06MB8895.apcprd06.prod.outlook.com>
+References:
+ <SEYPR04MB89473ABF9CB19005B60617E1CEA32@SEYPR04MB8947.apcprd04.prod.outlook.com>
+In-Reply-To:
+ <SEYPR04MB89473ABF9CB19005B60617E1CEA32@SEYPR04MB8947.apcprd04.prod.outlook.com>
+Accept-Language: en-SG, en-US
+Content-Language: en-US
+X-MS-Exchange-Organization-AuthSource:
+ TY2PEPF0000AB83.apcprd03.prod.outlook.com
+X-MS-Has-Attach: yes
+X-MS-Exchange-Organization-Network-Message-Id:
+ 1115bb6c-565c-4ce0-9fcf-08df01b1cce9
+X-Message-Flag: Follow up
+X-MS-TNEF-Correlator:
+X-MS-Exchange-Organization-RecordReviewCfmType: 0
+msip_labels:
+ MSIP_Label_fc24caf1-31f7-40c1-bde0-ca915f0156e3_Enabled=True;MSIP_Label_fc24caf1-31f7-40c1-bde0-ca915f0156e3_SiteId=088e9b00-ffd0-458e-bfa1-acf4c596d3cb;MSIP_Label_fc24caf1-31f7-40c1-bde0-ca915f0156e3_SetDate=2026-08-24T07:31:38.0000000Z;MSIP_Label_fc24caf1-31f7-40c1-bde0-ca915f0156e3_Name=Internal;MSIP_Label_fc24caf1-31f7-40c1-bde0-ca915f0156e3_ContentBits=3;MSIP_Label_fc24caf1-31f7-40c1-bde0-ca915f0156e3_Method=Standard
+x-ms-publictraffictype: Email
+x-ms-exchange-organization-originalclientipaddress: 2a01:111:f403:c405::5
+x-ms-exchange-organization-originalserveripaddress: 2603:1096:408::d04
+received-spf: Pass (protection.outlook.com: domain of msc.com designates
+ 2a01:111:f403:c405::5 as permitted sender) receiver=protection.outlook.com;
+ client-ip=2a01:111:f403:c405::5;
+ helo=TYPPR03CU001.outbound.protection.outlook.com; pr=C
+authentication-results: spf=pass (sender IP is 2a01:111:f403:c405::5)
+ smtp.mailfrom=msc.com; dkim=pass (signature was verified)
+ header.d=msc.com;dmarc=pass action=none header.from=msc.com;compauth=pass
+ reason=100
+x-ms-office365-filtering-correlation-id: 1115bb6c-565c-4ce0-9fcf-08df01b1cce9
+x-ms-traffictypediagnostic:
+ KUZPR06MB8895:EE_|TYZPR06MB6021:EE_|TY2PEPF0000AB83:EE_|SE1PPFF8A3E524C:EE_|SEYPR04MB8947:EE_
+x-forefront-antispam-report:
+ CIP:2a01:111:f403:c405::5;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYPPR03CU001.outbound.protection.outlook.com;PTR:mail-japaneastazlp170120005.outbound.protection.outlook.com;CAT:NONE;SFS:(13230040)(6049299003)(6073799003)(6113799003)(35042699022)(12012899012)(57112099003)(18002099003)(22082099003)(16102099003)(5063699009)(8096899003)(13003099007)(4053099003)(19002099009)(6133799003)(10067099003);DIR:INB;
+x-microsoft-antispam:
+ BCL:0;ARA:13230040|6049299003|6073799003|6113799003|35042699022|12012899012|57112099003|18002099003|22082099003|16102099003|5063699009|8096899003|13003099007|4053099003|19002099009|6133799003|10067099003;
+x-ms-exchange-crosstenant-network-message-id:
+ 1115bb6c-565c-4ce0-9fcf-08df01b1cce9
+x-ms-exchange-crosstenant-originalarrivaltime: 24 Aug 2026 07:32:06.8376 (UTC)
+x-ms-exchange-crosstenant-fromentityheader: Internet
+x-ms-exchange-crosstenant-id: c98b0ab5-9c46-4660-9ed0-3ad57158cc88
+x-ms-exchange-transport-crosstenantheadersstamped: SE1PPFF8A3E524C
+x-ms-exchange-transport-endtoendlatency: 00:00:03.4928554
+x-ms-exchange-processed-by-bccfoldering: 15.21.0360.003
+x-ms-exchange-crosstenant-authas: Anonymous
+x-ms-exchange-crosstenant-authsource:
+ TY2PEPF0000AB83.apcprd03.prod.outlook.com
+dkim-signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=msc.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=V7aCHfBu1DGjFkgd1VNkBxP8/Yugk3AYA6ZvmSZFVgg=;
+ b=VePvR+6Fqn87QYxCM5Vt2jA8mdqJDkiPX5LVlsEC9aZI/jwvNiFrLnfL/9VUUtRR/iU3Zy3wB5FhaI2ZsVooFig5kjxR7GxJJg4ML4gTdDVC55UuhEMgdwk7PrjuUFRjcJZSetpyply+fCQ/Dxd+91fvEQPj6iYvtwfM/aV1oI4=
+x-eopattributedmessage: 0
+x-eoptenantattributedmessage: c98b0ab5-9c46-4660-9ed0-3ad57158cc88:0
+arc-seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=iVxoitxka8VtVZ3xIN5oJHTQU8ZXIDJm2KEopQHGaY0rYcSc268q3wIY1Xj3c8E/zBSxxU74xFhYoLymsLCValenfAlggPAfg7it6T38+uRbmTjWUX2Ahx9Cq8tcP+oTDHhraLGJljNUhwWjyG/w5w2XG0zev+IlmCdv/K/hBPZsmdEBNRhCVIgiM0A6NaLa/N2a22E4dcLIIzCiTiPyg9tsuJriFkIVqQEak6SKcHafK6t3GhkSVZtizIxomHoItyzkbJOBNIOWK49n7eY+3Ud5FP/sC0E2qEMsXl2fhD0mtH4/RaxhUgl+OqPln+5WAeEiWqrGKrqnyEsdfcDJxw==
+arc-message-signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=V7aCHfBu1DGjFkgd1VNkBxP8/Yugk3AYA6ZvmSZFVgg=;
+ b=y7/Lv6rqQCM+juDPb7zcuP4I0lLDS+AzB07eOFL/x7yAZg/6b6iAxolENECyfUCJfsQ9Vb+vnQa871N2B10ZzW+BSqbaGklfcz5Fa2scD0/cqvSGOk9pgDsY2n43aZpGMV7oRdrEHYGBro7ivP6ZVhZDKHtI0L7PuV165MPchrt8TUazlcrS0wLFz5NZgFMZpSJEhQxUS74F44dmJQxUiL5/ZKdHFAUQrDp9HxOmpJ88OrjYF0FEWI+kCBItFAtXEuLD2dvPiVEWtThXI4spW81jP9rttOYsshlWgERCkkGohnyP+eKUFFVOM/AY3mN5i+rxxX2mHNSzf5j9HOamiQ==
+arc-authentication-results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=msc.com; dmarc=pass action=none header.from=msc.com; dkim=pass
+ header.d=msc.com; arc=none
+x-ms-exchange-senderadcheck: 1
+authentication-results-original: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=msc.com;
+x-forefront-antispam-report-untrusted:
+ CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:KUZPR06MB8895.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230040)(19092799006)(366016)(376014)(1800799024)(23010399003)(6049299003)(56012099006)(10067099003)(6133799003)(22082099003)(18002099003)(11063799006)(8096899003)(13003099007)(38070700021)(4053099003);DIR:OUT;SFP:1101;
+x-microsoft-antispam-untrusted:
+ BCL:0;ARA:13230040|19092799006|366016|376014|1800799024|23010399003|6049299003|56012099006|10067099003|6133799003|22082099003|18002099003|11063799006|8096899003|13003099007|38070700021|4053099003;
+x-microsoft-antispam-message-info-original:
+ wK15v0wI4b2WrbRl+keF6swN9sLVFRXMzitF7VgJAfw4zaMUqrR8Vyu8e0Oi2IBwU1ZVkq1agsjlxTPdWlIWVBV7kW7TPsrSlCGVqoMjStEWKkjAyY0xR4hZ5rRQyqZU2Jt8ei1P4Rg91vp1vzbVnKs6FwR1kL120bwzo8/Ow0ZfquQsGGMdY3tSimARTBZ9lWPisaILMIRulb6ZyJYR8SVcOsMLs2kPL9XhHjvhe4Taomsef6RfiLmDhfkMv47kIzQ2BJB6Ivwrs9j2Lg7TAlCVxy5zwr3iq92z2Yca5UrBWe4kyll3efdTmOw/UAMnhm5ktsxB4js4ItnukIPBnogilxXRv0G2abPCCKmK+lHSojo/kXNLeLXz42PPHosTbCwd19Htx5C7vPOSc0IxwseIkOINm1piw0Rgz2YHFNzOS1hCHSsu09+6QwKAzu++Q7l8q2TYZfGQA04Kqh2JArfS6AL1zOPtXo+fF9jJAcTu6VzhQiuusoYmV0cbZKVnHbsHd6nv7Rx+s3LrzZ346BlHKaPEYE6Ha8si962SR6sx20J2m7lbAyd3nVNp/QeRCZxlF2LAx+Wqs6KiwBjt2tHdioQgiNQt1AvQqRjP8zP6FFmDOKzuQN+EAEsXCpcF+fVFVJm+Tu+XQsCh86SbOeDN1YK9mMBuIrv8d1O+B/c=
+x-ms-exchange-transport-crosstenantheadersstripped:
+ TY2PEPF0000AB83.apcprd03.prod.outlook.com
+x-ms-office365-filtering-correlation-id-prvs:
+ 069e5216-811a-4f2b-8434-08df01b1c9a8
+x-ms-exchange-transport-crosstenantheaderspromoted:
+ TY2PEPF0000AB83.apcprd03.prod.outlook.com
+x-ms-exchange-antispam-messagedata-original-chunkcount: 1
+x-ms-exchange-antispam-messagedata-original-0:
+ =?Windows-1252?Q?TgvYcTb2RoA5k1eLghPdSghkOkRXgvS2KHFfcWBeMmi/B/aKxAWcRP+H?=
+ =?Windows-1252?Q?Ivx3HG5mN6fY93fjK+y3SxygQGZTNoGBfiQlJDro0B0noc/NXDQQWZ50?=
+ =?Windows-1252?Q?PLlSK19uVUdGb/Uh8E7wEdodJo9VNNeYbzQMU/R+fJX8MQkYZu9ni6HQ?=
+ =?Windows-1252?Q?+wIkBEe3ZDF2Y/DJh0RUpQLOPTsyhUsMUdl7lVXGPMa3Q9FW+8b1ez0I?=
+ =?Windows-1252?Q?q42c8XvqPGbSyFXj8bmXjzi0peeruRgTtNrT4wcIgU9vxsivzTVbKEtq?=
+ =?Windows-1252?Q?t8CZ6j0NqtCBDfXTkCugI59X4LH2FBtp/TkmphTZSe/LxMsolTWYJHqi?=
+ =?Windows-1252?Q?JqrM/aTMjTGMg2bOmbPlk6edSbujsYUfhi/XK33Z5cFrx18FjXNrcTah?=
+ =?Windows-1252?Q?IIFOAxBjKgZNevPnUZ6a2V9OIt8Uv9W0DEDfym1y67naSYJTWUN7tYVd?=
+ =?Windows-1252?Q?U4KAHOAtat2tR023QnJutfBdw9eojm2dpohK7Ec8zGEgRXjgwCintF5q?=
+ =?Windows-1252?Q?88KqBXSHopLDvG0o1t7ZYdX8UAHoNrYdJ9KDdzx3ybcfcRHHgGHhkfnD?=
+ =?Windows-1252?Q?W0vyAC/1dfNJuQZIIeMm98JcL/lKkoa4SKypokNh0+/RtOjA8rEiE6/4?=
+ =?Windows-1252?Q?e5LqfYUn5kEYof6lVj1dbQXk4smKrLX/lj3pKA+sCxDByqKK4Jz8NNcP?=
+ =?Windows-1252?Q?OCTqVF9piL6DdJKmy/RBcSrYW7AUm8gqzsYJ0ssi1ZFq6Y9PFeNqkyIW?=
+ =?Windows-1252?Q?kG8zpy0GGePPF+pX61Ef1EWRF3Qrr/LZOHgja+luVIenZ/D/nMZsl1CA?=
+ =?Windows-1252?Q?49Ahl+SUVHKDS+qL5ZszAQPfgdmbdikzRK1Cv1XCRqp71HNlhi3UYDcf?=
+ =?Windows-1252?Q?cJK9UfeKOXPpN4BF5WFWE5rUdSYhl03tB9tb15ExYxb1FmlivTKXhXFv?=
+ =?Windows-1252?Q?zr4rf1iZpiquclY7sO52bEinB06H/F+a/cD2efsJkPC4HbhAWGW/uQ+U?=
+ =?Windows-1252?Q?AgAusPzBI3vB9x17hRxBKJf/Zt7niZBKPU1go/RgvvR2OedlN9rKYp0q?=
+ =?Windows-1252?Q?CqZMCUDBQlLt9ZT68sBUvoATSObS/BSb41MPHiAs9hHRYEkTqYRtj6z0?=
+ =?Windows-1252?Q?rew3+9rPDqGRDU7UuR26Us6acjcWv7BGKCERWAFDdycIIj/hZTyWwzl/?=
+ =?Windows-1252?Q?+Vpl9UJzygvcLDZ4o2hJejslqFeyAQU0H3U+Vx4ga6yTNcq+LW5REnw6?=
+ =?Windows-1252?Q?Wp5C/+F6E+OZkePmR4wp/Bp6G83DvavhqvvCws/DJ8Y5L61g3jrpqUc3?=
+ =?Windows-1252?Q?ZzVG2QBV/KywVz1aetxJokNOy7GzBtu0IxABe+74gKmT0R2NpZmwF5ZQ?=
+ =?Windows-1252?Q?b/bGT3/iJ6doTgokgpQxRu/qYidxWlR7ewgFyrY1ALE+UPCkpjJMdQRp?=
+ =?Windows-1252?Q?wXPuh1+kYeChQjcDgLZzh7ukIOSJybWTvCbPpdW5sXvTPOi1PDqloSIk?=
+ =?Windows-1252?Q?KUXKHT/n0U+OYx6g9NL3lVGzpsxW5R3tv0Zq9bh/ta63vcst53l3LbWo?=
+ =?Windows-1252?Q?FzbN1Y7mMKYt9xtrc1S5OzvuokhmbZW5g/8qTVvs57q808XtisrIoomW?=
+ =?Windows-1252?Q?hlmgIByi4OKahw9e7jmYie4xepvY+ryujD5rugWGdYcg08lyLXfk9mu6?=
+ =?Windows-1252?Q?fs+2huv6O2JunjLjP0ZU4dL3+Edwe6ZFX++Vp/U4wNPzO3O9s0VJZK7x?=
+ =?Windows-1252?Q?H0r3yeUdHbt6x+Gm7S6tnwkoTcexQjsHjLwZ8ACdysfLCY0dw5A7p03r?=
+ =?Windows-1252?Q?KbAwWlbXLHguClu7S0Nj66AJSyAdHyQvSH54Ms/JJUVvy2R3nOX5WRJy?=
+ =?Windows-1252?Q?hU1U/F5xefBORA=3D=3D?=
+x-ms-exchange-antispam-relay: 0
+X-Microsoft-Antispam-Mailbox-Delivery:
+ ucf:0;jmr:0;auth:0;dest:I;ENG:(910005)(944506478)(944626604)(920097)(930201)(20251009189)(140003);
+X-Microsoft-Antispam-Message-Info:
+ =?Windows-1252?Q?Hf/YFrUhKF538gyQj8Kc+jyuyajmeXR0wcGV6zHJV9Hx83u4IeiV6X8L?=
+ =?Windows-1252?Q?ualrWmh2L/1rORXnP3oc5eu6NSmxDZJz3UFgEGSGuIsyEzQfSkYctnCM?=
+ =?Windows-1252?Q?kqY4DUobVhObnW2QmV62oIVeLfFIMuH3bCqDAcvHHImQXi0LZ8cyp+hM?=
+ =?Windows-1252?Q?ro9YjzB4wV4TWHDoIMtG2P6bQ3zZfkIeKnXnDWnm1A0wPpcYt8I6kzBl?=
+ =?Windows-1252?Q?7I5VGYm0Dv8P5nxOE84ODG5dPmbB95H4weAGnWLFkqrTPZf1wZUfFOWn?=
+ =?Windows-1252?Q?jrQym+qurRIgDQWtVFioMV7UsNjL2Iyi5/1X5y7EQFSe6cIZS5p8C2HC?=
+ =?Windows-1252?Q?mLgz1cHHkrUy5B5HFD8Y+dqdQF/lJXPh1iJAtfbKs8mVZ+yg4PROXclL?=
+ =?Windows-1252?Q?C5xKrty6aZkHdy9/mIU1/PxhHYHkd9vygLveQMkxcM048lT5UYrjDPfS?=
+ =?Windows-1252?Q?TITfrvI1cCH6tXRiZaTXytJ2sw7UU1vmGpCSaYmB/Fw3zS19J+sXe6Th?=
+ =?Windows-1252?Q?Aln+fBK9A7eIuKnYHYcLojnD/0h/xchqJYyAEy1l+FqBFNhs3FFwb9D2?=
+ =?Windows-1252?Q?2xH5x1nGJPZ4hoINoMGXUojmi1nS0liz0Y7N0UzWpNGyvsIWZh0DOXhs?=
+ =?Windows-1252?Q?MT5wJtW3t660tXCSDhWY+GCNjoT+W0DQGfhKbyXZftEXYXKOLSQsahzi?=
+ =?Windows-1252?Q?f7OwAH3QQW8J+ZKrpocUUNaiwOuUhGJqvOmpDGVU6QqiRgBMFURrNKry?=
+ =?Windows-1252?Q?e7gK41NHpABBGThR4vWwL+DJD9M8V4FE1D1S+oRuS+hMhv9nnSQgZLcZ?=
+ =?Windows-1252?Q?BWpeQehoQmqckz2YkSTRjJzhmU1J7yh6Aq2sbVlHVMA7fdas8Dyt8x8V?=
+ =?Windows-1252?Q?lLuKLRQb+AgJlnJ4wP7wXdXXpOfXP2L0E8gt2XTYgFAiGVwXYyC+oaDO?=
+ =?Windows-1252?Q?rCT3HLlPOuNTzYGE1o2SQXZSxvJrIEFOQr//+3NA6vfRFSAX6LtNdjX4?=
+ =?Windows-1252?Q?PFxZJ+OLE9lBHBPNryrtLFFL8+yJDeKSMgDTbPBL5GV4T9Kgv7RMm7Cm?=
+ =?Windows-1252?Q?bEs/d9vIMXK00SjQIxwZtvxAdqfD404ReimqVkSpm1FDYGq2bziUPhE1?=
+ =?Windows-1252?Q?K2sykaC+c6/kezRSqFgHwL3cpnojcjeqPJY7qZVxoPTTP5Ya9Tbg/t86?=
+ =?Windows-1252?Q?3/L45vhjYv/bmbOE2P/DBQLUnmrzuPcVefanC+X0z6VhvcpulGsY97CO?=
+ =?Windows-1252?Q?pRO6l4nb9mybEp9hN+H3k7CcB4n7DY+kDH+sn0lkwZexnmBglDYpQ0g7?=
+ =?Windows-1252?Q?/QV71omqyy6qc8MSxexFT/xtQ7h0iMHbhJQD9Q9nXHJeqsDrdF6PD0VI?=
+ =?Windows-1252?Q?8UDh8WMtet/yLLBZQDMSvgck1c5q6Kv9q+H/SzhBq8UVJP0RDDrgljlY?=
+ =?Windows-1252?Q?ObpXcfltbbFJar0iHg+5OeKunyRyuzAwXqqxD5l/4iD2vfqQ/TUNVLqa?=
+ =?Windows-1252?Q?bRCEKi31H7WTeoN/y1HjvyE4FFdK7ZALCjT8uG/UP2GN5BPkv8x2Qtgj?=
+ =?Windows-1252?Q?KV3Ikpm7+KehREBwqsB/uqigTkQUiLfuq6WRiE9gmMpOndVFnqQpnrEH?=
+ =?Windows-1252?Q?fcdEiNLpfzK6a7XL1y49z8XDZnF0cOZdUCRcWgTKZGz42tNV+RoAXusn?=
+ =?Windows-1252?Q?g+vrS5NRrYFWsTvdSVQRbcuqAQPCjIHpPjC8JVpGATJcj2HLJfjAiQcA?=
+ =?Windows-1252?Q?m9oy59SmEpssY9yY4ENAc04V47V+edNPbNawEhsHnII8vnPNfkjAVzl2?=
+ =?Windows-1252?Q?T4IC3fC9/8wuJe7WyYtxfKPZ4tmdNM+lvMSaQTQRpUws6YwQOUg42iUr?=
+ =?Windows-1252?Q?EBG08Nzd7U+sT+MbbWtvxnQetTxRI+9CuNZb8GUEWFr6V49YVpUFjgHY?=
+ =?Windows-1252?Q?dB63rXtDZiAKG0zF1ns25sFzoVo2oWYrJVnMrcXp80PIT/OHGRIIsc55?=
+ =?Windows-1252?Q?R5jTtmNAvo6eT+x4+QGY/RWwWyC8kX/LB0Hg+5IS9eXlt3ByXH7kVTZW?=
+ =?Windows-1252?Q?qdqUTuNl6IFyR8C5XKhH8EBdsMoaxKWtYfACbPoaH3E5bXk7VtjJTvuq?=
+ =?Windows-1252?Q?9Lf2vgvfIsGdq7cyjoaKDK5domS79hCILVigKl9eOU6Fda1DGUyAt1KJ?=
+ =?Windows-1252?Q?zwkbZpO5+EpzAPODY1foIDtwsLtEqfotVmwaVJVlNv7yT7Cmrotgyeng?=
+ =?Windows-1252?Q?4T0WASmvE3ma41XVK7FNM7nt9ZGojZxS40QPCRLhs+D03M/8I0KEkeG0?=
+ =?Windows-1252?Q?Bn/8grpTK7/SxmeLlVRQQUfQP4Wuw7ky1PdY+XLXbhpW9bMG2x76rl4B?=
+ =?Windows-1252?Q?2JrrdGIqJJK50daOmFwJFVgYFmbKbcspkW71O31SCpoX3XU9gaXmTcC7?=
+ =?Windows-1252?Q?3EN2WyYTiR38VfzXPHTQXupM8zBYcJAAsETQg6PXAyerD5N0Hr7vf4Uw?=
+ =?Windows-1252?Q?Gn3iyBfxZ021sx42FFImr3mVpvnYTWpzyb+oYmgI1bDZmTDVVHI=3D?=
+Content-Type: multipart/related;
+	boundary="_005_KUZPR06MB8895D6B88E2B63255C9047A186A02KUZPR06MB8895apcp_";
+	type="multipart/alternative"
+MIME-Version: 1.0
+
+--_005_KUZPR06MB8895D6B88E2B63255C9047A186A02KUZPR06MB8895apcp_
+Content-Type: multipart/alternative;
+	boundary="_000_KUZPR06MB8895D6B88E2B63255C9047A186A02KUZPR06MB8895apcp_"
+
+--_000_KUZPR06MB8895D6B88E2B63255C9047A186A02KUZPR06MB8895apcp_
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
+
+Hi Jiejie
+
+Not suggest u use our india , base port is too ex already .
+
+
+
+INDIA/PAKISTAN Valid from 31 AUG 2026 to 06 SEP 2026
+
+SHIKRA
+
+MSC AMELIA QS634A ETD SIN 05 SEP
+
+MSC JOANNA MA623R ETD 03 SEP
+
+Port
+
+20DV
+
+40DV/40HC
+
+Nhava Sheva
+
+3500
+
+3700
+
+Mundra
+
+3500
+
+3700
+
+Karachi
+
+3600
+
+3800
+
+Port Qasim
+
+3600
+
+3800
+
+Colombo - Incl DTHC
+
+3800
+
+4000
+
+Ennore/ Kattupali
+
+3400
+
+3600
+
+Tuticorin
+
+3800
+
+4000
+
+Vizhinjam
+
+3800
+
+4000
+
+Cochin
+
+3800
+
+4000
+
+Visakhapatnam/Gangavaram
+
+3400
+
+3600
+
+New Mangalore
+
+3900
+
+4100
+
+Kolkata
+
+3900
+
+4100
+
+Haldia
+
+3900
+
+4100
+
+Paradip
+
+3450
+
+3700
+
+Marmagoa
+
+3900
+
+4100
+
+Hazira
+
+3900
+
+4100
+
+Male - Incl DTHC
+
+4550
+
+5500
+
+Applicable Local Surcharges : LTHC, DOC, SEAL
+
+Global Fuel Surcharge
+
+Inclusive
+
+LTHC (DRY and NOR)
+
+SGD245/370/370
+
+LTHC ( REEFER ) wef 01/08/2026
+
+SGD325/490/490
+
+LTHC ( HAZARDOUS ) applicable from 26th Jul'25
+
+SGD280/400/490
+
+BL (1 of 3 options)
+
+
+
+
+
+1. SGD 150 (Electronic Booking & Electonic SI)
+
+
+
+
+
+2. SGD 200 (Manual Booking & Electronic SI)
+
+
+
+
+
+3. SGD 280 (Electronic/Manual Booking + Manual SI)
+
+
+
+
+
+TELEX RELEASE FEE / SURRENDER BL FEE
+
+SGD200/BL
+
+Printed BL fee
+
+SGD20/BL
+
+CORRECTOR FEE / B/L AMENDMENT FEE (ELECTRONIC)
+
+SGD180/BL
+
+CORRECTOR FEE / B/L AMENDMENT FEE (MANUAL)
+
+SGD200/BL
+
+Seal Fee
+
+SGD26/seal
+
+Food Grade container - Please request upon booking
+
+USD70/20'ft and USD90/40'ft
+
+Flexibag surcharge
+
+USD14/container
+
+Port Surcharge (Male) - Prepaid
+
+USD150 per teu
+
+DOF, Liner Fee (Male) - Prepaid
+
+USD45 per teu
+
+Reefer Add-on
+
+USD1500 per container
+
+SOC-DRY/TK (ISO Standards, non-modified with CSC plates)
+
+USD50 per teu
+
+Hazardous Surcharge
+
+Packing Group 1/High Risk =96 USD500 per container
+
+(Packing Group refers to MSDS, Section 14)
+
+Packing Group 2/Medium Risk =96 USD350 per container
+
+
+
+Packing Group 3/Low Risk - USD250 per container
+
+INDIA IMPORT LOCAL CHARGES: Please click on below link (Local Information =
+=E0 Asia Pacific =E0 India)
+
+India Shipping Services - Offices, Local Information | MSC<https://www.msc.=
+com/en/local-information/asia-pacific/india>
+
+
+
+
+
+
+
+
+
+Remarks :
+
+1.      Free time in Port of Loading (SG) for standard equipment is 7 days,=
+ DG 6 days and reefer is 5 days only.
+2.      Rates quoted based on proforma date, except for USA/CANADA / SAN JU=
+AN based on gate in date
+3.      Rates offer subject to MSC standard freetime and tariff unless stat=
+ed otherwise.
+4.      DG Cargo will be based on MSDS packing group, check with sales if n=
+o indication in MSDS, all DG are subjected to approval on case by case basi=
+s and in the event that export is a via routing, there will be additional s=
+urcharges incurred at transshipment port.
+5.      SCF: USD 50/CNTR will be applicable for all shipments with HS Code =
+containing the following first 4 digits.( 2304 / 2305 / 2306 / 2308 /  2803=
+ / 3802 / 4004 / 4402  / 5201 / 5202/ 5203/ 5301 / 5302 / 5303 / 5305)
+
+6.        To View Schedule to all POD, pls use Singapore Shipping Services =
+- Offices, Local Information | MSC<https://www.msc.com/en/local-information=
+/asia-pacific/singapore#LocalRequirements>
+
+7.      Whatapp link to check vessel proforma date https://wa.me/6587991524=
+?text=3DHi
+8.      Kindly find proforma schedule to MSC called ports on Singapore Ship=
+ping Services - Offices, Local Information | MSC and Tracking at https://ww=
+w.msc.com/track-a-shipment?lang=3Den-gb
+9.      Please try out the new feature by logging into logging into myMSC<h=
+ttps://www.mymsc.com/mymsc/>  for instant quote
+10.     All in-transit cargo must be informed before booking, and subject t=
+o to approval on case-to-case. Any charges caused by unauthorized in-transi=
+t shipment will not be under MSC liabliity
+
+
+
+
+
+
+
+Best regards,
+
+Phoebe Huang
+
+Assisant Manager,  Trade & Sales
+
+
+
+MEDITERRANEAN SHIPPING COMPANY SOUTH EAST ASIA (SINGAPORE) PTE LTD
+
+3 Temasek Avenue, #03-01 Centennial Tower, Singapore 039190
+
+T: +65 6011 0562 M: +65 8167 1740
+
+E: phoebe.huang@msc.com<mailto:phoebe.huang@msc.com>  W: www.msc.com<http:/=
+/www.msc.com/>
+
+As agent for MSC Mediterranean Shipping Company S.A., Geneva
+
+
+
+
+Sensitivity: Internal
+
+
+From: Sherlyn Chua <sherlyn@precisco.net>
+Sent: Friday, August 21, 2026 6:17 PM
+To: Phoebe Huang (MSC Singapore) <phoebe.huang@msc.com>
+Cc: ops <ops@precisco.net>
+Subject: India Rates - Sep
+
+
+
+CAUTION: External email. Do not click links or open attachments unless you =
+recognize the sender and know the content is safe.
+
+
+
+Dear Phoebe,
+
+
+
+Please quote for the following for COC 20GP, 40GP & 40HC:
+
+Commodity: Resin
+
+HALDIA
+
+ICD BANGALORE (Freight paid up to POD)
+
+ICD DADRI (Freight paid up to POD)
+
+ICD DELHI (Freight paid up to POD)
+
+ICD FARIDABAD (Freight paid up to POD)
+
+ICD LUDHIANA (Freight paid up to POD)
+
+ICD TUGHLAKHABAD (Freight paid up to POD)
+
+KATTUPALLI
+
+KRISHNAPATNAM
+
+
+
+If rates for Sep not ready, please quote for Aug.
+
+Thanks.
+
+
+
+**All transactions are subject to our company=92s Standard Trading Conditio=
+ns,a copy of available upon request.**
+
+Thank you and Stay Safe!
+
+Best regards,
+
+Sherlyn Chua
+
+Senior Business Development Manager
+
+
+
+PRECISCO PTE LTD
+
+2 Leng Kee Road
+
+#05-01A Thye Hong Centre
+
+Singapore 159086
+
+T +65 6358 2756<tel:%2B65%206358%202756> F +65 6358 2757<tel:%2B65%206358%2=
+02757> M +65 9<tel:%2B65%209680%206382>680 6382
+sherlyn@precisco.net<mailto:sherlyn@precisco.net>
+
+http://www.precisco.net/
+
+Wechat: inisherD<tel:%2B65%206358%202756>
+
+
+
+Proud and Active member of
+
+
+
+
+
+
+
+To find more about the processing of your personal data please click here h=
+ttps://www.msc.com/-/media/files/legal-files/general-data-protection-notice=
+-for-customer2024.pdf .
+This message and any associated files (together the =93Contents=94) are int=
+ended solely for the addressee(s). The Contents are confidential and may co=
+ntain private information or information that is subject to copyright or is=
+ a trade secret or which is privileged. Views or opinions expressed herein =
+do not necessarily represent views or opinions of MSC Mediterranean Shippin=
+g Company, its agents or their affiliated companies and may only be the vie=
+w or opinion of the author. If you are not the intended recipient of this e=
+mail, you must not use, print, copy, store, forward, or disclose it or act =
+in reliance of the Contents. Please destroy all copies of the message and a=
+ny associated files and notify the sender immediately that you have receive=
+d it in error. Thank you for your cooperation.------MSC LEGAL DISCLAIMER
+
+
+--_000_KUZPR06MB8895D6B88E2B63255C9047A186A02KUZPR06MB8895apcp_
+Content-Type: text/html; charset="Windows-1252"
+Content-ID: <7DC7B596A9AAAE47A78038D5FBDDB2B3@apcprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:x=3D"urn:schemas-microsoft-com:office:excel" xmlns:m=3D"http://schema=
+s.microsoft.com/office/2004/12/omml" xmlns=3D"http://www.w3.org/TR/REC-html=
+40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<!--[if !mso]><style>v\:* {behavior:url(#default#VML);}
+o\:* {behavior:url(#default#VML);}
+w\:* {behavior:url(#default#VML);}
+.shape {behavior:url(#default#VML);}
+</style><![endif]--><style><!--
+/* Font Definitions */
+@font-face
+	{font-family:SimSun;
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:PMingLiU;
+	panose-1:2 2 5 0 0 0 0 0 0 0;}
+@font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Aptos;}
+@font-face
+	{font-family:"Arial Black";
+	panose-1:2 11 10 4 2 1 2 2 2 4;}
+@font-face
+	{font-family:"\@SimSun";
+	panose-1:2 1 6 0 3 1 1 1 1 1;}
+@font-face
+	{font-family:"\@PMingLiU";
+	panose-1:2 1 6 1 0 1 1 1 1 1;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0in;
+	font-size:12.0pt;
+	font-family:"Aptos",sans-serif;
+	mso-ligatures:standardcontextual;}
+a:link, span.MsoHyperlink
+	{mso-style-priority:99;
+	color:#467886;
+	text-decoration:underline;}
+span.EmailStyle19
+	{mso-style-type:personal-reply;
+	font-family:"Aptos",sans-serif;
+	color:windowtext;}
+.MsoChpDefault
+	{mso-style-type:export-only;
+	font-size:10.0pt;
+	mso-ligatures:none;}
+@page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+/* List Definitions */
+@list l0
+	{mso-list-id:558520249;
+	mso-list-type:hybrid;
+	mso-list-template-ids:128604266 1439194066 67698713 67698715 67698703 6769=
+8713 67698715 67698703 67698713 67698715;}
+@list l0:level1
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;
+	mso-ascii-font-family:Aptos;
+	mso-fareast-font-family:PMingLiU;
+	mso-hansi-font-family:Aptos;
+	mso-bidi-font-family:"Times New Roman";}
+@list l0:level2
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level3
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level4
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level5
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level6
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+@list l0:level7
+	{mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level8
+	{mso-level-number-format:alpha-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:left;
+	text-indent:-.25in;}
+@list l0:level9
+	{mso-level-number-format:roman-lower;
+	mso-level-tab-stop:none;
+	mso-level-number-position:right;
+	text-indent:-9.0pt;}
+ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-US" link=3D"#467886" vlink=3D"#96607D" style=3D"word-wrap:=
+break-word">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal">Hi Jiejie <o:p></o:p></p>
+<p class=3D"MsoNormal">Not suggest u use our india , base port is too ex al=
+ready .<o:p></o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"732" style=3D"width:549.0pt;margin-left:.2pt;border-collaps=
+e:collapse">
+<tbody>
+<tr style=3D"height:83.4pt">
+<td width=3D"732" colspan=3D"3" style=3D"width:549.0pt;border-top:solid win=
+dowtext 1.0pt;border-left:solid windowtext 1.0pt;border-bottom:none;border-=
+right:solid black 1.0pt;background:#EED484;padding:0in 5.4pt 0in 5.4pt;heig=
+ht:83.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;colo=
+r:black;mso-ligatures:none">INDIA/PAKISTAN Valid from 31 AUG 2026 to 06 SEP=
+ 2026<o:p></o:p></span></b></p>
+</td>
+</tr>
+<tr style=3D"height:.55in">
+<td width=3D"732" colspan=3D"3" style=3D"width:549.0pt;border-top:none;bord=
+er-left:solid windowtext 1.0pt;border-bottom:none;border-right:solid black =
+1.0pt;background:#EED484;padding:0in 5.4pt 0in 5.4pt;height:.55in">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><u><=
+span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;c=
+olor:black;mso-ligatures:none">SHIKRA<o:p></o:p></span></u></b></p>
+</td>
+</tr>
+<tr style=3D"height:37.2pt">
+<td width=3D"732" colspan=3D"3" style=3D"width:549.0pt;border-top:none;bord=
+er-left:solid windowtext 1.0pt;border-bottom:none;border-right:solid black =
+1.0pt;background:#EED484;padding:0in 5.4pt 0in 5.4pt;height:37.2pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;colo=
+r:black;mso-ligatures:none">MSC AMELIA QS634A ETD SIN 05 SEP<o:p></o:p></sp=
+an></b></p>
+</td>
+</tr>
+<tr style=3D"height:30.75pt">
+<td width=3D"732" colspan=3D"3" style=3D"width:549.0pt;border-top:none;bord=
+er-left:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;border-=
+right:solid black 1.0pt;background:#EED484;padding:0in 5.4pt 0in 5.4pt;heig=
+ht:30.75pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;colo=
+r:black;mso-ligatures:none">MSC JOANNA MA623R ETD 03 SEP<o:p></o:p></span><=
+/b></p>
+</td>
+</tr>
+<tr style=3D"height:33.75pt">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;padding:0in 5.4pt 0in 5.4pt;height:33.75pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;colo=
+r:black;mso-ligatures:none">Port<o:p></o:p></span></b></p>
+</td>
+<td width=3D"207" style=3D"width:155.4pt;border-top:none;border-left:none;b=
+order-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;pad=
+ding:0in 5.4pt 0in 5.4pt;height:33.75pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;colo=
+r:black;mso-ligatures:none">20DV<o:p></o:p></span></b></p>
+</td>
+<td width=3D"242" style=3D"width:181.45pt;border-top:none;border-left:none;=
+border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;pa=
+dding:0in 5.4pt 0in 5.4pt;height:33.75pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;colo=
+r:black;mso-ligatures:none">40DV/40HC<o:p></o:p></span></b></p>
+</td>
+</tr>
+<tr style=3D"height:58.2pt">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;padding:0in 5.4pt 0in 5.4pt;height:58.2pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif;color:black;mso-ligatures:none">Nhava Sheva
+<o:p></o:p></span></b></p>
+</td>
+<td width=3D"207" style=3D"width:155.4pt;border-top:none;border-left:none;b=
+order-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;pad=
+ding:0in 5.4pt 0in 5.4pt;height:58.2pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">3500<o:p></o:p></span></p>
+</td>
+<td width=3D"242" style=3D"width:181.45pt;border-top:none;border-left:none;=
+border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;pa=
+dding:0in 5.4pt 0in 5.4pt;height:58.2pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">3700<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:30.75pt">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;padding:0in 5.4pt 0in 5.4pt;height:30.75pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif;color:black;mso-ligatures:none">Mundra
+<o:p></o:p></span></b></p>
+</td>
+<td width=3D"207" style=3D"width:155.4pt;border-top:none;border-left:none;b=
+order-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;pad=
+ding:0in 5.4pt 0in 5.4pt;height:30.75pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">3500<o:p></o:p></span></p>
+</td>
+<td width=3D"242" style=3D"width:181.45pt;border-top:none;border-left:none;=
+border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;pa=
+dding:0in 5.4pt 0in 5.4pt;height:30.75pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">3700<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:.3in">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;padding:0in 5.4pt 0in 5.4pt;height:.3in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif;color:black;mso-ligatures:none">Karachi
+<o:p></o:p></span></b></p>
+</td>
+<td width=3D"207" style=3D"width:155.4pt;border-top:none;border-left:none;b=
+order-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;pad=
+ding:0in 5.4pt 0in 5.4pt;height:.3in">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">3600<o:p></o:p></span></p>
+</td>
+<td width=3D"242" style=3D"width:181.45pt;border-top:none;border-left:none;=
+border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;pa=
+dding:0in 5.4pt 0in 5.4pt;height:.3in">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">3800<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:47.4pt">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;padding:0in 5.4pt 0in 5.4pt;height:47.4pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif;color:black;mso-ligatures:none">Port Qasim<o:p></=
+o:p></span></b></p>
+</td>
+<td width=3D"207" style=3D"width:155.4pt;border-top:none;border-left:none;b=
+order-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;pad=
+ding:0in 5.4pt 0in 5.4pt;height:47.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">3600<o:p></o:p></span></p>
+</td>
+<td width=3D"242" style=3D"width:181.45pt;border-top:none;border-left:none;=
+border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;pa=
+dding:0in 5.4pt 0in 5.4pt;height:47.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">3800<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:.6in">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;padding:0in 5.4pt 0in 5.4pt;height:.6in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif;color:black;mso-ligatures:none">Colombo - Incl DT=
+HC<o:p></o:p></span></b></p>
+</td>
+<td width=3D"207" nowrap=3D"" style=3D"width:155.4pt;border-top:none;border=
+-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowte=
+xt 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:.6in">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">3800<o:p></o:p></span></p>
+</td>
+<td width=3D"242" nowrap=3D"" style=3D"width:181.45pt;border-top:none;borde=
+r-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowt=
+ext 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:.6in">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">4000<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:73.2pt">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;padding:0in 5.4pt 0in 5.4pt;height:73.2pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif;color:black;mso-ligatures:none">Ennore/ Kattupali=
+<o:p></o:p></span></b></p>
+</td>
+<td width=3D"207" nowrap=3D"" style=3D"width:155.4pt;border-top:none;border=
+-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowte=
+xt 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:73.2pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">3400<o:p></o:p></span></p>
+</td>
+<td width=3D"242" nowrap=3D"" style=3D"width:181.45pt;border-top:none;borde=
+r-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowt=
+ext 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:73.2pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">3600<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:73.2pt">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;padding:0in 5.4pt 0in 5.4pt;height:73.2pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif;color:black;mso-ligatures:none">Tuticorin
+<o:p></o:p></span></b></p>
+</td>
+<td width=3D"207" nowrap=3D"" style=3D"width:155.4pt;border-top:none;border=
+-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowte=
+xt 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:73.2pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">3800<o:p></o:p></span></p>
+</td>
+<td width=3D"242" nowrap=3D"" style=3D"width:181.45pt;border-top:none;borde=
+r-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowt=
+ext 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:73.2pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">4000<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:43.95pt">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;padding:0in 5.4pt 0in 5.4pt;height:43.95pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif;color:red;mso-ligatures:none">Vizhinjam<o:p></o:p=
+></span></b></p>
+</td>
+<td width=3D"207" nowrap=3D"" style=3D"width:155.4pt;border-top:none;border=
+-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowte=
+xt 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:43.95pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:r=
+ed;mso-ligatures:none">3800<o:p></o:p></span></p>
+</td>
+<td width=3D"242" nowrap=3D"" style=3D"width:181.45pt;border-top:none;borde=
+r-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowt=
+ext 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:43.95pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:r=
+ed;mso-ligatures:none">4000<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:.2in">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;padding:0in 5.4pt 0in 5.4pt;height:.2in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif;color:black;mso-ligatures:none">Cochin
+<o:p></o:p></span></b></p>
+</td>
+<td width=3D"207" nowrap=3D"" style=3D"width:155.4pt;border-top:none;border=
+-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowte=
+xt 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:.2in">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">3800<o:p></o:p></span></p>
+</td>
+<td width=3D"242" nowrap=3D"" style=3D"width:181.45pt;border-top:none;borde=
+r-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowt=
+ext 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:.2in">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">4000<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:.2in">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;padding:0in 5.4pt 0in 5.4pt;height:.2in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif;color:black;mso-ligatures:none">Visakhapatnam/Gan=
+gavaram
+<o:p></o:p></span></b></p>
+</td>
+<td width=3D"207" nowrap=3D"" style=3D"width:155.4pt;border-top:none;border=
+-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowte=
+xt 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:.2in">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">3400<o:p></o:p></span></p>
+</td>
+<td width=3D"242" nowrap=3D"" style=3D"width:181.45pt;border-top:none;borde=
+r-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowt=
+ext 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:.2in">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">3600<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:15.0pt">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif;color:black;mso-ligatures:none">New Mangalore
+<o:p></o:p></span></b></p>
+</td>
+<td width=3D"207" nowrap=3D"" style=3D"width:155.4pt;border-top:none;border=
+-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowte=
+xt 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:15.0pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">3900<o:p></o:p></span></p>
+</td>
+<td width=3D"242" nowrap=3D"" style=3D"width:181.45pt;border-top:none;borde=
+r-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowt=
+ext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">4100<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:30.0pt">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;padding:0in 5.4pt 0in 5.4pt;height:30.0pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif;color:black;mso-ligatures:none">Kolkata<o:p></o:p=
+></span></b></p>
+</td>
+<td width=3D"207" nowrap=3D"" style=3D"width:155.4pt;border-top:none;border=
+-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowte=
+xt 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:30.0pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">3900<o:p></o:p></span></p>
+</td>
+<td width=3D"242" nowrap=3D"" style=3D"width:181.45pt;border-top:none;borde=
+r-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowt=
+ext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:30.0pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">4100<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:42.6pt">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;padding:0in 5.4pt 0in 5.4pt;height:42.6pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif;color:black;mso-ligatures:none">Haldia
+<o:p></o:p></span></b></p>
+</td>
+<td width=3D"207" nowrap=3D"" style=3D"width:155.4pt;border-top:none;border=
+-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowte=
+xt 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:42.6pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">3900<o:p></o:p></span></p>
+</td>
+<td width=3D"242" nowrap=3D"" style=3D"width:181.45pt;border-top:none;borde=
+r-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowt=
+ext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:42.6pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">4100<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:52.2pt">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;padding:0in 5.4pt 0in 5.4pt;height:52.2pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif;color:black;mso-ligatures:none">Paradip
+<o:p></o:p></span></b></p>
+</td>
+<td width=3D"207" nowrap=3D"" style=3D"width:155.4pt;border-top:none;border=
+-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowte=
+xt 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:52.2pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">3450<o:p></o:p></span></p>
+</td>
+<td width=3D"242" nowrap=3D"" style=3D"width:181.45pt;border-top:none;borde=
+r-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowt=
+ext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:52.2pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">3700<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:15.0pt">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif;color:black;mso-ligatures:none">Marmagoa<o:p></o:=
+p></span></b></p>
+</td>
+<td width=3D"207" nowrap=3D"" style=3D"width:155.4pt;border-top:none;border=
+-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowte=
+xt 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:15.0pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">3900<o:p></o:p></span></p>
+</td>
+<td width=3D"242" nowrap=3D"" style=3D"width:181.45pt;border-top:none;borde=
+r-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowt=
+ext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:15.0pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">4100<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:73.2pt">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;padding:0in 5.4pt 0in 5.4pt;height:73.2pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif;color:black;mso-ligatures:none">Hazira<o:p></o:p>=
+</span></b></p>
+</td>
+<td width=3D"207" nowrap=3D"" style=3D"width:155.4pt;border-top:none;border=
+-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowte=
+xt 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:73.2pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">3900<o:p></o:p></span></p>
+</td>
+<td width=3D"242" nowrap=3D"" style=3D"width:181.45pt;border-top:none;borde=
+r-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowt=
+ext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:73.2pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">4100<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:15.0pt">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;padding:0in 5.4pt 0in 5.4pt;height:15.0pt">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif;color:black;mso-ligatures:none">Male - Incl DTHC<=
+o:p></o:p></span></b></p>
+</td>
+<td width=3D"207" nowrap=3D"" style=3D"width:155.4pt;border-top:none;border=
+-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowte=
+xt 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:15.0pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">4550<o:p></o:p></span></p>
+</td>
+<td width=3D"242" nowrap=3D"" style=3D"width:181.45pt;border-top:none;borde=
+r-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid windowt=
+ext 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:15.0pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">5500<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:.4in">
+<td width=3D"732" colspan=3D"3" style=3D"width:549.0pt;border-top:none;bord=
+er-left:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;border-=
+right:solid black 1.0pt;background:#EED484;padding:0in 5.4pt 0in 5.4pt;heig=
+ht:.4in">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;colo=
+r:black;mso-ligatures:none">Applicable Local Surcharges : LTHC, DOC, SEAL<o=
+:p></o:p></span></b></p>
+</td>
+</tr>
+<tr style=3D"height:27.0pt">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;background:white;padding:0in 5.4pt 0in 5.4pt;height:27.0pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">Global Fuel Surcharg=
+e<o:p></o:p></span></p>
+</td>
+<td width=3D"449" colspan=3D"2" style=3D"width:336.85pt;border-top:none;bor=
+der-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid black=
+ 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:27.0pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">Inclusive<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:25.95pt">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;background:white;padding:0in 5.4pt 0in 5.4pt;height:25.95pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">LTHC (DRY and NOR)
+<o:p></o:p></span></p>
+</td>
+<td width=3D"449" colspan=3D"2" style=3D"width:336.85pt;border-top:none;bor=
+der-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid black=
+ 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:25.95pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">SGD245/370/370<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:28.95pt">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;background:white;padding:0in 5.4pt 0in 5.4pt;height:28.95pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">LTHC ( REEFER ) wef =
+01/08/2026<o:p></o:p></span></p>
+</td>
+<td width=3D"449" colspan=3D"2" style=3D"width:336.85pt;border-top:none;bor=
+der-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid black=
+ 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:28.95pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">SGD325/490/490<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:128.4pt">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;background:white;padding:0in 5.4pt 0in 5.4pt;height:128.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">LTHC ( HAZARDOUS ) a=
+pplicable from 26th Jul'25<o:p></o:p></span></p>
+</td>
+<td width=3D"449" colspan=3D"2" style=3D"width:336.85pt;border-top:none;bor=
+der-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid black=
+ 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:128.4pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">SGD280/400/490<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:.8in">
+<td width=3D"283" style=3D"width:212.15pt;border-top:none;border-left:solid=
+ windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;border-right:none;ba=
+ckground:white;padding:0in 5.4pt 0in 5.4pt;height:.8in">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">BL (1 of 3 options)<=
+o:p></o:p></span></p>
+</td>
+<td width=3D"207" style=3D"width:155.4pt;border:none;border-bottom:solid wi=
+ndowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:.8in">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">&nbsp;<o:p></o:p></s=
+pan></p>
+</td>
+<td width=3D"242" style=3D"width:181.45pt;border-top:none;border-left:none;=
+border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;pa=
+dding:0in 5.4pt 0in 5.4pt;height:.8in">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">&nbsp;<o:p></o:p></s=
+pan></p>
+</td>
+</tr>
+<tr style=3D"height:48.6pt">
+<td width=3D"283" style=3D"width:212.15pt;border-top:none;border-left:solid=
+ windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;border-right:none;ba=
+ckground:white;padding:0in 5.4pt 0in 5.4pt;height:48.6pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">1. SGD 150 (Electron=
+ic Booking &amp; Electonic SI)<o:p></o:p></span></p>
+</td>
+<td width=3D"207" style=3D"width:155.4pt;border:none;border-bottom:solid wi=
+ndowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:48.6pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">&nbsp;<o:p></o:p></s=
+pan></p>
+</td>
+<td width=3D"242" style=3D"width:181.45pt;border-top:none;border-left:none;=
+border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;pa=
+dding:0in 5.4pt 0in 5.4pt;height:48.6pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">&nbsp;<o:p></o:p></s=
+pan></p>
+</td>
+</tr>
+<tr style=3D"height:51.0pt">
+<td width=3D"283" style=3D"width:212.15pt;border-top:none;border-left:solid=
+ windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;border-right:none;ba=
+ckground:white;padding:0in 5.4pt 0in 5.4pt;height:51.0pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">2. SGD 200 (Manual B=
+ooking &amp; Electronic SI)<o:p></o:p></span></p>
+</td>
+<td width=3D"207" style=3D"width:155.4pt;border:none;border-bottom:solid wi=
+ndowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:51.0pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">&nbsp;<o:p></o:p></s=
+pan></p>
+</td>
+<td width=3D"242" style=3D"width:181.45pt;border-top:none;border-left:none;=
+border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;pa=
+dding:0in 5.4pt 0in 5.4pt;height:51.0pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">&nbsp;<o:p></o:p></s=
+pan></p>
+</td>
+</tr>
+<tr style=3D"height:62.4pt">
+<td width=3D"283" style=3D"width:212.15pt;border-top:none;border-left:solid=
+ windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;border-right:none;ba=
+ckground:white;padding:0in 5.4pt 0in 5.4pt;height:62.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">3. SGD 280 (Electron=
+ic/Manual Booking + Manual SI)<o:p></o:p></span></p>
+</td>
+<td width=3D"207" style=3D"width:155.4pt;border:none;border-bottom:solid wi=
+ndowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:62.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">&nbsp;<o:p></o:p></s=
+pan></p>
+</td>
+<td width=3D"242" style=3D"width:181.45pt;border-top:none;border-left:none;=
+border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;pa=
+dding:0in 5.4pt 0in 5.4pt;height:62.4pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">&nbsp;<o:p></o:p></s=
+pan></p>
+</td>
+</tr>
+<tr style=3D"height:.55in">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;padding:0in 5.4pt 0in 5.4pt;height:.55in">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">TELEX RELEASE FEE / =
+SURRENDER BL FEE<o:p></o:p></span></p>
+</td>
+<td width=3D"449" colspan=3D"2" style=3D"width:336.85pt;border-top:none;bor=
+der-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid black=
+ 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:.55in">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">SGD200/BL<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:51.6pt">
+<td width=3D"283" nowrap=3D"" style=3D"width:212.15pt;border:solid windowte=
+xt 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:51.6pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">Printed BL fee<o:p><=
+/o:p></span></p>
+</td>
+<td width=3D"449" colspan=3D"2" style=3D"width:336.85pt;border-top:none;bor=
+der-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid black=
+ 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:51.6pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">SGD20/BL<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:51.6pt">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;padding:0in 5.4pt 0in 5.4pt;height:51.6pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">CORRECTOR FEE / B/L =
+AMENDMENT FEE (ELECTRONIC)&nbsp;
+<o:p></o:p></span></p>
+</td>
+<td width=3D"449" colspan=3D"2" style=3D"width:336.85pt;border-top:none;bor=
+der-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid black=
+ 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:51.6pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">SGD180/BL<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:51.6pt">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;padding:0in 5.4pt 0in 5.4pt;height:51.6pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">CORRECTOR FEE / B/L =
+AMENDMENT FEE (MANUAL)
+<o:p></o:p></span></p>
+</td>
+<td width=3D"449" colspan=3D"2" style=3D"width:336.85pt;border-top:none;bor=
+der-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid black=
+ 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:51.6pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">SGD200/BL<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:51.6pt">
+<td width=3D"283" nowrap=3D"" style=3D"width:212.15pt;border:solid windowte=
+xt 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:51.6pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">Seal Fee<o:p></o:p><=
+/span></p>
+</td>
+<td width=3D"449" colspan=3D"2" style=3D"width:336.85pt;border-top:none;bor=
+der-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid black=
+ 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:51.6pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">SGD26/seal<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:63.0pt">
+<td width=3D"283" nowrap=3D"" style=3D"width:212.15pt;border:solid windowte=
+xt 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:63.0pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">Food Grade container=
+ -
+</span><i><span style=3D"font-size:9.0pt;font-family:&quot;Calibri&quot;,sa=
+ns-serif;color:black;mso-ligatures:none">Please request upon booking</span>=
+</i><i><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans=
+-serif;color:black;mso-ligatures:none">
+</span></i><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,=
+sans-serif;color:black;mso-ligatures:none"><o:p></o:p></span></p>
+</td>
+<td width=3D"449" colspan=3D"2" style=3D"width:336.85pt;border-top:none;bor=
+der-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid black=
+ 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:63.0pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">USD70/20'ft and USD90/40'ft<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:40.2pt">
+<td width=3D"283" nowrap=3D"" style=3D"width:212.15pt;border:solid windowte=
+xt 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;height:40.2pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">Flexibag surcharge<o=
+:p></o:p></span></p>
+</td>
+<td width=3D"449" colspan=3D"2" style=3D"width:336.85pt;border-top:none;bor=
+der-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid black=
+ 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:40.2pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">USD14/container<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:28.95pt">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;background:white;padding:0in 5.4pt 0in 5.4pt;height:28.95pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">Port Surcharge (Male=
+) - Prepaid
+<o:p></o:p></span></p>
+</td>
+<td width=3D"449" colspan=3D"2" style=3D"width:336.85pt;border-top:none;bor=
+der-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid black=
+ 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:28.95pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">USD150 per teu<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:28.95pt">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;background:white;padding:0in 5.4pt 0in 5.4pt;height:28.95pt">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">DOF, Liner Fee (Male=
+) - Prepaid<o:p></o:p></span></p>
+</td>
+<td width=3D"449" colspan=3D"2" style=3D"width:336.85pt;border-top:none;bor=
+der-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid black=
+ 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:28.95pt">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">USD45 per teu<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:.4in">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;background:white;padding:0in 5.4pt 0in 5.4pt;height:.4in">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">Reefer Add-on<o:p></=
+o:p></span></p>
+</td>
+<td width=3D"449" colspan=3D"2" style=3D"width:336.85pt;border-top:none;bor=
+der-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid black=
+ 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:.4in">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">USD1500 per container<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:.4in">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;background:white;padding:0in 5.4pt 0in 5.4pt;height:.4in">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">SOC-DRY/TK (ISO Stan=
+dards, non-modified with CSC plates)<o:p></o:p></span></p>
+</td>
+<td width=3D"449" colspan=3D"2" style=3D"width:336.85pt;border-top:none;bor=
+der-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid black=
+ 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:.4in">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">USD50 per teu<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:.8in">
+<td width=3D"283" style=3D"width:212.15pt;border-top:none;border-left:solid=
+ windowtext 1.0pt;border-bottom:none;border-right:solid windowtext 1.0pt;ba=
+ckground:white;padding:0in 5.4pt 0in 5.4pt;height:.8in">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">Hazardous Surcharge<o:p></o:p></span></p>
+</td>
+<td width=3D"449" colspan=3D"2" style=3D"width:336.85pt;border:none;border-=
+right:solid black 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height=
+:.8in">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">Packing Group 1/High Risk =96 USD500 per container=
+<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:.8in">
+<td width=3D"283" style=3D"width:212.15pt;border-top:none;border-left:solid=
+ windowtext 1.0pt;border-bottom:none;border-right:solid windowtext 1.0pt;ba=
+ckground:white;padding:0in 5.4pt 0in 5.4pt;height:.8in">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">(Packing Group refers to MSDS, Section 14)<o:p></o=
+:p></span></p>
+</td>
+<td width=3D"449" colspan=3D"2" style=3D"width:336.85pt;border:none;border-=
+right:solid black 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height=
+:.8in">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">Packing Group 2/Medium Risk =96 USD350 per contain=
+er<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:.6in">
+<td width=3D"283" style=3D"width:212.15pt;border:solid windowtext 1.0pt;bor=
+der-top:none;background:white;padding:0in 5.4pt 0in 5.4pt;height:.6in">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none">&nbsp;<o:p></o:p></s=
+pan></p>
+</td>
+<td width=3D"449" colspan=3D"2" style=3D"width:336.85pt;border-top:none;bor=
+der-left:none;border-bottom:solid windowtext 1.0pt;border-right:solid black=
+ 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:.6in">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><span s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:b=
+lack;mso-ligatures:none">Packing Group 3/Low Risk - USD250 per container<o:=
+p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:.8in">
+<td width=3D"732" colspan=3D"3" style=3D"width:549.0pt;border-top:none;bord=
+er-left:solid windowtext 1.0pt;border-bottom:none;border-right:solid black =
+1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height:.8in">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><b><spa=
+n style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;colo=
+r:black;mso-ligatures:none">INDIA IMPORT LOCAL CHARGES: Please click on bel=
+ow link (Local Information =E0 Asia Pacific =E0 India)<o:p></o:p></span></b=
+></p>
+</td>
+</tr>
+<tr style=3D"height:.4in">
+<td width=3D"732" colspan=3D"3" style=3D"width:549.0pt;border-top:none;bord=
+er-left:solid windowtext 1.0pt;border-bottom:solid windowtext 1.0pt;border-=
+right:solid black 1.0pt;background:white;padding:0in 5.4pt 0in 5.4pt;height=
+:.4in">
+<p class=3D"MsoNormal" align=3D"center" style=3D"text-align:center"><u><spa=
+n style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;colo=
+r:#0563C1;mso-ligatures:none"><a href=3D"https://www.msc.com/en/local-infor=
+mation/asia-pacific/india"><span style=3D"color:#0563C1">India
+ Shipping Services - Offices, Local Information | MSC</span></a><o:p></o:p>=
+</span></u></p>
+</td>
+</tr>
+<tr style=3D"height:28.95pt">
+<td width=3D"283" nowrap=3D"" style=3D"width:212.15pt;padding:0in 5.4pt 0in=
+ 5.4pt;height:28.95pt">
+</td>
+<td width=3D"207" nowrap=3D"" valign=3D"bottom" style=3D"width:155.4pt;padd=
+ing:0in 5.4pt 0in 5.4pt;height:28.95pt">
+</td>
+<td width=3D"242" nowrap=3D"" valign=3D"bottom" style=3D"width:181.45pt;pad=
+ding:0in 5.4pt 0in 5.4pt;height:28.95pt">
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<div>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif">Remarks : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n=
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp=
+; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&=
+nbsp;&nbsp;
+<o:p></o:p></span></b></p>
+<ol style=3D"margin-top:0in" start=3D"1" type=3D"1">
+<li class=3D"MsoNormal" style=3D"line-height:105%;mso-list:l0 level1 lfo1">=
+<span style=3D"font-size:11.0pt;line-height:105%;font-family:&quot;Calibri&=
+quot;,sans-serif">Free time in Port of Loading (SG) for standard equipment =
+is 7 days, DG 6 days and reefer is 5 days only.
+<o:p></o:p></span></li><li class=3D"MsoNormal" style=3D"color:#EE0000;mso-l=
+ist:l0 level1 lfo1"><b><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif">Rates quoted based on proforma date, except for USA=
+/CANADA / SAN JUAN based on gate in date
+<o:p></o:p></span></b></li><li class=3D"MsoNormal" style=3D"line-height:105=
+%;mso-list:l0 level1 lfo1"><span style=3D"font-size:11.0pt;line-height:105%=
+;font-family:&quot;Calibri&quot;,sans-serif">Rates offer subject to MSC sta=
+ndard freetime and tariff unless stated otherwise.<o:p></o:p></span></li><l=
+i class=3D"MsoNormal" style=3D"line-height:105%;mso-list:l0 level1 lfo1;bac=
+kground:white">
+<span style=3D"font-size:11.0pt;line-height:105%;font-family:&quot;Calibri&=
+quot;,sans-serif;color:black">DG Cargo will be based on MSDS packing group,=
+ check with sales if no indication in MSDS, all DG are subjected to approva=
+l on case by case basis and in the event that
+ export is a via routing, there will be additional surcharges incurred at t=
+ransshipment port.</span><span style=3D"font-size:11.0pt;line-height:105%;f=
+ont-family:&quot;Calibri&quot;,sans-serif;background:white"><o:p></o:p></sp=
+an></li><li class=3D"MsoNormal" style=3D"color:#EE0000;mso-list:l0 level1 l=
+fo1;background:white">
+<b><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-ser=
+if">SCF: USD 50/CNTR&nbsp;will be applicable for all shipments with HS Code=
+ containing the following first 4 digits.( 2304 / 2305 / 2306 / 2308 / &nbs=
+p;2803 / 3802 / 4004 / 4402 &nbsp;/ 5201 / 5202/ 5203/ 5301
+ / 5302 / 5303 / 5305)</span></b><span style=3D"font-size:11.0pt;font-famil=
+y:&quot;Calibri&quot;,sans-serif"><o:p></o:p></span></li></ol>
+<p class=3D"MsoNormal" style=3D"margin-left:32.2pt;text-indent:-.25in;mso-l=
+ist:l0 level1 lfo1">
+<![if !supportLists]><span style=3D"font-size:11.0pt"><span style=3D"mso-li=
+st:Ignore">6.<span style=3D"font:7.0pt &quot;Times New Roman&quot;">&nbsp;&=
+nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span></span></span><![endif]><span lang=3D"EN-SG" style=3D"font-size:11.0=
+pt;font-family:&quot;Calibri&quot;,sans-serif;color:black">To View Schedule=
+ to all POD, pls use
+</span><span style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans=
+-serif"><a href=3D"https://www.msc.com/en/local-information/asia-pacific/si=
+ngapore#LocalRequirements"><span style=3D"color:blue">Singapore Shipping Se=
+rvices - Offices, Local Information | MSC</span></a><o:p></o:p></span></p>
+<ol style=3D"margin-top:0in" start=3D"7" type=3D"1">
+<li class=3D"MsoNormal" style=3D"color:black;mso-list:l0 level1 lfo1"><span=
+ style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color=
+:windowtext">Whatapp link to check vessel proforma date
+<a href=3D"https://wa.me/6587991524?text=3DHi"><span style=3D"color:blue">h=
+ttps://wa.me/6587991524?text=3DHi</span></a></span><span style=3D"font-size=
+:11.0pt;font-family:&quot;Calibri&quot;,sans-serif"><o:p></o:p></span></li>=
+<li class=3D"MsoNormal" style=3D"line-height:105%;mso-list:l0 level1 lfo1;b=
+ackground:white">
+<span style=3D"font-size:11.0pt;line-height:105%;font-family:&quot;Calibri&=
+quot;,sans-serif;color:black">Kindly find proforma schedule to MSC called p=
+orts on Singapore Shipping Services - Offices, Local Information | MSC and =
+Tracking at
+<a href=3D"https://www.msc.com/track-a-shipment?lang=3Den-gb"><span style=
+=3D"color:blue">https://www.msc.com/track-a-shipment?lang=3Den-gb</span></a=
+>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</span><span style=3D"font-size:11.0pt;line-height:105%;font-family:&quot;C=
+alibri&quot;,sans-serif;background:white"><o:p></o:p></span></li><li class=
+=3D"MsoNormal" style=3D"line-height:105%;mso-list:l0 level1 lfo1;background=
+:white">
+<span style=3D"font-size:11.0pt;line-height:105%;font-family:&quot;Calibri&=
+quot;,sans-serif;color:black">Please try out the new feature by logging int=
+o
+<a href=3D"https://www.mymsc.com/mymsc/" target=3D"loopstyle_link" data-loo=
+pstyle=3D"link">
+<span lang=3D"EN-GB" style=3D"color:blue;background:white">logging into myM=
+SC</span></a></span><span lang=3D"EN-GB" style=3D"font-size:11.0pt;line-hei=
+ght:105%;font-family:&quot;Calibri&quot;,sans-serif;color:black;background:=
+white">&nbsp;</span><span lang=3D"EN-GB" style=3D"font-size:11.0pt;line-hei=
+ght:105%;font-family:&quot;Calibri&quot;,sans-serif;color:black">
+</span><span style=3D"font-size:11.0pt;line-height:105%;font-family:&quot;C=
+alibri&quot;,sans-serif;color:black">for instant quote
+</span><span style=3D"font-size:11.0pt;line-height:105%;font-family:&quot;C=
+alibri&quot;,sans-serif;background:white"><o:p></o:p></span></li><li class=
+=3D"MsoNormal" style=3D"line-height:105%;mso-list:l0 level1 lfo1;background=
+:white">
+<span style=3D"font-size:11.0pt;line-height:105%;font-family:&quot;Calibri&=
+quot;,sans-serif;color:black;background:white">All in-transit cargo must be=
+ informed before booking, and subject to to approval on case-to-case. Any c=
+harges caused by unauthorized in-transit shipment
+ will not be under MSC liabliity</span><span style=3D"font-size:11.0pt;line=
+-height:105%;font-family:&quot;Calibri&quot;,sans-serif;background:white"><=
+o:p></o:p></span></li></ol>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#242424;background:=
+white;mso-ligatures:none"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"margin-left:.25in;line-height:105%;backgrou=
+nd:white">
+<span style=3D"font-size:11.0pt;line-height:105%;font-family:&quot;Calibri&=
+quot;,sans-serif;color:black;background:white"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"line-height:105%;background:white"><span st=
+yle=3D"font-family:&quot;Calibri&quot;,sans-serif;background:white"><o:p>&n=
+bsp;</o:p></span></p>
+<p class=3D"MsoNormal"><b>Best regards,</b><span style=3D"mso-ligatures:non=
+e"><o:p></o:p></span></p>
+</div>
+<p class=3D"MsoNormal"><b>Phoebe Huang</b><o:p></o:p></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span lang=3D"EN-SG" styl=
+e=3D"font-size:11.0pt;color:#595959">Assisant Manager, &nbsp;Trade &amp; Sa=
+les<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#242424;mso-ligatur=
+es:none"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"mso-margin-top-alt:auto;mso-margin-bottom-a=
+lt:auto;background:white">
+<b><span style=3D"font-size:9.0pt;font-family:&quot;Arial Black&quot;,sans-=
+serif;color:black;mso-ligatures:none">MEDITERRANEAN SHIPPING COMPANY SOUTH =
+EAST ASIA (SINGAPORE) PTE LTD</span></b><span style=3D"font-size:9.0pt;font=
+-family:&quot;Calibri&quot;,sans-serif;mso-ligatures:none"><o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"color:#333333">3 Temasek Avenue, #03-=
+01 Centennial Tower, Singapore 039190<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><b><span lang=3D"EN-SG" s=
+tyle=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#=
+595959;mso-ligatures:none">T</span></b><span lang=3D"EN-SG" style=3D"font-s=
+ize:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#595959;mso-lig=
+atures:none">:
+ +65 6011 0562&nbsp;<b>M</b>: +65 8167 1740&nbsp;</span><span style=3D"font=
+-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#242424;mso-l=
+igatures:none"><o:p></o:p></span></p>
+<div>
+<p class=3D"MsoNormal"><b><span lang=3D"EN-SG" style=3D"color:#595959">E: <=
+/span></b><b><u><span lang=3D"EN-SG"><a href=3D"mailto:phoebe.huang@msc.com=
+" title=3D"phoebe.huang@msc.com"><span style=3D"color:#0C64C0">phoebe.huang=
+@msc.com</span></a></span></u></b><b><span lang=3D"EN-SG">&nbsp;&nbsp;<span=
+ style=3D"color:#595959">W:&nbsp;<u><a href=3D"http://www.msc.com/"><span s=
+tyle=3D"color:#0563C1">www.msc.com</span></a></u></span></span></b><o:p></o=
+:p></p>
+</div>
+<p class=3D"MsoNormal" style=3D"background:white"><span style=3D"font-size:=
+11.0pt;font-family:&quot;Calibri&quot;,sans-serif;color:#595959;mso-ligatur=
+es:none">As agent for MSC Mediterranean Shipping Company S.A., Geneva<o:p><=
+/o:p></span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<div><br>
+<p style=3D"font-family:Calibri;font-size:10pt;color:#000000;margin:15pt;fo=
+nt-style:normal;font-weight:normal;text-decoration:none;" align=3D"Left">
+Sensitivity: Internal<br>
+</p>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0in =
+0in 0in">
+<p class=3D"MsoNormal"><b><span style=3D"font-size:11.0pt;font-family:&quot=
+;Calibri&quot;,sans-serif;mso-ligatures:none">From:</span></b><span style=
+=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;mso-ligatur=
+es:none"> Sherlyn Chua &lt;sherlyn@precisco.net&gt;
+<br>
+<b>Sent:</b> Friday, August 21, 2026 6:17 PM<br>
+<b>To:</b> Phoebe Huang (MSC Singapore) &lt;phoebe.huang@msc.com&gt;<br>
+<b>Cc:</b> ops &lt;ops@precisco.net&gt;<br>
+<b>Subject:</b> India Rates - Sep<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal" style=3D"line-height:12.0pt;background:#FFEB9C"><spa=
+n lang=3D"EN-SG" style=3D"color:#9C6500;background:#FFEB9C">CAUTION:</span>=
+<span lang=3D"EN-SG" style=3D"color:black;background:#FFEB9C"> External ema=
+il. Do not click links or open attachments unless
+ you recognize the sender and know the content is safe.</span><span lang=3D=
+"EN-SG"><o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:12.0pt"><span lang=3D"EN-SG" =
+style=3D"mso-ligatures:none"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-SG">Dear Phoebe,<o:p></o:p></span><=
+/p>
+<p class=3D"MsoNormal"><span lang=3D"EN-SG"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-SG">Please quote for the following =
+for COC 20GP, 40GP &amp; 40HC:<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-SG">Commodity: Resin<o:p></o:p></sp=
+an></p>
+<table class=3D"MsoNormalTable" border=3D"0" cellspacing=3D"0" cellpadding=
+=3D"0" width=3D"274" style=3D"width:205.45pt;margin-left:-.05pt;border-coll=
+apse:collapse">
+<tbody>
+<tr style=3D"height:.2in">
+<td width=3D"274" nowrap=3D"" valign=3D"bottom" style=3D"width:205.45pt;bor=
+der:solid windowtext 1.0pt;padding:0in 5.4pt 0in 5.4pt;height:.2in">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none;mso-fareast-language:=
+ZH-CN">HALDIA<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:.2in">
+<td width=3D"274" nowrap=3D"" valign=3D"bottom" style=3D"width:205.45pt;bor=
+der:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heig=
+ht:.2in">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none;mso-fareast-language:=
+ZH-CN">ICD BANGALORE (Freight paid up to POD)<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:.2in">
+<td width=3D"274" nowrap=3D"" valign=3D"bottom" style=3D"width:205.45pt;bor=
+der:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heig=
+ht:.2in">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none;mso-fareast-language:=
+ZH-CN">ICD DADRI (Freight paid up to POD)<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:.2in">
+<td width=3D"274" nowrap=3D"" valign=3D"bottom" style=3D"width:205.45pt;bor=
+der:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heig=
+ht:.2in">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none;mso-fareast-language:=
+ZH-CN">ICD DELHI (Freight paid up to POD)<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:.2in">
+<td width=3D"274" nowrap=3D"" valign=3D"bottom" style=3D"width:205.45pt;bor=
+der:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heig=
+ht:.2in">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none;mso-fareast-language:=
+ZH-CN">ICD FARIDABAD (Freight paid up to POD)<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:.2in">
+<td width=3D"274" nowrap=3D"" valign=3D"bottom" style=3D"width:205.45pt;bor=
+der:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heig=
+ht:.2in">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none;mso-fareast-language:=
+ZH-CN">ICD LUDHIANA (Freight paid up to POD)<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:.2in">
+<td width=3D"274" nowrap=3D"" valign=3D"bottom" style=3D"width:205.45pt;bor=
+der:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heig=
+ht:.2in">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none;mso-fareast-language:=
+ZH-CN">ICD TUGHLAKHABAD (Freight paid up to POD)<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:.2in">
+<td width=3D"274" nowrap=3D"" valign=3D"bottom" style=3D"width:205.45pt;bor=
+der:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heig=
+ht:.2in">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none;mso-fareast-language:=
+ZH-CN">KATTUPALLI<o:p></o:p></span></p>
+</td>
+</tr>
+<tr style=3D"height:.2in">
+<td width=3D"274" nowrap=3D"" valign=3D"bottom" style=3D"width:205.45pt;bor=
+der:solid windowtext 1.0pt;border-top:none;padding:0in 5.4pt 0in 5.4pt;heig=
+ht:.2in">
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;color:black;mso-ligatures:none;mso-fareast-language:=
+ZH-CN">KRISHNAPATNAM<o:p></o:p></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class=3D"MsoNormal"><span lang=3D"EN-SG"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-SG">If rates for Sep not ready, ple=
+ase quote for Aug.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-SG">Thanks. <o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-SG"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-SG" style=3D"mso-fareast-language:Z=
+H-CN">**All transactions are subject to our company=92s Standard Trading Co=
+nditions,a copy of available upon request.**<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D;mso-fareast-language:ZH=
+-CN">Thank you and Stay Safe!</span><span style=3D"font-size:11.0pt;color:#=
+1F497D;mso-ligatures:none;mso-fareast-language:ZH-CN"><o:p></o:p></span></p=
+>
+<p class=3D"MsoNormal"><b><span style=3D"color:#1F497D;mso-fareast-language=
+:ZH-CN">Best regards,<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><b><span style=3D"color:#1F497D;mso-fareast-language=
+:ZH-CN">Sherlyn Chua<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span style=3D"color:#1F497D;mso-fareast-language:ZH=
+-CN">Senior Business Development Manager</span><span lang=3D"EN-SG" style=
+=3D"mso-fareast-language:ZH-CN"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-family:&quot;Times New Roman&quo=
+t;,serif;mso-ligatures:none;mso-fareast-language:ZH-CN"><img border=3D"0" w=
+idth=3D"189" height=3D"89" style=3D"width:1.9666in;height:.925in" id=3D"Pic=
+ture_x0020_29" src=3D"cid:image001.jpg@01DD33DD.B3EA5210" alt=3D"Precisco L=
+ogo (with tagline)"></span><span lang=3D"EN-SG" style=3D"font-size:11.0pt;m=
+so-fareast-language:ZH-CN"><o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><b><span style=3D"color:#=
+7030A0;mso-fareast-language:ZH-CN">PRECISCO PTE LTD</span></b><span lang=3D=
+"EN-SG" style=3D"mso-fareast-language:ZH-CN"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-SG" style=3D"color:#1F497D;mso-fare=
+ast-language:ZH-CN">2 Leng Kee Road
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span lang=3D"EN-SG" styl=
+e=3D"color:#1F497D;mso-fareast-language:ZH-CN">#05-01A Thye Hong Centre
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><span lang=3D"EN-SG" styl=
+e=3D"color:#1F497D;mso-fareast-language:ZH-CN">Singapore 159086<o:p></o:p><=
+/span></p>
+<p class=3D"MsoNormal" style=3D"background:white"><b><span style=3D"font-si=
+ze:9.5pt;color:#1F497D;mso-fareast-language:ZH-CN">T&nbsp;<a href=3D"tel:%2=
+B65%206358%202756" target=3D"_blank"><span style=3D"color:#1155CC">+65 6358=
+ 2756</span></a>&nbsp;F&nbsp;<a href=3D"tel:%2B65%206358%202757" target=3D"=
+_blank"><span style=3D"color:#1155CC">+65
+ 6358 2757</span></a>&nbsp;M&nbsp;<u><a href=3D"tel:%2B65%209680%206382" ta=
+rget=3D"_blank"><span style=3D"color:#1155CC">+65 9</span></a></u></span></=
+b><b><u><span style=3D"font-size:9.5pt;color:#1155CC;mso-fareast-language:Z=
+H-CN">680 6382</span></u></b><b><span style=3D"font-size:9.5pt;color:#1F497=
+D;mso-fareast-language:ZH-CN"><br>
+</span></b><b><u><span style=3D"font-size:9.5pt;color:#1155CC;mso-fareast-l=
+anguage:ZH-CN">sherlyn<a href=3D"mailto:sherlyn@precisco.net" target=3D"_bl=
+ank"><span style=3D"color:#1155CC">@precisco.net</span></a></span></u></b><=
+span lang=3D"EN-SG" style=3D"font-size:11.0pt;mso-fareast-language:ZH-CN"><=
+o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-SG" style=3D"mso-fareast-language:Z=
+H-CN"><a href=3D"http://www.precisco.net/"><span style=3D"color:#0563C1">ht=
+tp://www.precisco.net/</span></a><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"font-size:9.5pt;color:#1F497D;mso-=
+fareast-language:ZH-CN">Wechat:&nbsp;<a href=3D"tel:%2B65%206358%202756" ta=
+rget=3D"_blank"><span style=3D"color:#1155CC">inisherD</span></a></span></b=
+><span lang=3D"EN-SG" style=3D"mso-fareast-language:ZH-CN"><o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-SG" style=3D"color:navy;mso-fareast=
+-language:ZH-CN"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><b><span style=3D"mso-fareast-language:JA">Proud and=
+ Active member of<o:p></o:p></span></b></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-SG" style=3D"color:navy;mso-ligatur=
+es:none;mso-fareast-language:ZH-CN"><img border=3D"0" width=3D"161" height=
+=3D"57" style=3D"width:1.675in;height:.5916in" id=3D"Picture_x0020_1" src=
+=3D"cid:image002.png@01DD33DD.B3EA5210"></span><span lang=3D"EN-SG" style=
+=3D"color:navy;mso-fareast-language:ZH-CN"><o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span lang=3D"EN-SG"><o:p>&nbsp;</o:p></span></p>
+</div>
+<p>&nbsp;</p>
+<span style=3D"font-size:8.0pt;font-family:&quot;Verdana&quot;,&quot;sans-s=
+erif&quot;;color:#6E6E6E"><i>To find more about the processing of your pers=
+onal data please click here https://www.msc.com/-/media/files/legal-files/g=
+eneral-data-protection-notice-for-customer2024.pdf .
+<br>
+This message and any associated files (together the =93Contents=94) are int=
+ended solely for the addressee(s). The Contents are confidential and may co=
+ntain private information or information that is subject to copyright or is=
+ a trade secret or which is privileged.
+ Views or opinions expressed herein do not necessarily represent views or o=
+pinions of
+<u>MSC Mediterranean Shipping Company</u>, its agents or their affiliated c=
+ompanies and may only be the view or opinion of the author. If you are not =
+the intended recipient of this email, you must not use, print, copy, store,=
+ forward, or disclose it or act
+ in reliance of the Contents. Please destroy all copies of the message and =
+any associated files and notify the sender immediately that you have receiv=
+ed it in error. Thank you for your cooperation.</i><font color=3D"#FFFFFF">=
+------MSC LEGAL DISCLAIMER<br>
+</font></span>
+</body>
+</html>
+
+--_000_KUZPR06MB8895D6B88E2B63255C9047A186A02KUZPR06MB8895apcp_--
+
+--_005_KUZPR06MB8895D6B88E2B63255C9047A186A02KUZPR06MB8895apcp_
+Content-Type: image/jpeg; name="image001.jpg"
+Content-Description: image001.jpg
+Content-Disposition: inline; filename="image001.jpg"; size=4642;
+	creation-date="Mon, 24 Aug 2026 07:32:00 GMT";
+	modification-date="Fri, 28 Aug 2026 07:29:32 GMT"
+Content-ID: <image001.jpg@01DD33DD.B3EA5210>
+Content-Transfer-Encoding: base64
+
+/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAoHBwgHBgoICAgLCgoLDhgQDg0NDh0VFhEYIx8lJCIf
+IiEmKzcvJik0KSEiMEExNDk7Pj4+JS5ESUM8SDc9Pjv/2wBDAQoLCw4NDhwQEBw7KCIoOzs7Ozs7
+Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozv/wAARCABZAL0DASIA
+AhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQA
+AAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3
+ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWm
+p6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEA
+AwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSEx
+BhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElK
+U1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3
+uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD2aiii
+gAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACkJCgkkADqTS15v8
+QvEc0t42i2shSGMD7QVP32PO36AY/wAionNQV2deDws8VVVOPz8kdLfePPD9hI0ZumuGXr5CFwPx
+6VJp3jXQtSlEUd35UrHCpOpTP0J4/WvOdM8Ianqumy36COC1RGZXlzl8DnaB/Om674U1LQUWW5CT
+W7nAmiyQD6EHpWHtanLzW0Pb/s3AOp7FVPe/X7vwuez1m+INZTw/o0+pyQtMsO3KIQCcsB3+tcr8
+PPEc1zu0e8kMjRpvt3Y5JUdVP07e1dB4x0q61vwzdafZBDPKU2722jhgTz9BXVRlGbTex4OLw08N
+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
+ACiiigAooooAKKKKACiiigAoopDQB//ZAA==
+
+--_005_KUZPR06MB8895D6B88E2B63255C9047A186A02KUZPR06MB8895apcp_
+Content-Type: image/png; name="image002.png"
+Content-Description: image002.png
+Content-Disposition: inline; filename="image002.png"; size=11604;
+	creation-date="Mon, 24 Aug 2026 07:32:01 GMT";
+	modification-date="Fri, 28 Aug 2026 07:29:32 GMT"
+Content-ID: <image002.png@01DD33DD.B3EA5210>
+Content-Transfer-Encoding: base64
+
+iVBORw0KGgoAAAANSUhEUgAAAV8AAABvCAYAAABLuMOYAAAAAXNSR0IArs4c6QAAAARnQU1BAACx
+jwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAACzpSURBVHhe7Z0JnFxVne//p3rv9JZ9IwkhbEkg
+ENlCZMkLggqoOG7ggriLC+rgMjPOzGdmnPcUZd5H34zLc/SpA6LMiCIoIoo4iNGwryGEJYHsa5Pu
+9J6u836/c091qm/draqruruqzvfDpe+5qeXeU/f+zv/8z//8j9JAJhM8ncN9ondvEL3pLpGtD6M8
+iOPpzAvsX8cIdU2ill0k6owP2gMOh2OyM7nEN31Y9IEXRB77ieitD0F0+z0xdkQD8U0tv0jkjA/Z
+Aw6HY7KTsn8nnqFeST//e9H3fEX05nUo9znhdTgcFcvkEN/BHtHP3yOy/v+JvLwjy8XgcDgclcnE
+iy8s3PSWP4p+8EaR/oM44Kxdh8NR+Uys+OphEfp4n7xVpA/C69wMDoejSpg48YXQ6kN7RG+8U2T/
+i/agw+FwVAcTJ77pIYjuZi+qwbkaHA5HlTFxoWY9sHof+g/Rz/zOHnAUTClDzdBI6p4NIn0bUUCD
+OeHUiDQvF9V8IkyHenssDziYm+4XffigyOABkcP7sXWZYziAJ6KAwd66eaJaVuDvDHvAMnQQvbtH
+8HebPTAGNK5b43p5zTVNIrXt+L7pomo7UJ6C43U49wmypQ53e9c5uBWFKDnB+TWd6P12Nc32WPUy
+MeLLeN5dT4rc96+iD+60Bx0FU0Lx1cO9IrtuEL3vZvxuh+zRCSTVIGrmlaJmXQ4BarUH48Atfhjn
+3vcSGpInRfc9JTIAoTjc6V1TmpN4DuN1w95r80S1rhI194MiU06yRzx0z2aRnd8Q3X0vS97BglHY
+IMDcUrWmHiTVZgRfNSw0DZJMWYb9eXhJo339+KC7H8N1fhPXCwGOEV/V8WpRc94NET7GHqteJkZ8
+h3pFb75P9J++jdYSD7djbJRSfCFaesc3RXZ/FyIFC3GiSTXi4f0otg/guiE+kXiiqw+hoT94L/4+
+jPvtJWgsrN4048gpuLz9M49AYY+Calsj6qhrRVpPs0c8dPezord9UaTr1yx5B8dEtqBiX0GIFSxe
+1InUThNpWGwaAmk/T1TTEivCJQY9Cb3nZtE7v44G7QV7MAyc85SVqKvPiGo/xzv/KmZi+imwfFXP
+XhNm5nCUBLoX+l4UvftG0du/Asv9hyI96634vox/H8CLaOnSzZAtwIVQDGFNQuY8ueG89RD+wHg5
+fECk/3mI/B9wvd8VvfU6XO9tEMM9eE0BbpR8GEbPoXcjnmV8Vyw474EXca7oERg3T3UzMeI7PCSa
+Mb0utMxRCmiN0b2w8zuwyv4Dosv8IPtwfJD/6L2m4sB1aQja0E6RQ+hV7vq/puGRvi2mPkqFZgPX
+/5zXCCSBvvbeZ3Ce++2B6mVi3A59naI33SH6xT/bA5MXldboncLCoJXe342bhxbTJMO5HY5ghPdp
+nO/3Rb+M7j6tQmPdlg7Vdj660p8eB7dDHqhakdrZoqZdJmr220Uaj8axYvuB8Wzs+pHnchiENZuU
+5tNELfgrUe2rS3BO5cPEiC8xrXF5WCGsInOLcKCwB92rvc+K7HlGNP927UBXCl2vibTinfha8BsY
+V8MPRO//GYR3r3esxExK8TWgY8tIjFnvEjXzLSINc+zxIjH0suit16OuORjbYw8mIDUV9QXxnfVm
+MZEbVcoExaYAhsWYAYPJvykzukxLAg9+2wJRS9aKOvvDkrr0OlGXfU3UeZ8QNX8FbqQ6e3GOCYEh
+T52/wXYX9vfhQHk07qUDBs7QTojjLegF3Is6yUMgE6D7t4jmIBsHL/OBjXgveidD/I2ql4kT33KF
+3SSzoepq6kW1oGt33IWiLvwHSV3yRVFLXytS72IYxx/OmHwSInM3HmrG1ZZ4oKlsGDZRCLrzDtEc
+GCuW/5eRIr2b8NmF1PUwzuUpiPdL+JzqbSCd+I6VjBjXNYrMXipq1Qcl9Zp/FLX4bCPOZQ+vLcWA
+/vnYFiTfaqbjvTE9gVQLehPzgt8fttUehfe1eeeVDbrA0gXrrvcJPND5TAZhD8zGzNbMwufneZ3c
+avE+fkYh8H18f9DnZm+sp5ppXp0p3le+64+CQslBx671sH5RT8WAVnQfxNf0MAqAFnMfrebqjXqY
+OJ9vRYMqHegRvRU3+yM3wRor8USSUs5ww4OrOWJurBTGxSYhLbrrAZHO260VGgTEo3WNqGmX4vwh
+1ImBWDYtFtW4ELsZcYfV2/l70du/CpHhdPUElhgFrA6C1rwMn7UEvRXsc7YYxTDfmWKc6NCMz+Cs
+sywS+XwbThA1/Y04jxPtgRBY9yasrBP31nb8Js9AvGDJGvFjyFwcNSJta0XN/6So1lNxjXmIdwC6
+5xkT0iYHf4tS0vsimxpRM98tat6HRRrRoFYhTnxLCUPqOreIhgDLlvtxoERVXUrxJXzwmYEuKYw4
+2Idu7s5/g1BAJAJREJ0rROZ9BOIHazMfjC++1hbAUJcZFNR7f4A6T2DZ0YJsO1dUx4VG9FQ9xD/V
+hM8sdIou3sMxAZ81mkR81ZQzReZ/SlT7WSx5BwPB+/kbMCfKMBr2wd0ihx7D/fULWPuP4ngCvyss
+bDX/MxC9N6EOxjIBA43d3ttR519Do/y0PVYAU84SteBzCa69MinkTnMkpaYOAnOsqNVXiyyHhVeu
+bggKnZnOmsdmxDHmgYLQKeYqCHp/1JYtvED3b4YluAGi1G2PRFA3V2TmFbC4IPrTLoL4weKsnw1h
+otsBAhz0fbEbLfBCxYN1gPcHfm72BrFkDoc6WOeN82C9roCIXiZqzkdEWlZ7/x4H81j0PCEymGRC
+RAScjt37FD5nuz1QIHQ9cHLIcHW6Hpz4lhp071TzTEmtvEJSp1xWvgI8WaFV3vcsHmSmJY2xzmum
+iky9FKL1VojuUggu/afl+AhA6NkA1U2F9X62qBlvhSDTbRF3LXagi3ktxgDdUJouj6hcH6lW1PdM
+nGdEo8BeShVPuHDiOx7Qv9bYLrLsMkmteANuytGWm2MMMPFPPyyoIcb0RoE6b0E3dxrE10w4qJDf
+gNnB2s8WaX0l9mEVx8HMY4xQoPuiILRnPQ9swX6Eb71hMc7pHPQq0NMIg+MJvRvRGFTn0mFOfMcL
+CnBTu+ilePhPQHc35aq+GOihA54ll45xOdTNEkU/Ly3ekYG6ykDRAm6H+DYmyBRGa5P1lcRFE4TJ
+DheXy6FGVNNSUVMvggijoQt1yUDI6Xpgr8VM/a4unAKMK3RBTBe1/PUi806xxxxjYmAnrDlscQOC
+DceJTFnuWYqVBgcgmU+YaSWjuvmEYXj01TI0rwBopWqGiA1HTNhgOFzz8bB8V6JBWILyFPsPATBa
+g24j5nyoMpz4jjf0MbbOFbXycnQXI7pkjngYqDOILquxwoKjCTzqTIpF1TDfq/8KhEnVVfPJuNS4
+KcQaRuYu9PiZ8yKqzgJgffdCKE3S9IjwMroaGhejvmej3k8UqZ1p/yEAWLy6h37o6svrXVioGf0z
+g+i2MIyqG5XWz9yo+X9MWUB3QX0DuqxzRU89GobFVPsPY4TL5T9zp+gHGB5VSJxkFqUONcsXhppl
+QpEG0EUNBL2AGe8QNf8aPKgFxnnSZ7j9W6J3fQt1SDEJIdUmat6nRM1517havslCzVaJWvBpz29b
+cMSEh+56EN93nUj3H+2REBqXeYltpq7FV+bRGA33or6/IXoP79mwQTJcQ8cloo76BK5tGc7pEdFb
+UQeH1uHfQjSiZpaohX+H++EN+K2qZzwkufimIRBd6HJsvk9k+0Oi93OQg077ChXdHHBT1TWITIMA
+LzxD1NGrRdoW4HChDwzqrXuPpP/0TZEXGQM8BqpVfA9DDJi7ds/3UYgYQKpb4CVymYmHexwt33EX
+3/7tqI8vwSi6DYWI+qhFz2vB51Efr8dX5iF2vc979X3wTnx+iMGg6kXN/Rgauvei3qfBsN2HOviy
+yP5boCFhscg1omZ9AA3kB4uf/GcSE38n0srtwo/60Pclfftn8PcmWBp4oAYHvH+jdlfFRmsfN8/u
+jbBWb5T0bZ/D3++gZd/l/Xve4EFr6pDUCRyUSLocjiMbPXwIG32FMT2HWvRWOPusQl0OGVQtLPx6
+iBcnjETBDGRmNY88Ih5wj3uRCZuxH1HftbPRmB6Pv17GOVXXIappGcoRrgcTAvckGo+tBT5L5Un0
+3Xi4H1bZOkn/5guiH7tVTD7bjOBWKxkh7j8o+glYGL/9J9Fb7vWO5QtjfmccKzLvJNylY7N6qhKO
+2JuBn5j7kcLLmN5Kh5Mx6iByHPCKgpEFHOBK55GbmjkYmIlsEMZGFPQ7cwmjjEXNv80Q33r2biLk
+hqLevyW/cypzwmtjADf2prskfR+6xZ1skQoQl0onjRZ7/4ui1/27yOM/gRDkGS5j4n9h/R5/IW5O
+lwktbxjjm2BarYIYqVQV1C+jHhjrG3ettFzZaOUR3qUH98AyZZRDRE5n1ShqysnewGY2jYu8kLOo
+5EOcfWeiHoqU+KcMCBRfPYDu3Av3Svrhm1AhnThQxZZuLKib3k7RT94mesMvcHPGdIH9cIChY4HI
+dLeaa94w0UwSS4liFBeCVRHgca5Bdz/O7cCZgJoLACQVX97jnEXIiRUR9zenbjehJ+frZZg45Mbj
+cDxisFoPmGRBJmdFlehNrvhymZxdT4h+9L8gvJNg5YKyQOPGgQA/fYfo7Q/YYwmhH7KhTdScpfaA
+IzHMMZDEb2nyR1TWxIpA2JNiNIfJ8xDlxoK4MZ8C6y8JrOPeJyG+zFAXJowcwzgeVi4HoWGBZ8O6
+Z9a2yDA4fC7XghvIJ3teeeMTX1RA9y6RjXeKHBpj8o1qg611N1rtx28R6QpLoxhCbaPomRDfhirw
+SxYTI7wJHlSTBS2wk1d5sKGJy6NMWHfpZJnq9MBuY5VGZoxTDaKaT/AG/HKEH2VOumhYiH2fMGfD
+xT9NjuDqMPpG35GDPZLe/rDoHY/bA468oA+4c5voF+7DHZuHj7ymVlIdC0R15JlasdpRFN4k4jvy
+v8qHbixjecZcb5oD5wnv0d4NsEhfwE5EXddOg9Wbm9M4g6pnzmNGPUTkbuZy/ibr2hizpZUJR8TX
+WG67RG1Z57keHIUx2Cuy7UHRtIITgwelvll0By0DR3LYBeYWQyZCpSrAvZQkckYlqDcy3AfxZfrI
+mBlojcfaQbWQrH10PbScaq3fMOi+2yi6n7keKt/1cER8hwdFH9wOy41TBx0Fw8koB3eI7OCKCnkA
+iyXVNhd/q6R7XAw06ypBfbGLnU8y+HKGjYxpaGLENaErxkQ59DHnblSUQz2s2pNEGX9vuPCrpmNF
+MdtZVNTDEIwWrg03VPm5Ho7U/hAstv2o5H43yDZW9GC/mYwhh+PDoDJoPAy6iWFCecw4ypf+Z0Rv
+v67gDSaJ/aDJAupKR/gQMxjxrXxLysDGP8m1JhJfCDiT6JhBMPrXQ+B6fRxsq4uZes9/5+uYVzkM
+5nrghAvm7EjSq5lohnYEPitJtiO1z7heiq9j7OAB0D0HcAOhQUuISuFhaODCkAnEpFD6None8eWC
+t0m32KFZASJBY6XRCNKfWA0w7jlJFAMnP8Tda/wcDoBxICxKCJnKkrG8YS6HDBwIpPgGDsploODj
+O43roQx6K4M7A5+VJJuX2wHdFL0XVtG9X/UmVDjGBi2KGceIOu8vRU1jPtME0GLZ+Zik7/kKbr48
+ex9JczvQ8t1/qy3kj5r3CfwvQbysuZ9Kn9tBH7wfFgTqKy6RTOv5oo66VlTb6fbA+DDeuR3o29b7
+fuHVe/8GezAI1P3M9+D3vBp1HzHIO7BL9NbrRR/4KT47rOHFOXe8Fr/l22A8JMjSxyWfdn9f5BDz
+mYSIq2oWNffjouZcGW9NTzS0fPfcYAv5YcV3WDRje//wryIHqy+1W9Gh36v9KEmtuVZkJlr6JNBa
+3r1BNMW3J89lVao0sY7uxj3LLF5dv7NHQmh+BcT3s6KmnmcPjA/jL768h24WvfMbsMg224NB1EHY
+robAvR9W6Ax7LBf98jo0btdDKNez5B3MAefMqcPcGOYWB3tPEGA5zJVHIj6z42LcG58U1bLcHqs8
+jrgdzIhwWGVEwO5y+1xRS1Yn344+XVT7bPsBFYipSw585NdtMq6HsT6A1YRZ8DJuNhdgHoNCV24o
+Jxi3O3QAfyMSnRO6HLgYZ5SbgPduz+OeUIaKJMG/MTSs5wH0QNbFb1za3yx3H/OZzCNhcj1E+JrL
+nDiPezy1DbAqThO15q9Frf18sm31x0XmnWo/wOEokJpWbMxjENNgcaSeOQMq+EE2cLo1LUr+jYK+
+ctZdhKWqB/eKZnxvVJ7kEWhocKCPA5txGwcDE4T9Hd4t0vcc/lZuozl28c1gQkzy2JLEIjocUdS0
+YGNQf8ygGy1BLrDJmNUKRg91QjR34XpjrpMrC9cysiZiJhzDvZjLgYI5EfAazMrGcauUlC/FE1+H
+Y5xRsNxU3QxPhKNgpAO7xmbpnAqGuReGmPIxxt1l8hsz327I488oB5M+ciJnmqVF92/CT4drMnHL
+lYcTX0f5Qt8lw5aismUZhvEQb4FVuBMPcmVaUcZHS8E0yW9iqGWDxeTytuzDrAjdz/SOnfbIBMG1
+4uhzZurQCsSJr6N8oeuqfp6YBOJxcPCGM7UmW6xyseAClMyLwLy4cXCBS+ZiCFNf1hW3PPL9loT0
+ITQonNpcmUm+nPg6yhtavnWMnImZMMCBqEMPQqQYx15h1i9DRbsfEt0HyzdqLTvCqcBosLi8TyAc
+lDQuB9bTRHf3tehDj8AKfwG7led6cOLrKGvo81X1C3AnT7FHQuC01e77RXfdDyGGRVVBmIUzu/5o
+BTOGVLsIV5pgqFkQQ50Q3w2oI4aDxYEGj7PWCt2SyA+viQNvFRj14MTXUd5QRDi9lQNvcQxBpA78
+QvTB9XiYE6z9NunB+Q9CJDt/5cXQxsX3kgY0VBTfkEgHzRlo9LPGuWe4OghnDs54v6iZH8p/w/s4
++SUyyQ7hChdoDIy/vsJ6LFZ8cVGVOhDhqGyY22EkUXeMLcGwqZ6HRe/+nuj9EOF+jqQnSEIzGRnu
+F93zjOg9Pxa97xZr9cY9w0qk6QTUFWcUBvh7zaAdrEwT5RDzWXXzRE1/nah57y1we5+ojgu9wb9I
+cB5mhQv+VjFRHGWGvVtDHO8Ox6SHgrIE21LPGouDgzg960Xv+rbobdfj74/QZadfEVYx42TRvc17
+Y/xwocLAKcHDvbmf6d+GDsL62ye67yXRL98neud3vfPf+0OI0yZ8ToJ43JqpopqXi6qfZQ/44AoS
+ZiWJBC6HpuNEpixHr2MexHxO/hvf13o69plbIkZ/2Bj0cUpyZUU9qJHcDjsf93I7dMUsDe2nvlnU
+cWtFnf1hfFpCL0YPbqJHbxK94U57oAJpny+pNX8pMivh2mxMrLP3GUnffZ2pn7yo0twOI/D7DvzW
++77eR3nAOx4J7lVOTablxYgJ/mXsq+mO52eMcHFINfUCXAe69Fkkye0gtbNFWlZ6EQhRUNy5WCiE
+WA7jGWU3nKFgJltbkuvFNbWsQn1fK6p9VeCzahqhbV8W6f4DShEDXFyleO41ouZchXsvZOAuAXpg
+j+it+L4DP0MhamJILazst8Fa/gh6OYvtsfInoVo6HJMYCkkrBKx1Nay7pGIAcaGPdPBFL3HMQQjk
+gVtF9qMLv/8n+W1dEKuhPJMhZaCV2XVv8OeO2n4q0nk7XvsbNM6P4PsYs0y/bBLhBakpolpOF9XE
+ZOYBjz2jCXqeQmO5BYWYyIL6RRBBGBW1rfZAYZhVjc3nRCwtZEDvoO/piptwkfUrJPwRHY5JiKqb
+LqpjDUThZBRiphvngAeaMa0UYybgyXczuRQK9UfSosX7gz43e6O7hK8z7oUCntXG49E4nQFLNUTo
+uHIEVyg203mjSImacjKM32NQzzHhfXEYfz3Etz6B66GfCz08izqonCnizvJ1VAaw5lTLSRDgi/Aw
+c/AtP9dBRcOVJjouEGlZgSc+OJmO7nsOhjQELm61klSL51+vL0ZWQvxGjbDEG7n2W0zUQ7oLlvkG
+9FQqZ8JFlvi6m9VR5tS2iZp2gaipF8PCm4MD7p42SXQ6LkSdXGR6B4FwvMFMrODU5Birmnl7OcBZ
+m2BwMwGqHj0WWuVM9BOJ9kLOKsj14CxfRwUBseXo+Yw3ikx9HQSYg1hVLMCceNK2RtSMt4hqPhZV
+EeImYL5jk8shLvEQ5ILLAJmFMsfocshAS5xRE8b1EMMgp4g/VzGuhyKIr7MuHJMIVSsKlpma9XaI
+zuUQCopO8ISCygXPZM0MNECXipr9blGtdDeEd+tpTXoTK2JCuVLNEPETYa0WuVcxZRkaTfqQY36n
+4S5YvxuFuYYrgeJYvi43r2MywVSTzRTgt4ma82GR9gs8KzjvgbhyA48zs5VNOUNk9ntx7dgYBRI2
+lZgwhK0PVq+ZpBEzaMiQPMb3jjHKwY+qm2YG8aQ2JP54hDTOdYPIwPaKcD0UQXw1/nOREg4/bJB5
+e7F7GrYVp+0PhN3ixqNETX+tqHkfFzX3Y6KmvgHicZL3kLNLzmV0jLVFUfafW75bmAHCa4yrh3w2
+nivO2Zx7Iz66DYc4aeEEkba1sHTf7619NutyCNpSvCVmmSV24TmxwliTQd+X2fC9TZxUwVC1Ijdi
+DH2j+DYsQiHmt+Ay9kmmP5cBbpJFqajqSRa4pboeEjmA33dohz3oB2LV9kpR016De4jpDUsIrTtO
+ThjchS42LLwBnBPjcoe5tBAeYoZvmSWGCrSmmpdB5C+BOI2eAKD7dorsv02k93GWvIMFYxszNiqc
+CELh5RJKXA6I+Yw5mFY/W1QDJ4ygnHCyCGf1yd5bRQ7h94q8fnxvB57zaWvx+Vw9pLgYV8Len+Pe
+fwylKAsc4tzxKjSka3DNTAhfvhRBfKdY8cWD78T3CNUsvmSoyxM4MwMrBI5wUzSilrMpKhBAiiwF
+12w4Nwovu7AU6EIFkt16s6KGz8ocxueb5YuKlUWN4ktBhRDS+mS9ccCKYVrmL44lfQYzJD5HfC9/
+Ky7lXqzBtmyYY4MCzCnOcb/DuN83pcGJb6modvE1JBGzeOus9IzVKiVh11GMz/ZT7DrL5xxL+XtN
+lvMYH/JsJoNghZXiBnOUP3xA4rbJQNB55buFEfTasW7FJug7wrZSEvR9YVv5UwTxLQA3QOdwOKqc
+iRFfgxNgh8NRvUyM+FZLXLCx8JNu/GP/OhyOiseFmpUCNi61jaJmHSvSmEdAen+36N1MZh0RIRDE
+pB1wczgcYRQl2kGOXSMpim8qYQhK716I782in7rDHnCMCTSAqRWvF1l5pT3gcDgmO0WJdlCMkTRx
+kglhnGBdcbIiOQDqU9cVd8qnw+EoLWMX33RaZKhfZJgzhBLCgPDGdpGa8g6SnjSgHlVHgqxQDodj
+0jB28eXsICO+efgpKbqts531WwzoZ2/uEN3mxNfhKCeKIr568JDIQI89kACKb8scUS1xy0Y7YmFd
+Tl0IAQ5JlO1wOCYlRRDfYVFDvRDfg/ZAAmCtqdZZIotf6VlujoJRdY2SmrdCVG2jPeJwOMqBIoiv
+Fs0QqZe32wMJocthzkmw2sa4bHg1k6oVPW2xyFFn2gMOh6NcKI7ZOdAjeu+mPAfdakV1oLt8zHnY
+L0GWpIpHiTR1iDrx1SLNJU7J6HA4ik5xxPdwv8iBF0S68rR+G1pFHXO+qEVnQUuqZNZbsahrFLV4
+laiFq+wBh8NRThRHfBnx0NvpWb/5TJGF4KrW2aJOfqPIzOOcACeltkFk4RmiXvFOb9/hcJQdxRvt
+6u8WtespEQ6+5UOqFsJ7vKiz3icy63gccAIcCS3eRWdKatX70XMo70z+Dkc1UzzxPdwv6T1Pi94D
+Ac6XVJ2o2cslde4nRS05xwufclbwaFgfTe2SOul1os69RqTZhek5HOVM8cSX7oZD+0U2rxMZzCPm
+NwNDzjoWinrlx0Sdc7VI+zzvWLVbwhRduhbmnyLqgr8ROe1KWL8Rq9E6HI6yYOyJdUahRE09StQZ
+V4ksOtseKwD6kPu7RLY9KOmX/iyya4NIH9d2Mv9o/ybFL97lkLYR58wIkCmwbhesFIW6VHNPxrF6
+++8Oh6PcKbL4AuYZmH8qLNiPiLTMtgfHAC3qw304r22iD24XGegWGcojpG2EchBhnGM9rNwp00Ta
+0IhxyrCbhOJwVCTFF1/C+NPll4pa8RbPf+twOByOUZTGrOo7KPLsPSJb7vNcCA6Hw+EYRYn6tDCm
+u3dJ+qnbRO952pQdDofDcYTSORTTwyL7nhd56AZv9psTYIfD4RihND7fbOjznbNMUme9V2T6sTjg
+H/hy5It+/h7RG8OXYFKctHLmB2wpgkO7Jf3f19vCaFTrHFHnXWtL+M5HbhS94zFbKhy1+FxRy17v
+FXY8KulHfujtB2BmP573aVuKYKBb0nf/M04ywMXF9e0u+idbwEvu+ZLo3v22VBzUolWiTnqTLRXv
+O1KnvdtLPgX0g98TvXuD2S8WqbV/LdJ0JC+IXv/vovdtsqWxoU68WNSS/+EVXn5J0uu/Hbo2YeqC
+z4s0dthSFoM9kr7ni+Hvyzp//fQvRb/we7Ofg/8ewD2nce8Vk9Sr/i7vSU+lF1/CCIjZJ4i84l2i
+5izHt7oR/LGSvuvvRbbeb0s+ahokddXPbSEcI1j0ywdx1OmSejX+PQMF7sa32ELhqNOuEnXq5baE
+B2Hdv+HB+YUt5ZK64qbYxEH6T98QveE2W/IxdbGk/uKbtgA2/0HSv/uftlAc1GlX4prebkugSN+R
+uhQN42xPfE1DeTPEuIik3jd6Adv0f75HpHunLY0Ndf5nRB17gS3hN8Lvw98pCP95ZKOfvMU0CkGM
+eh8EOv0j/AZBcwymL5HUZV+3BdB7wHttEYm6hjDGRwWHhyDuG0T/8ete68REPAwhcxROVCY4riqy
+7QFbCIG++DDhBaptnt2z8DcrBgyjyyamIdZhDUyGrh3hwks4WScLWBp2r4igl5CNTh+2e2Mkyyot
++sB1yyy7k0WRhJeolpl2zwLBCyQuHDUsU6L/fZyIFDK5S7UvsHuW/pftTpHw/f5JGR/LNwNnazGT
+2RJ0PVe8GQ8ibgA3jbgg0rd8CN25F20pF7X0ElGrP25LuaRv/ajI/udtKRd11gfRlf4LWwI7HpH0
+r9DNC2LOyaLmrrCFaExXtP1IDuf0nehybn/IlgJYuEpSF/6DLeSS/jW6exENjTr5TaNcMPrx/xL9
+wHdtaTRq5TvsXgCH9op+9i5bGM0oCxUYF83DN9rSaIw1mPBhVae81fRiDHTR/OqvvH0fauml3pqI
+AWhY4ez254DfK3Xxl20BHNwm6Z+83xZ8oBekZqLn6kN34v4LacBTb/3+qOvUv/tfOJd7bSmLeadK
+6rVfsoVc9L3/gnr/jS1lMW8l3vdFWwAR1iwTUKmV77Ql8OI6Sf/2iBsiG+MSg0YFoZ+H4RiUudFf
+lwkZ3/4/rd3+LtEbfy3p3/wzLuZu0ZxA4cLR8idCeIl+8U92LxcjIhHCS1TbXLvnoQ/usHu5qOMu
+xA3+rkRbtvAa4tKQcoZjGBTtOAu/1WfBHwoxLiBeQeeb2WT+SvvCAFpH15VwMlAI6tQrAj8/aBsR
+XsDooTDUae8OfD+3MFFWeZxz6qQ3Bn62mrXUviIAf28g5Hfm2EIUGo1CEP77UyLqx3/P6UN77F4u
+xoUUdK3YpDZ4hqlqKczynRjn6zC6Zfueh6X9ddF3fcH4yGSA04fZJXTuiFgibp4R2M0zUSY+Dg+I
+vj/Y8huFX7QiRFJ1+Lp1+RD10GQIEdj0uiw/Xgg5jUj3brvnI0SkRggRAYNv/TzdFd5Q5TQ+STkU
+ct41EIQQS80Qdq/4xFd3RVzfDGYbDIAuI/R6crZFq+0Lsghr7ON6AWGNgv/8w+oH5Lgdwu45Nnb1
+LbYQwIHNdscHl0QrgIkR3wwcxdyO7tQ910v6l3+FLuEtuMAt1icMa9j4hZ0Y55Awab0OsBr1Yz9G
+7yPBent+0Yr6zqlH2508iRK0LAKv4+nbUQ8RIpfB/3CHPXix4hty/UGrRgd180mhwkvCztvvm/cT
+JkptvnoJ69lQ5ELEXcEiTl3yldztVX9vX2HpC/H3Er8Fno1ZGzKT02U0OWMSUY349CV2xyNUqP1+
+6myi/OEFplGYWPHNwJjg/VtEr/+epG+7VtK3f1r0ff9H9KZfiYb1pvkjcBBjQrYh35b1bxwMyN6y
+/43XVKKGI8oFkI1+ab3ds/TuF/3oj2whAg700KLKJkx8uHDnvmdFdj4eve160r4hi4iubjY5LhTc
+D/rBH9hCDP6HNEzw2dgHnbfd9IEwy8334FEshvpswQetqoDPztkCLKxQwfB/fzYR4W5+t0OoW2Bm
+iNWbD1H3Kw2BoDrApl/4b/uiAPxuh7D6YXIqP2G9n6DXZnh5q93JhSGRhTC+A26FwAG5mloIQruo
+hhbRNeWw3htX6EBX5JR3iOICl0VGr/+26Cd/akvRpN5x84hVZ+JPw2Ihs2Fu5Uv/xRY80t99jd0r
+EHTNU1eMjunlNfBakpB64zdFbF0mvn5YvWbgJwMssPRNRQwx4kDLuZ8abb3teRrGA46NAbX4PFFr
+/8aWPMxgUkDEAAeI1NkfsSUfEeeSfV+Q9I/fKdKzz5aymAJrMM414GNUjC/Qm+6CtvxvWyoOqatu
+G2UgmMHIoNhd/8AcSN/wpsDICHXcq0LjyvUTPxF9/3dsaTSpt8EQKMD6nRyWbxR0PRyGVdm9T/S+
+LSK7YYFM8k3teUGkcyckuDQDiZEuAB8j1u/ejbnCGxRuBHIGQYoRghQUq5vXdVjXA0PL/MLLbnHQ
+0vn+Lm2YxVMI9VMkdf5ncr4j0t+blKC6CgnVYpgdG8bALawR4MQnv5slSHhJz170Wp7Ib/OHD+bx
+OyeC5+7vmYX8tjnjEYOHQkPSTG/VZ31nNs3rCqOs3Q4Vhka16rpG0bVN9kiRCequN031Bjt8ZEQr
+/Uf0anyok99s93zkdNWL8PDw/HyEuU9o+fnJNCJmppQPM8EhIA45Z7AtYlAmbzj76rZP5A5olaKu
+EvrGEzPV1xvrhFFTRPz+WJMKtpgE+YnDDAS/nz2iAebM0fQdnw3cxO/Cy1Cg8JLJ73YoRxiSsvBM
+dEmviR49LRBaNTnMWmpWgtZ//pY9YKlpELX6o7ndvoVnSeq4iyR99xfsgSOoNZ9Ft3GtLeGm3PBz
+0X/KmiWWRerN6IoVOJCU/vG7PMsqG9zM6sz3mbhQP6kL/tablZcNZ7Cdc02glafOeJ+X1tTCwUb9
+YJYbIgMswdRVt9tCALB60r+ElRtA6vVfE8mKgQ2NZ4W1Zrr6hbD9YUnfOdoNUTAdCyV19tWmOz4C
+exPP3W0LydAcVGSUUgCpK39mpvRmSP8M3xcUKbD4XEmt/bwt5GLiync8YktHoEtDrfmcLQHcQ+Ze
+CiD1GtxH819hSyAixrcQ1ClvE3X6e2wpP5zlWwrQJTLdnbpme6CIhLTwHEBRR59jS1kMDwT621Kr
+roZFEjyIkE8MaJjrIpbhwVzhJbBW1YIzbWE0OcILUud9CkIQch3+QZkwq8cfVucjNDyN+Lq1oW6H
+MVhIkRZ7SF0RTjBh8P/Idsn1knoTeg7ZwktgqQbFtUZuM0+0b/ZBl0CW8BpCQrRyIhb8hNyfOT2z
+fH6fqNfmA3onavXHChZe4sS32CglqmW6qEVnYb8E1RsmhBQajtaa5EXRmG46/bqdISFR/u56mKCw
+e+z3vSWlK6wRwXnRfxshKhnU8Rd5MahhoV1+f2xYOFLcaHWY+DEZjL+B3f+c3fFR4Ii4IaSuiElK
+AwsyCDPtmgPWnH3IzSbpKQqh4XS+0LuoBENx4hvmh076uxIOGGYT9lvOXmbyMyTe3v4jb2bhGHDi
+W2zo55293HTvSkGoENpBMnV0QIB7NhBozuIhpuvoxwzG+DJMhfkcx2DNhQ7CjFzHK83fUGBd0a1A
+Aq+D+AdbQh48FXcdYdZSh8/d0tdpd3JRhfYQSJhgmMavweu6857zMzwk6Tv/1gsFjIKDSnkSVudm
+6atsIgYgIy3fqKnv/h5NWP1MO8buHCGsF6HGEoNdIE58iwmsjFQLxO2Y84NH34tBiOWbcRWoRdGi
+RXfDCEFWWtBNGGJZFBrfSEIHYUauI3oBVnX6VV4XlwS5HYJGxEMbrujr0CFTknMe2KhR/bG4HUIn
+WBwRodSrvyAydZEtZTE8IOk7PhduqYL0n79lxgr0wzck3kIH6XyCGjnY5hfRLMKmFRv87wu7PwPv
+5RChngDxdQNuxYLdu8Y2USsus4M8pWnX0r+GJbPtQVs6QuqKG0WavSDx9M2wbIOmlWYnMcG/m9f5
+WbR69AwlCFv6lpDcwAyJCprhFUR9s6Qu/EdbwMN131dFP5Obhi97AMsMcgWF+OBBMQN9lsABSHyG
++awM6MKaWNYg+OAFRGOMwBy3ATllmbCHftUMkfGstMKDctYGoNAFzvYlpn94eWAmrpy4VFje6Z9f
+E+xL54Af68MfRgjSN7zZC8EqAoxPzo5WYRIjJjPKIWaQ0+Tcpcj7CXifiUYIsN6ZKIn+6WzCYnzN
+PR80LbqEOMu3WNDSnX+aqBMuRqGE1RpmvVnhJcbyDiB1zifsHgjtNvqsiihrjrGnmdjOuM1nAYW6
+T7K+P8z1YCY2ZEg6mBOWUIfQygo658wWksxbzTzO7lmi6orWedBnB23Z7gsOTIalQPQPjKIBSV18
+nYlBzqH/IBozCLU/XpizR4skvMSfRyH8d47x94ZZvkGNfVjPwG/NUnTDYnwnwPJ14lsMOLq76CxR
+XK0jKslJMQgafPHdOPSFBg0SZD+sYREC/pH/fCZ0ROKfOBDUHaW/OWs1ALX8suDryPJvhvp7cwZl
+QrqbBWKsuzmj02gWLZ41u66iBpOCBAzHTHgV69IPrX8KcHZujzB/aQGYOvHP6AyrkxjxDb0/g1wV
+IcmDciZYRF1ricZoonBuh7HAyAaKxZJzRVZeISqq61oMmNPgiVtsIQt0JZnWMS+2PWgXNx0NYyhH
+iXnI6/IGN3e2RR7YpUTXeGSJoaTsfkr09odt4Qhq4Vmjs3Ht3oDXReQNTgp/c6ZSRC/Hj3GjBHX5
+80QddbqJ2zZAfAPz2QIT7RHmS+bzvDN42SfFgahMr6J7Jz7/t97+GDD5fgMiVPTj/xnssgl5fQbj
+qgiaOON/31CfmfobhFrxVvRIj6TlDI1nrmse5T4aL5z4FgL9u6la3MQQlBX40Rhfi7LD4XAk5Yj4
+7nrCiW8omdU2mOSnTtR0dFFOeLVnXWUv9eJwOBwJseKb9gZgNt4pujc8VrFqUSnRDc2SmnY0uoMn
+enPjnaXrcDgKRuT/A78vKa15zGjrAAAAAElFTkSuQmCC
+
+--_005_KUZPR06MB8895D6B88E2B63255C9047A186A02KUZPR06MB8895apcp_--
