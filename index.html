@@ -3,93 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Global Shipping Rate Finder</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Interasia Line - Freight Rate Lookup</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- SheetJS (xlsx) for direct Excel parsing -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-    <!-- Lucide Icons -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
     </style>
 </head>
-<body class="bg-slate-900 text-slate-100 min-h-screen pb-12 flex flex-col justify-between">
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
 
-    <!-- Top Accent Bar -->
-    <div class="h-1.5 w-full bg-gradient-to-r from-blue-500 via-indigo-500 to-teal-400"></div>
-
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 w-full">
-        <!-- Header -->
-        <header class="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div>
-                <div class="flex items-center gap-2 text-teal-400 font-semibold text-sm tracking-wide uppercase mb-1">
-                    <i data-lucide="ship" class="w-4 h-4"></i> Interasia Line Rate Portal
+    <div>
+        <header class="bg-white border-b border-slate-200 shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="p-2.5 bg-blue-50 text-blue-700 rounded-lg border border-blue-100">
+                        <i data-lucide="ship" class="w-6 h-6"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-slate-900 tracking-tight">Interasia Line</h1>
+                        <p class="text-xs text-slate-500">Freight Rate & Route Portal</p>
+                    </div>
                 </div>
-                <h1 class="text-3xl font-bold text-white tracking-tight">Freight Rate Lookup</h1>
+                <div class="flex flex-wrap items-center gap-4 text-xs text-slate-600 bg-slate-50 border border-slate-200 px-4 py-2 rounded-lg">
+                    <span class="flex items-center gap-1.5"><i data-lucide="phone" class="w-3.5 h-3.5 text-blue-600"></i> +65 6323 6488</span>
+                    <span class="hidden sm:inline text-slate-300">|</span>
+                    <span class="flex items-center gap-1.5"><i data-lucide="mail" class="w-3.5 h-3.5 text-blue-600"></i> sales.sg@interasialine.com</span>
+                </div>
             </div>
-            <!-- File Upload Action -->
-            <label class="cursor-pointer bg-slate-800 hover:bg-slate-700/80 text-slate-300 hover:text-white border border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium transition-all flex items-center justify-center gap-2 shadow-sm w-fit">
-                <i data-lucide="upload-cloud" class="w-4 h-4 text-teal-400"></i>
-                <span id="upload-label">Load Excel File</span>
-                <input type="file" id="excel-file-input" accept=".xlsx, .xls" class="hidden">
-            </label>
         </header>
 
-        <!-- Dynamic Filter Controls -->
-        <section class="bg-slate-800/60 backdrop-blur-md border border-slate-700/60 rounded-2xl p-6 mb-8 shadow-xl">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Country Dropdown -->
-                <div>
-                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
-                        Destination Country
-                    </label>
-                    <div class="relative">
-                        <select id="country-select" disabled class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-white appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
-                            <option value="">Upload PRECISCO file to begin...</option>
-                        </select>
-                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            
+            <section class="bg-white border border-slate-200 rounded-xl p-6 mb-6 shadow-sm">
+                <h2 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-4 flex items-center gap-2">
+                    <i data-lucide="filter" class="w-4 h-4 text-blue-600"></i> Select Destination Details
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="country-select" class="block text-xs font-semibold text-slate-600 mb-1.5">
+                            Destination Country
+                        </label>
+                        <div class="relative">
+                            <select id="country-select" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all">
+                                <option value="">Loading countries...</option>
+                            </select>
+                            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="port-select" class="block text-xs font-semibold text-slate-600 mb-1.5">
+                            Port of Destination (POD)
+                        </label>
+                        <div class="relative">
+                            <select id="port-select" disabled class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+                                <option value="ALL">All Ports</option>
+                            </select>
+                            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-                <!-- Port Dropdown -->
-                <div>
-                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
-                        Port of Destination (POD)
-                    </label>
-                    <div class="relative">
-                        <select id="port-select" disabled class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-white appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
-                            <option value="ALL">All Ports</option>
-                        </select>
-                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"></i>
-                    </div>
+            <section class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-100/80 border-b border-slate-200 text-[11px] font-bold text-slate-600 uppercase tracking-wider">
+                                <th class="py-3.5 px-4">Country</th>
+                                <th class="py-3.5 px-4">Port (POD)</th>
+                                <th class="py-3.5 px-4 text-right">20' Freight</th>
+                                <th class="py-3.5 px-4 text-right">40' Freight</th>
+                                <th class="py-3.5 px-4 text-right">20' DG 2/3</th>
+                                <th class="py-3.5 px-4 text-right">40' DG 2/3</th>
+                                <th class="py-3.5 px-4">Service</th>
+                                <th class="py-3.5 px-4">Frequency / T/T</th>
+                                <th class="py-3.5 px-4">Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body" class="divide-y divide-slate-200 text-xs">
+                            <tr>
+                                <td colspan="9" class="py-12 text-center text-slate-500">
+                                    <i data-lucide="search" class="w-8 h-8 text-slate-300 mx-auto mb-2"></i>
+                                    Please select a destination country to view shipping rates.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
-            </div>
-        </section>
-
-        <!-- Rate Cards Display -->
-        <main>
-            <!-- Default/Empty State -->
-            <div id="empty-state" class="text-center py-16 bg-slate-800/30 rounded-2xl border border-dashed border-slate-700/80">
-                <i data-lucide="file-spreadsheet" class="w-12 h-12 text-slate-500 mx-auto mb-3"></i>
-                <h3 class="text-lg font-medium text-slate-300">No Rates Displayed</h3>
-                <p class="text-slate-500 text-sm mt-1">Select your local Excel file (`PRECISCO..xlsx`) or upload via top right button.</p>
-            </div>
-
-            <!-- Results List -->
-            <div id="rate-list" class="grid grid-cols-1 gap-4 hidden"></div>
+            </section>
         </main>
     </div>
 
-    <!-- Contact & Surcharge Footnote -->
-    <footer id="rate-footnotes" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 w-full text-xs text-slate-500 border-t border-slate-800 pt-6 hidden">
-        <p class="font-semibold text-slate-400 mb-1">Standard Terms & Surcharges:</p>
-        <ul class="list-disc pl-4 space-y-1">
-            <li>AFR Filing: USD30/BL (Japan/China) | AFR/AMS Amendment: USD40/BL</li>
-            <li>Bill of Lading / Surrender Fee: SGD180/set | Container Seal Fee: SGD23/container</li>
-            <li>Destination EBS charge applicable for Korea & Shanghai per TEU. Rates valid for General Cargo only under CY/CY terms.</li>
-        </ul>
+    <footer class="bg-white border-t border-slate-200 mt-12 py-6">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-xs text-slate-500">
+            <p class="font-semibold text-slate-700 mb-2">Standard Terms & Conditions:</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-1 text-[11px]">
+                <p>• AFR Filing: USD 30/BL (Japan & China) | AFR/AMS Amendment: USD 40/BL</p>
+                <p>• Bill of Lading / Surrender B/L Fee: SGD 180 per set</p>
+                <p>• Container Seal Fee: SGD 23 per container/seal</p>
+                <p>• Destination EBS charge applicable for Korea & Shanghai shipment per TEU</p>
+                <p>• Rates quoted above are for General Cargo under CY/CY terms</p>
+                <p>• Rates subject to space allocation and equipment availability</p>
+            </div>
+        </div>
     </footer>
 
     <script>
@@ -98,196 +117,15 @@
         let parsedData = [];
         let currentCountry = "";
 
-        // UI Elements
-        const excelFileInput = document.getElementById('excel-file-input');
+        const CSV_FILENAME = "PRECISCO..xlsx - Rates.csv";
+
         const countrySelect = document.getElementById('country-select');
         const portSelect = document.getElementById('port-select');
-        const rateList = document.getElementById('rate-list');
-        const emptyState = document.getElementById('empty-state');
-        const footnotes = document.getElementById('rate-footnotes');
-        const uploadLabel = document.getElementById('upload-label');
+        const tableBody = document.getElementById('table-body');
 
-        // Auto-fetch attempt for PRECISCO..xlsx on host
+        // Automatically load and parse the default CSV file on page load
         window.addEventListener('DOMContentLoaded', () => {
-            const fileName = "PRECISCO..xlsx";
-            fetch(fileName)
-                .then(res => {
-                    if (res.ok) return res.arrayBuffer();
-                    throw new Error('Local fetch unavailable');
-                })
-                .then(buffer => processWorkbook(buffer, fileName))
-                .catch(() => {
-                    // Requires manual upload if file fetching is restricted
-                });
-        });
-
-        // Excel Manual File Listener
-        excelFileInput.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (!file) return;
-
-            uploadLabel.textContent = file.name;
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                processWorkbook(event.target.result, file.name);
-            };
-            reader.readAsArrayBuffer(file);
-        });
-
-        function processWorkbook(buffer, filename) {
-            uploadLabel.textContent = filename;
-            const workbook = XLSX.read(buffer, { type: 'array' });
-            const firstSheetName = workbook.SheetNames[0];
-            const worksheet = workbook.Sheets[firstSheetName];
-            const rows = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-
-            parseExcelRows(rows);
-        }
-
-        // Structured Extraction logic tailored to PRECISCO layout
-        function parseExcelRows(rows) {
-            parsedData = [];
-            let activeCountry = "";
-
-            rows.forEach((row) => {
-                const col1 = row[1] ? String(row[1]).trim() : ""; // Country or POD
-                const col2 = row[2] ? String(row[2]).trim() : ""; // Port Name
-                const f20 = row[3] !== undefined ? String(row[3]).trim() : "";
-                const f40 = row[4] !== undefined ? String(row[4]).trim() : "";
-
-                // Detect Country Header Rows (e.g. "JAPAN 日本")
-                if (col1 && !col2 && isNaN(parseFloat(f20)) && f20 !== "20'") {
-                    activeCountry = col1;
-                } 
-                // Detect Port Rate Rows
-                else if (activeCountry && col2 && (!isNaN(parseFloat(f20)) || f20 === "" || f20 === "-")) {
-                    parsedData.push({
-                        country: activeCountry,
-                        port: col2,
-                        freight20: f20 && !isNaN(parseFloat(f20)) ? f20 : "-",
-                        freight40: f40 && !isNaN(parseFloat(f40)) ? f40 : "-",
-                        dg20: row[5] !== undefined ? String(row[5]).trim() : "-",
-                        dg40: row[6] !== undefined ? String(row[6]).trim() : "-",
-                        service: row[7] ? String(row[7]).trim() : "Direct",
-                        schedule: row[8] ? String(row[8]).trim() : "-",
-                        remarks: row[9] ? String(row[9]).trim() : ""
-                    });
-                }
-            });
-
-            populateCountries();
-        }
-
-        function populateCountries() {
-            const countries = [...new Set(parsedData.map(item => item.country))];
-            
-            countrySelect.innerHTML = '<option value="">Select Destination Country</option>';
-            countries.forEach(country => {
-                const opt = document.createElement('option');
-                opt.value = country;
-                opt.textContent = country;
-                countrySelect.appendChild(opt);
-            });
-
-            countrySelect.disabled = false;
-            emptyState.classList.add('hidden');
-            footnotes.classList.remove('hidden');
-        }
-
-        countrySelect.addEventListener('change', (e) => {
-            currentCountry = e.target.value;
-            portSelect.innerHTML = '<option value="ALL">All Ports</option>';
-            
-            if (!currentCountry) {
-                portSelect.disabled = true;
-                renderRates([]);
-                return;
-            }
-
-            const ports = parsedData
-                .filter(item => item.country === currentCountry)
-                .map(item => item.port);
-
-            ports.forEach(port => {
-                const opt = document.createElement('option');
-                opt.value = port;
-                opt.textContent = port;
-                portSelect.appendChild(opt);
-            });
-
-            portSelect.disabled = false;
-            filterAndRender();
-        });
-
-        portSelect.addEventListener('change', filterAndRender);
-
-        function filterAndRender() {
-            const selectedPort = portSelect.value;
-            const results = parsedData.filter(item => {
-                const matchCountry = item.country === currentCountry;
-                const matchPort = selectedPort === 'ALL' || item.port === selectedPort;
-                return matchCountry && matchPort;
-            });
-
-            renderRates(results);
-        }
-
-        function renderRates(items) {
-            rateList.innerHTML = "";
-
-            if (items.length === 0) {
-                rateList.classList.add('hidden');
-                emptyState.classList.remove('hidden');
-                return;
-            }
-
-            emptyState.classList.add('hidden');
-            rateList.classList.remove('hidden');
-
-            items.forEach(item => {
-                const card = document.createElement('div');
-                card.className = "bg-slate-800/80 border border-slate-700/70 hover:border-slate-600 rounded-2xl p-5 shadow-lg transition-all flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6";
-
-                card.innerHTML = `
-                    <!-- Destination & Route Details -->
-                    <div class="flex-1">
-                        <div class="flex items-center gap-3 mb-2">
-                            <span class="bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 text-xs px-2.5 py-1 rounded-md font-medium">${item.country}</span>
-                            <span class="text-xs text-slate-400 flex items-center gap-1"><i data-lucide="anchor" class="w-3.5 h-3.5"></i> POD</span>
-                        </div>
-                        <h2 class="text-2xl font-bold text-white mb-2">${item.port}</h2>
-                        <div class="flex flex-wrap items-center gap-y-1 gap-x-4 text-xs text-slate-400">
-                            <span class="flex items-center gap-1"><i data-lucide="navigation" class="w-3.5 h-3.5 text-slate-500"></i> ${item.service}</span>
-                            <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5 text-slate-500"></i> ${item.schedule}</span>
-                        </div>
-                    </div>
-
-                    <!-- Pricing Display Block -->
-                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-900/60 p-3.5 rounded-xl border border-slate-700/50">
-                        <div class="text-center px-2">
-                            <div class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">20' Dry</div>
-                            <div class="text-lg font-bold text-teal-400">${item.freight20 !== '-' ? '$' + item.freight20 : 'N/A'}</div>
-                        </div>
-                        <div class="text-center px-2 border-l border-slate-800">
-                            <div class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">40' Dry</div>
-                            <div class="text-lg font-bold text-teal-400">${item.freight40 !== '-' ? '$' + item.freight40 : 'N/A'}</div>
-                        </div>
-                        <div class="text-center px-2 border-l border-slate-800">
-                            <div class="text-[10px] uppercase tracking-wider text-amber-500/80 font-semibold mb-0.5">20' DG 2/3</div>
-                            <div class="text-lg font-bold text-amber-400">${item.dg20 !== '-' ? '+$' + item.dg20 : '-'}</div>
-                        </div>
-                        <div class="text-center px-2 border-l border-slate-800">
-                            <div class="text-[10px] uppercase tracking-wider text-amber-500/80 font-semibold mb-0.5">40' DG 2/3</div>
-                            <div class="text-lg font-bold text-amber-400">${item.dg40 !== '-' ? '+$' + item.dg40 : '-'}</div>
-                        </div>
-                    </div>
-                `;
-
-                rateList.appendChild(card);
-            });
-
-            lucide.createIcons();
-        }
-    </script>
-</body>
-</html>
+            fetch(encodeURI(CSV_FILENAME))
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error status
