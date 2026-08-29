@@ -1,86 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shipping Rate Calculator & PDF Exporter</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    .form-group { margin-bottom: 15px; }
-    label { display: inline-block; width: 180px; font-weight: bold; }
-    select, button { padding: 5px 10px; font-size: 14px; }
-    button { cursor: pointer; margin-top: 10px; display: block; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Shipping Rate Finder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
 </head>
-<body>
+<body class="bg-slate-900 text-slate-100 min-h-screen pb-12 flex flex-col justify-between">
 
-  <h1>Interasia Line Rate Portal</h1>
-  <p><strong>Validity:</strong> Sep 2026</p>
+    <div class="h-1.5 w-full bg-gradient-to-r from-blue-500 via-indigo-500 to-teal-400"></div>
 
-  <h2>Generate Freight Quotation</h2>
-  <p>Select a country or specific destination port to instantly extract rates and download a formal PDF document.</p>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 w-full">
+        <header class="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+                <div class="flex items-center gap-2 text-teal-400 font-semibold text-sm tracking-wide uppercase mb-1">
+                    <i data-lucide="ship" class="w-4 h-4"></i> Interasia Line Rate Portal
+                </div>
+                <h1 class="text-3xl font-bold text-white tracking-tight">Freight Rate Lookup</h1>
+            </div>
+            <label class="cursor-pointer bg-slate-800 hover:bg-slate-700/80 text-slate-300 hover:text-white border border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium transition-all flex items-center justify-center gap-2 shadow-sm w-fit">
+                <i data-lucide="upload-cloud" class="w-4 h-4 text-teal-400"></i>
+                <span id="upload-label">Load CSV Rates</span>
+                <input type="file" id="csv-file-input" accept=".csv" class="hidden">
+            </label>
+        </header>
 
-  <div class="form-group">
-    <label for="country-select">Filter By Country</label>
-    <select id="country-select">
-      <option value="All">All Countries</option>
-      <option value="Korea">Korea (韓國)</option>
-      <option value="Japan">Japan (日本)</option>
-      <option value="Taiwan">Taiwan (台灣)</option>
-      <option value="China">China (中國)</option>
-      <option value="India">India (印度)</option>
-      <option value="Pakistan">Pakistan (巴基斯坦)</option>
-      <option value="Vietnam">Vietnam (越南)</option>
-      <option value="Malaysia">Malaysia (馬來西亞)</option>
-      <option value="Thailand">Thailand (泰國)</option>
-      <option value="Cambodia">Cambodia (柬埔寨)</option>
-    </select>
-  </div>
+        <section class="bg-slate-800/60 backdrop-blur-md border border-slate-700/60 rounded-2xl p-6 mb-8 shadow-xl">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+                        Destination Country
+                    </label>
+                    <div class="relative">
+                        <select id="country-select" disabled class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-white appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+                            <option value="">Upload rate file to begin...</option>
+                        </select>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+                    </div>
+                </div>
 
-  <div class="form-group">
-    <label for="port-select">Specific Port (Optional)</label>
-    <select id="port-select">
-      <option value="All">All Ports</option>
-    </select>
-  </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+                        Port of Destination (POD)
+                    </label>
+                    <div class="relative">
+                        <select id="port-select" disabled class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-white appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+                            <option value="ALL">All Ports</option>
+                        </select>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-  <button id="export-btn">Export Selected Rates as PDF</button>
+        <main>
+            <div id="empty-state" class="text-center py-16 bg-slate-800/30 rounded-2xl border border-dashed border-slate-700/80">
+                <i data-lucide="file-spreadsheet" class="w-12 h-12 text-slate-500 mx-auto mb-3"></i>
+                <h3 class="text-lg font-medium text-slate-300">No Rates Loaded</h3>
+                <p class="text-slate-500 text-sm mt-1">Please select your CSV file using the top right button to view freight options.</p>
+            </div>
 
-  <script>
-    // Port mappings per country
-    const portData = {
-      "Korea": ["Busan", "Incheon", "Gwangyang"],
-      "Japan": ["Tokyo", "Yokohama", "Osaka", "Kobe", "Nagoya"],
-      "Taiwan": ["Kaohsiung", "Keelung", "Taichung"],
-      "China": ["Shanghai", "Ningbo", "Shenzhen", "Qingdao", "Tianjin"],
-      "India": ["Nhava Sheva", "Mundra", "Chennai"],
-      "Pakistan": ["Karachi", "Port Qasim"],
-      "Vietnam": ["Ho Chi Minh", "Haiphong"],
-      "Malaysia": ["Port Klang", "Penang"],
-      "Thailand": ["Bangkok", "Laem Chabang"],
-      "Cambodia": ["Sihanoukville"]
-    };
+            <div id="rate-list" class="grid grid-cols-1 gap-4 hidden"></div>
+        </main>
+    </div>
 
-    const countrySelect = document.getElementById('country-select');
-    const portSelect = document.getElementById('port-select');
+    <footer id="rate-footnotes" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 w-full text-xs text-slate-500 border-t border-slate-800 pt-6 hidden">
+        <p class="font-semibold text-slate-400 mb-1">Standard Terms & Notes:</p>
+        <ul class="list-disc pl-4 space-y-1">
+            <li>AFR Filling: USD30/BL (Japan/China) | AFR/AMS Amendment: USD40/BL</li>
+            <li>Bill of Lading / Surrender Fee: SGD180/set | Container Seal Fee: SGD23/container</li>
+            <li>Destination EBS charge applicable for Korea & Shanghai per TEU. Rates valid for General Cargo only under CY/CY terms.</li>
+        </ul>
+    </footer>
 
-    countrySelect.addEventListener('change', function() {
-      const selectedCountry = this.value;
+    <script>
+        lucide.createIcons();
 
-      // Clear existing options
-      portSelect.innerHTML = '<option value="All">All Ports</option>';
+        let parsedData = [];
+        let currentCountry = "";
 
-      // Populate ports if country exists in map
-      if (selectedCountry && portData[selectedCountry]) {
-        portData[selectedCountry].forEach(port => {
-          const option = document.createElement('option');
-          option.value = port;
-          option.textContent = port;
-          portSelect.appendChild(option);
+        // Elements
+        const csvFileInput = document.getElementById('csv-file-input');
+        const countrySelect = document.getElementById('country-select');
+        const portSelect = document.getElementById('port-select');
+        const rateList = document.getElementById('rate-list');
+        const emptyState = document.getElementById('empty-state');
+        const footnotes = document.getElementById('rate-footnotes');
+        const uploadLabel = document.getElementById('upload-label');
+
+        // Automatic File Loading Attempt for Hosted Environment
+        window.addEventListener('DOMContentLoaded', () => {
+            const defaultFileName = "PRECISCO..xlsx - Rates.csv";
+            fetch(defaultFileName)
+                .then(res => {
+                    if (res.ok) return res.text();
+                    throw new Error('Local file not auto-accessible');
+                })
+                .then(csvText => parseCSV(csvText, defaultFileName))
+                .catch(() => {
+                    // Manual upload required if auto-fetch fails
+                });
         });
-      }
-    });
-  </script>
 
+        // File Selector Input Event
+        csvFileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            uploadLabel.textContent = file.name;
+            Papa.parse(file, {
+                complete: (results) => processParsedCSV(results.data),
+                error: (err) => alert("Error reading CSV file: " + err)
+            });
+        });
+
+        function parseCSV(csvText, filename) {
+            uploadLabel.textContent = filename;
+            Papa.parse(csvText, {
+                complete: (results) => processParsedCSV(results.data)
+            });
+        }
+
+        // Data Normalization Logic for PRECISCO CSV Structure
+        function processParsedCSV(rows) {
+            parsedData = [];
+            let activeCountry = "";
+
+            rows.forEach((row) => {
+                // Determine layout start
+                const col0 = row[1] ? row[1].trim() : ""; // Country / POD Column
+                const col1 = row[2] ? row[2].trim() : ""; // Specific Port Column
+                const f20 = row[3] ? row[3].trim() : "";
+                const f40 = row[4] ? row[4].trim() : "";
+
+                // Detect Country rows (e.g., "JAPAN 日本")
+                if (col0 && !col1 && isNaN(f20) && f20 !== "20'") {
+                    activeCountry = col0;
+                } 
+                // Detect Rate Data Row
+                else if (activeCountry && col1 && (!isNaN(parseFloat(f20)) || f20 === "")) {
+                    parsedData.push({
+                        country: activeCountry,
+                        port: col1,
+                        freight20: row[3] ? row[3].trim() : "-",
+                        freight40: row[4] ? row[4].trim() : "-",
+                        dg20: row[5] ? row[5].trim() : "-",
+                        dg40: row[6] ? row[6].trim() : "-",
+                        service: row[7] ? row[7].trim() : "Direct",
+                        schedule: row[8] ? row[8].trim() : "-",
+                        remarks: row[9] ? row[9].trim() : ""
+                    });
+                }
+            });
+
+            populateCountries();
+        }
+
+        function populateCountries() {
+            const countries = [...new Set(parsedData.map(item => item.country))];
+            
+            countrySelect.innerHTML = '<option value="">Select Destination Country</option>';
+            countries.forEach(country => {
+                const opt = document.createElement('option');
+                opt.value = country;
+                opt.textContent = country;
+                countrySelect.appendChild(opt);
+            });
+
+            countrySelect.disabled = false;
+            emptyState.classList.add('hidden');
+            footnotes.classList.remove('hidden');
+        }
+
+        countrySelect.addEventListener('change', (e) => {
+            currentCountry = e.target.value;
+            portSelect.innerHTML = '<option value="ALL">All Ports</option>';
+            
+            if (!currentCountry) {
+                portSelect.disabled = true;
+                renderRates([]);
+                return;
+            }
+
+            const ports = parsedData
+                .filter(item => item.country === currentCountry)
+                .map(item => item.port);
+
+            ports.forEach(port => {
+                const opt = document.createElement('option');
+                opt.value = port;
+                opt.textContent = port;
+                portSelect.appendChild(opt);
+            });
+
+            portSelect.disabled = false;
+            filterAndRender();
+        });
+
+        portSelect.addEventListener('change', filterAndRender);
+
+        function filterAndRender() {
+            const selectedPort = portSelect.value;
+            const results = parsedData.filter(item => {
+                const matchCountry = item.country === currentCountry;
+                const matchPort = selectedPort === 'ALL' || item.port === selectedPort;
+                return matchCountry && matchPort;
+            });
+
+            renderRates(results);
+        }
+
+        function renderRates(items) {
+            rateList.innerHTML = "";
+
+            if (items.length === 0) {
+                rateList.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            rateList.classList.remove('hidden');
+
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = "bg-slate-800/80 border border-slate-700/70 hover:border-slate-600 rounded-2xl p-5 shadow-lg transition-all flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6";
+
+                card.innerHTML = `
+                    <div class="flex-1">
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 text-xs px-2.5 py-1 rounded-md font-medium">${item.country}</span>
+                            <span class="text-xs text-slate-400 flex items-center gap-1"><i data-lucide="anchor" class="w-3.5 h-3.5"></i> POD</span>
+                        </div>
+                        <h2 class="text-2xl font-bold text-white mb-2">${item.port}</h2>
+                        <div class="flex flex-wrap items-center gap-y-1 gap-x-4 text-xs text-slate-400">
+                            <span class="flex items-center gap-1"><i data-lucide="navigation" class="w-3.5 h-3.5 text-slate-500"></i> ${item.service}</span>
+                            <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5 text-slate-500"></i> ${item.schedule}</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-900/60 p-3.5 rounded-xl border border-slate-700/50">
+                        <div class="text-center px-2">
+                            <div class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">20' Dry</div>
+                            <div class="text-lg font-bold text-teal-400">${item.freight20 !== '-' ? '$' + item.freight20 : 'N/A'}</div>
+                        </div>
+                        <div class="text-center px-2 border-l border-slate-800">
+                            <div class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">40' Dry</div>
+                            <div class="text-lg font-bold text-teal-400">${item.freight40 !== '-' ? '$' + item.freight40 : 'N/A'}</div>
+                        </div>
+                        <div class="text-center px-2 border-l border-slate-800">
+                            <div class="text-[10px] uppercase tracking-wider text-amber-500/80 font-semibold mb-0.5">20' DG 2/3</div>
+                            <div class="text-lg font-bold text-amber-400">${item.dg20 !== '-' ? '+$' + item.dg20 : '-'}</div>
+                        </div>
+                        <div class="text-center px-2 border-l border-slate-800">
+                            <div class="text-[10px] uppercase tracking-wider text-amber-500/80 font-semibold mb-0.5">40' DG 2/3</div>
+                            <div class="text-lg font-bold text-amber-400">${item.dg40 !== '-' ? '+$' + item.dg40 : '-'}</div>
+                        </div>
+                    </div>
+                `;
+
+                rateList.appendChild(card);
+            });
+
+            lucide.createIcons();
+        }
+    </script>
 </body>
 </html>
