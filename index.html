@@ -6,7 +6,7 @@
     <title>Interasia Line - Freight Rate Lookup</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- SheetJS for Reading Excel (.xlsx) Files Direct in Browser -->
+    <!-- SheetJS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -55,7 +55,7 @@
                         </label>
                         <div class="relative">
                             <select id="country-select" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all">
-                                <option value="">-- Loading precisco.xlsx --</option>
+                                <option value="">-- Loading PRECISCO.xlsx --</option>
                             </select>
                             <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
                         </div>
@@ -128,45 +128,40 @@
         let parsedData = [];
         let currentCountry = "";
         
-        // Target Excel Filename
-        const EXCEL_FILENAME = ../PRECISCO.xlsx";
+        // Target single dot filename PRECISCO.xlsx
+        const EXCEL_FILENAME = "PRECISCO.xlsx";
 
         const countrySelect = document.getElementById('country-select');
         const portSelect = document.getElementById('port-select');
         const tableBody = document.getElementById('table-body');
 
-        // Ignored headers
         const IGNORE_HEADERS = ["POD", "GP RATES", "REEFER RATES", "DESCRIPTION", "SINGAPORE LOCAL CHARGES", "TERMS & CONDITIONS"];
 
-        // Fetch Excel file directly using ArrayBuffer
         window.addEventListener('DOMContentLoaded', () => {
             fetch(EXCEL_FILENAME)
                 .then(res => {
-                    if (!res.ok) throw new Error(`Unable to fetch ${EXCEL_FILENAME}`);
+                    if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
                     return res.arrayBuffer();
                 })
                 .then(buffer => parseExcel(buffer))
                 .catch(err => {
                     console.error("Excel loading error:", err);
+                    countrySelect.innerHTML = '<option value="">-- Failed to Load PRECISCO.xlsx --</option>';
                     tableBody.innerHTML = `
                         <tr>
                             <td colspan="9" class="py-8 text-center text-red-600 font-medium">
-                                Unable to load rate file (${EXCEL_FILENAME}). Ensure precisco.xlsx is uploaded to your root folder.
+                                Unable to load rate file (${EXCEL_FILENAME}). Check browser console (F12) for details.
                             </td>
                         </tr>`;
                 });
         });
 
-        // Parse Excel workbook with SheetJS
         function parseExcel(buffer) {
             const data = new Uint8Array(buffer);
             const workbook = XLSX.read(data, { type: 'array' });
             
-            // Read first sheet
             const sheetName = workbook.SheetNames[0];
             const worksheet = workbook.Sheets[sheetName];
-            
-            // Convert sheet to array of arrays
             const rows = XLSX.utils.sheet_to_json(worksheet, { header: 1, raw: false });
             
             parsedData = [];
@@ -176,14 +171,12 @@
                 const colB = row[1] ? row[1].toString().trim() : "";
                 const colC = row[2] ? row[2].toString().trim() : "";
 
-                // Identify Country Header Rows
                 if (colB && !IGNORE_HEADERS.includes(colB.toUpperCase()) && !colB.includes("SHENTON WAY") && !colB.includes("TEL :")) {
                     activeCountry = colB;
                     if (colC) {
                         addPortRecord(activeCountry, row);
                     }
                 } 
-                // Identify Port Rows under Active Country
                 else if (activeCountry && colC && !IGNORE_HEADERS.includes(colC.toUpperCase())) {
                     addPortRecord(activeCountry, row);
                 }
