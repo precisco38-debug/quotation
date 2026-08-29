@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interasia Line - Freight Rate Lookup</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- PapaParse for embedded CSV parsing -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
@@ -15,6 +18,7 @@
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
 
     <div>
+        <!-- Top Header Bar -->
         <header class="bg-white border-b border-slate-200 shadow-sm">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div class="flex items-center gap-3">
@@ -23,9 +27,10 @@
                     </div>
                     <div>
                         <h1 class="text-xl font-bold text-slate-900 tracking-tight">Interasia Line</h1>
-                        <p class="text-xs text-slate-500">Freight Rate & Route Portal</p>
+                        <p class="text-xs text-slate-500">Global Freight Rate Portal</p>
                     </div>
                 </div>
+                <!-- Contact Info Badge -->
                 <div class="flex flex-wrap items-center gap-4 text-xs text-slate-600 bg-slate-50 border border-slate-200 px-4 py-2 rounded-lg">
                     <span class="flex items-center gap-1.5"><i data-lucide="phone" class="w-3.5 h-3.5 text-blue-600"></i> +65 6323 6488</span>
                     <span class="hidden sm:inline text-slate-300">|</span>
@@ -34,25 +39,29 @@
             </div>
         </header>
 
+        <!-- Main Workspace -->
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             
+            <!-- Filters Section -->
             <section class="bg-white border border-slate-200 rounded-xl p-6 mb-6 shadow-sm">
                 <h2 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-4 flex items-center gap-2">
-                    <i data-lucide="filter" class="w-4 h-4 text-blue-600"></i> Select Destination Details
+                    <i data-lucide="filter" class="w-4 h-4 text-blue-600"></i> Select Shipping Destination
                 </h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Country Selection -->
                     <div>
                         <label for="country-select" class="block text-xs font-semibold text-slate-600 mb-1.5">
                             Destination Country
                         </label>
                         <div class="relative">
                             <select id="country-select" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm text-slate-900 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all">
-                                <option value="">Loading countries...</option>
+                                <option value="">-- Loading Countries --</option>
                             </select>
                             <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
                         </div>
                     </div>
 
+                    <!-- Port Selection -->
                     <div>
                         <label for="port-select" class="block text-xs font-semibold text-slate-600 mb-1.5">
                             Port of Destination (POD)
@@ -67,6 +76,7 @@
                 </div>
             </section>
 
+            <!-- Results Section -->
             <section class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
@@ -86,8 +96,8 @@
                         <tbody id="table-body" class="divide-y divide-slate-200 text-xs">
                             <tr>
                                 <td colspan="9" class="py-12 text-center text-slate-500">
-                                    <i data-lucide="search" class="w-8 h-8 text-slate-300 mx-auto mb-2"></i>
-                                    Please select a destination country to view shipping rates.
+                                    <i data-lucide="globe" class="w-8 h-8 text-slate-300 mx-auto mb-2"></i>
+                                    Please select a destination country to display available rates.
                                 </td>
                             </tr>
                         </tbody>
@@ -97,6 +107,7 @@
         </main>
     </div>
 
+    <!-- Corporate Footer -->
     <footer class="bg-white border-t border-slate-200 mt-12 py-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-xs text-slate-500">
             <p class="font-semibold text-slate-700 mb-2">Standard Terms & Conditions:</p>
@@ -116,16 +127,159 @@
 
         let parsedData = [];
         let currentCountry = "";
-
         const CSV_FILENAME = "PRECISCO..xlsx - Rates.csv";
 
         const countrySelect = document.getElementById('country-select');
         const portSelect = document.getElementById('port-select');
         const tableBody = document.getElementById('table-body');
 
-        // Automatically load and parse the default CSV file on page load
+        // Blacklisted non-country values from header metadata
+        const IGNORE_VALUES = ["POD", "GP RATES", "REEFER RATES", "DESCRIPTION", "SINGAPORE LOCAL CHARGES", "TERMS & CONDITIONS"];
+
         window.addEventListener('DOMContentLoaded', () => {
             fetch(encodeURI(CSV_FILENAME))
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error status
+                .then(res => {
+                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+                    return res.text();
+                })
+                .then(csvText => parseCSV(csvText))
+                .catch(err => {
+                    console.error("CSV loading failed:", err);
+                    tableBody.innerHTML = `
+                        <tr>
+                            <td colspan="9" class="py-8 text-center text-red-600 font-medium">
+                                Unable to load rate data (${CSV_FILENAME}). Please verify file exists in repo root.
+                            </td>
+                        </tr>`;
+                });
+        });
+
+        function parseCSV(csvText) {
+            Papa.parse(csvText, {
+                header: false,
+                skipEmptyLines: true,
+                complete: function(results) {
+                    const rows = results.data;
+                    parsedData = [];
+                    let activeCountry = "";
+
+                    rows.forEach((row) => {
+                        const colB = row[1] ? row[1].trim() : "";
+                        const colC = row[2] ? row[2].trim() : "";
+
+                        // Check if row contains a new Country Header
+                        if (colB && !IGNORE_VALUES.includes(colB.toUpperCase()) && !colB.includes("SHENTON WAY") && !colB.includes("TEL :")) {
+                            if (!colC) {
+                                activeCountry = colB;
+                            } else {
+                                // Handles case where Country and Port sit on the exact same row (e.g. Row 9 JAPAN)
+                                activeCountry = colB;
+                                addPortRecord(activeCountry, row);
+                            }
+                        } 
+                        // Row withPort under current active country
+                        else if (activeCountry && colC && !IGNORE_VALUES.includes(colC.toUpperCase())) {
+                            addPortRecord(activeCountry, row);
+                        }
+                    });
+
+                    populateCountries();
+                }
+            });
+        }
+
+        function addPortRecord(country, row) {
+            parsedData.push({
+                country: country,
+                port: row[2] ? row[2].trim() : "",
+                freight20: row[3] && row[3].trim() !== "" ? row[3].trim() : "-",
+                freight40: row[4] && row[4].trim() !== "" ? row[4].trim() : "-",
+                dg20: row[5] && row[5].trim() !== "" ? row[5].trim() : "-",
+                dg40: row[6] && row[6].trim() !== "" ? row[6].trim() : "-",
+                service: row[7] && row[7].trim() !== "" ? row[7].trim() : "-",
+                schedule: row[8] && row[8].trim() !== "" ? row[8].trim() : "-",
+                remarks: row[9] && row[9].trim() !== "" ? row[9].trim() : "-"
+            });
+        }
+
+        function populateCountries() {
+            const countries = [...new Set(parsedData.map(item => item.country))];
+            
+            countrySelect.innerHTML = '<option value="">-- Select Destination Country --</option>';
+            countries.forEach(country => {
+                const opt = document.createElement('option');
+                opt.value = country;
+                opt.textContent = country;
+                countrySelect.appendChild(opt);
+            });
+        }
+
+        countrySelect.addEventListener('change', (e) => {
+            currentCountry = e.target.value;
+            portSelect.innerHTML = '<option value="ALL">All Ports</option>';
+            
+            if (!currentCountry) {
+                portSelect.disabled = true;
+                renderTable([]);
+                return;
+            }
+
+            // Get unique ports for selected country
+            const ports = [...new Set(
+                parsedData
+                    .filter(item => item.country === currentCountry)
+                    .map(item => item.port)
+            )];
+
+            ports.forEach(port => {
+                const opt = document.createElement('option');
+                opt.value = port;
+                opt.textContent = port;
+                portSelect.appendChild(opt);
+            });
+
+            portSelect.disabled = false;
+            filterAndRender();
+        });
+
+        portSelect.addEventListener('change', filterAndRender);
+
+        function filterAndRender() {
+            const selectedPort = portSelect.value;
+            const filtered = parsedData.filter(item => {
+                const matchCountry = item.country === currentCountry;
+                const matchPort = selectedPort === 'ALL' || item.port === selectedPort;
+                return matchCountry && matchPort;
+            });
+
+            renderTable(filtered);
+        }
+
+        function renderTable(items) {
+            if (items.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="9" class="py-8 text-center text-slate-500">
+                            No rates available for the selected destination.
+                        </td>
+                    </tr>`;
+                return;
+            }
+
+            tableBody.innerHTML = items.map((item, idx) => `
+                <tr class="${idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/60'} hover:bg-blue-50/50 transition-colors">
+                    <td class="py-3 px-4 font-semibold text-slate-900">${item.country}</td>
+                    <td class="py-3 px-4 font-medium text-blue-700">${item.port}</td>
+                    <td class="py-3 px-4 text-right font-bold text-slate-900">${item.freight20 !== '-' ? '$' + item.freight20 : '-'}</td>
+                    <td class="py-3 px-4 text-right font-bold text-slate-900">${item.freight40 !== '-' ? '$' + item.freight40 : '-'}</td>
+                    <td class="py-3 px-4 text-right text-slate-700">${item.dg20 !== '-' ? '+$' + item.dg20 : '-'}</td>
+                    <td class="py-3 px-4 text-right text-slate-700">${item.dg40 !== '-' ? '+$' + item.dg40 : '-'}</td>
+                    <td class="py-3 px-4 text-slate-600">${item.service}</td>
+                    <td class="py-3 px-4 text-slate-600">${item.schedule}</td>
+                    <td class="py-3 px-4 text-slate-500 max-w-xs truncate" title="${item.remarks}">${item.remarks}</td>
+                </tr>
+            `).join('');
+        }
+    </script>
+</body>
+</html>
