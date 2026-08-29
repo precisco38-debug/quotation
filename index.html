@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Precisco - Freight Rate Lookup</title>
+    <title>Interasia Line - Freight Rate Lookup</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- SheetJS CDN -->
@@ -13,6 +13,14 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         body { font-family: 'Inter', sans-serif; }
+        
+        /* Hide UI controls during PDF save/print */
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; }
+            main { padding: 0 !important; }
+            section { border: none !important; box-shadow: none !important; }
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
@@ -26,7 +34,7 @@
                         <i data-lucide="ship" class="w-6 h-6"></i>
                     </div>
                     <div>
-                        <h1 class="text-xl font-bold text-slate-900 tracking-tight">Precisco Singapore</h1>
+                        <h1 class="text-xl font-bold text-slate-900 tracking-tight">Interasia Line</h1>
                         <p class="text-xs text-slate-500">Freight Rate Portal</p>
                     </div>
                 </div>
@@ -44,9 +52,17 @@
             
             <!-- Destination Controls -->
             <section class="bg-white border border-slate-200 rounded-xl p-6 mb-6 shadow-sm">
-                <h2 class="text-sm font-semibold text-slate-900 uppercase tracking-wider mb-4 flex items-center gap-2">
-                    <i data-lucide="filter" class="w-4 h-4 text-blue-600"></i> Select Shipping Destination
-                </h2>
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+                    <h2 class="text-sm font-semibold text-slate-900 uppercase tracking-wider flex items-center gap-2">
+                        <i data-lucide="filter" class="w-4 h-4 text-blue-600"></i> Select Shipping Destination
+                    </h2>
+                    
+                    <!-- Download / Print Button -->
+                    <button onclick="window.print()" class="no-print inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg shadow-sm transition-colors cursor-pointer self-start sm:self-auto">
+                        <i data-lucide="download" class="w-4 h-4"></i> Download / Save PDF
+                    </button>
+                </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Country Selector -->
                     <div>
@@ -128,7 +144,6 @@
         let parsedData = [];
         let currentCountry = "";
         
-        // Target single dot filename PRECISCO.xlsx
         const EXCEL_FILENAME = "PRECISCO.xlsx";
 
         const countrySelect = document.getElementById('country-select');
