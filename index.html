@@ -4,8 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Global Shipping Rate Finder</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+    <!-- SheetJS (xlsx) for direct Excel parsing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
@@ -14,9 +17,11 @@
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen pb-12 flex flex-col justify-between">
 
+    <!-- Top Accent Bar -->
     <div class="h-1.5 w-full bg-gradient-to-r from-blue-500 via-indigo-500 to-teal-400"></div>
 
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 w-full">
+        <!-- Header -->
         <header class="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             <div>
                 <div class="flex items-center gap-2 text-teal-400 font-semibold text-sm tracking-wide uppercase mb-1">
@@ -24,27 +29,31 @@
                 </div>
                 <h1 class="text-3xl font-bold text-white tracking-tight">Freight Rate Lookup</h1>
             </div>
+            <!-- File Upload Action -->
             <label class="cursor-pointer bg-slate-800 hover:bg-slate-700/80 text-slate-300 hover:text-white border border-slate-700 px-4 py-2.5 rounded-xl text-sm font-medium transition-all flex items-center justify-center gap-2 shadow-sm w-fit">
                 <i data-lucide="upload-cloud" class="w-4 h-4 text-teal-400"></i>
-                <span id="upload-label">Load CSV Rates</span>
-                <input type="file" id="csv-file-input" accept=".csv" class="hidden">
+                <span id="upload-label">Load Excel File</span>
+                <input type="file" id="excel-file-input" accept=".xlsx, .xls" class="hidden">
             </label>
         </header>
 
+        <!-- Dynamic Filter Controls -->
         <section class="bg-slate-800/60 backdrop-blur-md border border-slate-700/60 rounded-2xl p-6 mb-8 shadow-xl">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Country Dropdown -->
                 <div>
                     <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
                         Destination Country
                     </label>
                     <div class="relative">
                         <select id="country-select" disabled class="w-full bg-slate-900/90 border border-slate-700 rounded-xl px-4 py-3 text-white appearance-none focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
-                            <option value="">Upload rate file to begin...</option>
+                            <option value="">Upload PRECISCO file to begin...</option>
                         </select>
                         <i data-lucide="chevron-down" class="w-5 h-5 text-slate-400 absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none"></i>
                     </div>
                 </div>
 
+                <!-- Port Dropdown -->
                 <div>
                     <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
                         Port of Destination (POD)
@@ -59,21 +68,25 @@
             </div>
         </section>
 
+        <!-- Rate Cards Display -->
         <main>
+            <!-- Default/Empty State -->
             <div id="empty-state" class="text-center py-16 bg-slate-800/30 rounded-2xl border border-dashed border-slate-700/80">
                 <i data-lucide="file-spreadsheet" class="w-12 h-12 text-slate-500 mx-auto mb-3"></i>
-                <h3 class="text-lg font-medium text-slate-300">No Rates Loaded</h3>
-                <p class="text-slate-500 text-sm mt-1">Please select your CSV file using the top right button to view freight options.</p>
+                <h3 class="text-lg font-medium text-slate-300">No Rates Displayed</h3>
+                <p class="text-slate-500 text-sm mt-1">Select your local Excel file (`PRECISCO..xlsx`) or upload via top right button.</p>
             </div>
 
+            <!-- Results List -->
             <div id="rate-list" class="grid grid-cols-1 gap-4 hidden"></div>
         </main>
     </div>
 
+    <!-- Contact & Surcharge Footnote -->
     <footer id="rate-footnotes" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 w-full text-xs text-slate-500 border-t border-slate-800 pt-6 hidden">
-        <p class="font-semibold text-slate-400 mb-1">Standard Terms & Notes:</p>
+        <p class="font-semibold text-slate-400 mb-1">Standard Terms & Surcharges:</p>
         <ul class="list-disc pl-4 space-y-1">
-            <li>AFR Filling: USD30/BL (Japan/China) | AFR/AMS Amendment: USD40/BL</li>
+            <li>AFR Filing: USD30/BL (Japan/China) | AFR/AMS Amendment: USD40/BL</li>
             <li>Bill of Lading / Surrender Fee: SGD180/set | Container Seal Fee: SGD23/container</li>
             <li>Destination EBS charge applicable for Korea & Shanghai per TEU. Rates valid for General Cargo only under CY/CY terms.</li>
         </ul>
@@ -85,8 +98,8 @@
         let parsedData = [];
         let currentCountry = "";
 
-        // Elements
-        const csvFileInput = document.getElementById('csv-file-input');
+        // UI Elements
+        const excelFileInput = document.getElementById('excel-file-input');
         const countrySelect = document.getElementById('country-select');
         const portSelect = document.getElementById('port-select');
         const rateList = document.getElementById('rate-list');
@@ -94,66 +107,70 @@
         const footnotes = document.getElementById('rate-footnotes');
         const uploadLabel = document.getElementById('upload-label');
 
-        // Automatic File Loading Attempt for Hosted Environment
+        // Auto-fetch attempt for PRECISCO..xlsx on host
         window.addEventListener('DOMContentLoaded', () => {
-            const defaultFileName = "PRECISCO..xlsx - Rates.csv";
-            fetch(defaultFileName)
+            const fileName = "PRECISCO..xlsx";
+            fetch(fileName)
                 .then(res => {
-                    if (res.ok) return res.text();
-                    throw new Error('Local file not auto-accessible');
+                    if (res.ok) return res.arrayBuffer();
+                    throw new Error('Local fetch unavailable');
                 })
-                .then(csvText => parseCSV(csvText, defaultFileName))
+                .then(buffer => processWorkbook(buffer, fileName))
                 .catch(() => {
-                    // Manual upload required if auto-fetch fails
+                    // Requires manual upload if file fetching is restricted
                 });
         });
 
-        // File Selector Input Event
-        csvFileInput.addEventListener('change', (e) => {
+        // Excel Manual File Listener
+        excelFileInput.addEventListener('change', (e) => {
             const file = e.target.files[0];
             if (!file) return;
+
             uploadLabel.textContent = file.name;
-            Papa.parse(file, {
-                complete: (results) => processParsedCSV(results.data),
-                error: (err) => alert("Error reading CSV file: " + err)
-            });
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                processWorkbook(event.target.result, file.name);
+            };
+            reader.readAsArrayBuffer(file);
         });
 
-        function parseCSV(csvText, filename) {
+        function processWorkbook(buffer, filename) {
             uploadLabel.textContent = filename;
-            Papa.parse(csvText, {
-                complete: (results) => processParsedCSV(results.data)
-            });
+            const workbook = XLSX.read(buffer, { type: 'array' });
+            const firstSheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[firstSheetName];
+            const rows = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+            parseExcelRows(rows);
         }
 
-        // Data Normalization Logic for PRECISCO CSV Structure
-        function processParsedCSV(rows) {
+        // Structured Extraction logic tailored to PRECISCO layout
+        function parseExcelRows(rows) {
             parsedData = [];
             let activeCountry = "";
 
             rows.forEach((row) => {
-                // Determine layout start
-                const col0 = row[1] ? row[1].trim() : ""; // Country / POD Column
-                const col1 = row[2] ? row[2].trim() : ""; // Specific Port Column
-                const f20 = row[3] ? row[3].trim() : "";
-                const f40 = row[4] ? row[4].trim() : "";
+                const col1 = row[1] ? String(row[1]).trim() : ""; // Country or POD
+                const col2 = row[2] ? String(row[2]).trim() : ""; // Port Name
+                const f20 = row[3] !== undefined ? String(row[3]).trim() : "";
+                const f40 = row[4] !== undefined ? String(row[4]).trim() : "";
 
-                // Detect Country rows (e.g., "JAPAN 日本")
-                if (col0 && !col1 && isNaN(f20) && f20 !== "20'") {
-                    activeCountry = col0;
+                // Detect Country Header Rows (e.g. "JAPAN 日本")
+                if (col1 && !col2 && isNaN(parseFloat(f20)) && f20 !== "20'") {
+                    activeCountry = col1;
                 } 
-                // Detect Rate Data Row
-                else if (activeCountry && col1 && (!isNaN(parseFloat(f20)) || f20 === "")) {
+                // Detect Port Rate Rows
+                else if (activeCountry && col2 && (!isNaN(parseFloat(f20)) || f20 === "" || f20 === "-")) {
                     parsedData.push({
                         country: activeCountry,
-                        port: col1,
-                        freight20: row[3] ? row[3].trim() : "-",
-                        freight40: row[4] ? row[4].trim() : "-",
-                        dg20: row[5] ? row[5].trim() : "-",
-                        dg40: row[6] ? row[6].trim() : "-",
-                        service: row[7] ? row[7].trim() : "Direct",
-                        schedule: row[8] ? row[8].trim() : "-",
-                        remarks: row[9] ? row[9].trim() : ""
+                        port: col2,
+                        freight20: f20 && !isNaN(parseFloat(f20)) ? f20 : "-",
+                        freight40: f40 && !isNaN(parseFloat(f40)) ? f40 : "-",
+                        dg20: row[5] !== undefined ? String(row[5]).trim() : "-",
+                        dg40: row[6] !== undefined ? String(row[6]).trim() : "-",
+                        service: row[7] ? String(row[7]).trim() : "Direct",
+                        schedule: row[8] ? String(row[8]).trim() : "-",
+                        remarks: row[9] ? String(row[9]).trim() : ""
                     });
                 }
             });
@@ -232,6 +249,7 @@
                 card.className = "bg-slate-800/80 border border-slate-700/70 hover:border-slate-600 rounded-2xl p-5 shadow-lg transition-all flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6";
 
                 card.innerHTML = `
+                    <!-- Destination & Route Details -->
                     <div class="flex-1">
                         <div class="flex items-center gap-3 mb-2">
                             <span class="bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 text-xs px-2.5 py-1 rounded-md font-medium">${item.country}</span>
@@ -244,6 +262,7 @@
                         </div>
                     </div>
 
+                    <!-- Pricing Display Block -->
                     <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 bg-slate-900/60 p-3.5 rounded-xl border border-slate-700/50">
                         <div class="text-center px-2">
                             <div class="text-[10px] uppercase tracking-wider text-slate-400 font-semibold mb-0.5">20' Dry</div>
