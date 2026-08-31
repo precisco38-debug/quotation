@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Precisco Singapore - Freight Rate Lookup</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- SheetJS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
@@ -26,7 +23,6 @@
 <body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col justify-between">
 
     <div>
-        <!-- Header -->
         <header class="bg-white border-b border-slate-200 shadow-sm">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div class="flex items-center gap-3">
@@ -38,7 +34,6 @@
                         <p class="text-xs text-slate-500">Freight Rate Portal</p>
                     </div>
                 </div>
-                <!-- Contact Details -->
                 <div class="flex flex-wrap items-center gap-4 text-xs text-slate-600 bg-slate-50 border border-slate-200 px-4 py-2 rounded-lg">
                     <span class="flex items-center gap-1.5"><i data-lucide="phone" class="w-3.5 h-3.5 text-blue-600"></i> +65 6000 1234</span>
                     <span class="hidden sm:inline text-slate-300">|</span>
@@ -47,24 +42,33 @@
             </div>
         </header>
 
-        <!-- Main Workspace -->
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             
-            <!-- Destination Controls -->
             <section class="bg-white border border-slate-200 rounded-xl p-6 mb-6 shadow-sm">
                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
                     <h2 class="text-sm font-semibold text-slate-900 uppercase tracking-wider flex items-center gap-2">
-                        <i data-lucide="filter" class="w-4 h-4 text-blue-600"></i> Select Shipping Destination
+                        <i data-lucide="filter" class="w-4 h-4 text-blue-600"></i> Select Shipping Destination & Cargo Type
                     </h2>
                     
-                    <!-- Download / Print Button -->
                     <button onclick="window.print()" class="no-print inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-lg shadow-sm transition-colors cursor-pointer self-start sm:self-auto">
                         <i data-lucide="download" class="w-4 h-4"></i> Download / Save PDF
                     </button>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Country Selector -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div>
+                        <label for="type-select" class="block text-xs font-semibold text-slate-600 mb-1.5">
+                            Rate Category / Container Type
+                        </label>
+                        <div class="relative">
+                            <select id="type-select" class="w-full bg-slate-50 border border-slate-300 rounded-lg px-3.5 py-2.5 text-sm font-semibold text-blue-900 appearance-none focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition-all">
+                                <option value="GP">GP Rates (Dry Container)</option>
+                                <option value="REEFER">Reefer Rates (Refrigerated)</option>
+                            </select>
+                            <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none"></i>
+                        </div>
+                    </div>
+
                     <div>
                         <label for="country-select" class="block text-xs font-semibold text-slate-600 mb-1.5">
                             Destination Country
@@ -77,7 +81,6 @@
                         </div>
                     </div>
 
-                    <!-- Port Selector -->
                     <div>
                         <label for="port-select" class="block text-xs font-semibold text-slate-600 mb-1.5">
                             Port of Destination (POD)
@@ -92,12 +95,12 @@
                 </div>
             </section>
 
-            <!-- Results Table -->
             <section class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
                 <div class="overflow-x-auto">
                     <table class="w-full text-left border-collapse">
                         <thead>
                             <tr class="bg-slate-100/80 border-b border-slate-200 text-[11px] font-bold text-slate-600 uppercase tracking-wider">
+                                <th class="py-3.5 px-4">Type</th>
                                 <th class="py-3.5 px-4">Country</th>
                                 <th class="py-3.5 px-4">Port (POD)</th>
                                 <th class="py-3.5 px-4 text-right">20' Freight</th>
@@ -111,7 +114,7 @@
                         </thead>
                         <tbody id="table-body" class="divide-y divide-slate-200 text-xs">
                             <tr>
-                                <td colspan="9" class="py-12 text-center text-slate-500">
+                                <td colspan="10" class="py-12 text-center text-slate-500">
                                     <i data-lucide="globe" class="w-8 h-8 text-slate-300 mx-auto mb-2"></i>
                                     Please select a destination country to display available rates.
                                 </td>
@@ -123,7 +126,6 @@
         </main>
     </div>
 
-    <!-- Terms Footer -->
     <footer class="bg-white border-t border-slate-200 mt-12 py-6">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-xs text-slate-500">
             <p class="font-semibold text-slate-700 mb-2">Standard Terms & Conditions:</p>
@@ -143,9 +145,11 @@
 
         let parsedData = [];
         let currentCountry = "";
+        let currentType = "GP";
         
         const EXCEL_FILENAME = "PRECISCO.xlsx";
 
+        const typeSelect = document.getElementById('type-select');
         const countrySelect = document.getElementById('country-select');
         const portSelect = document.getElementById('port-select');
         const tableBody = document.getElementById('table-body');
@@ -164,7 +168,7 @@
                     countrySelect.innerHTML = '<option value="">-- Failed to Load PRECISCO.xlsx --</option>';
                     tableBody.innerHTML = `
                         <tr>
-                            <td colspan="9" class="py-8 text-center text-red-600 font-medium">
+                            <td colspan="10" class="py-8 text-center text-red-600 font-medium">
                                 Unable to load rate file (${EXCEL_FILENAME}). Check browser console (F12) for details.
                             </td>
                         </tr>`;
@@ -181,27 +185,40 @@
             
             parsedData = [];
             let activeCountry = "";
+            let currentCategory = "GP"; // Default section header
 
             rows.forEach((row) => {
                 const colB = row[1] ? row[1].toString().trim() : "";
                 const colC = row[2] ? row[2].toString().trim() : "";
 
+                // Detect Section Headers: GP RATES vs REEFER RATES
+                if (colB.toUpperCase().includes("GP RATES")) {
+                    currentCategory = "GP";
+                    activeCountry = "";
+                    return;
+                } else if (colB.toUpperCase().includes("REEFER RATES")) {
+                    currentCategory = "REEFER";
+                    activeCountry = "";
+                    return;
+                }
+
                 if (colB && !IGNORE_HEADERS.includes(colB.toUpperCase()) && !colB.includes("SHENTON WAY") && !colB.includes("TEL :")) {
                     activeCountry = colB;
                     if (colC) {
-                        addPortRecord(activeCountry, row);
+                        addPortRecord(activeCountry, row, currentCategory);
                     }
                 } 
                 else if (activeCountry && colC && !IGNORE_HEADERS.includes(colC.toUpperCase())) {
-                    addPortRecord(activeCountry, row);
+                    addPortRecord(activeCountry, row, currentCategory);
                 }
             });
 
             populateCountries();
         }
 
-        function addPortRecord(country, row) {
+        function addPortRecord(country, row, rateType) {
             parsedData.push({
+                rateType: rateType,
                 country: country,
                 port: row[2] ? row[2].toString().trim() : "",
                 f20: row[3] && row[3].toString().trim() !== "" ? row[3].toString().trim() : "-",
@@ -215,16 +232,32 @@
         }
 
         function populateCountries() {
-            const countries = [...new Set(parsedData.map(item => item.country))];
+            // Get available countries for the currently selected Rate Type
+            const availableCountries = [...new Set(
+                parsedData
+                    .filter(item => item.rateType === currentType)
+                    .map(item => item.country)
+            )];
             
             countrySelect.innerHTML = '<option value="">-- Select Destination Country --</option>';
-            countries.forEach(country => {
+            availableCountries.forEach(country => {
                 const opt = document.createElement('option');
                 opt.value = country;
                 opt.textContent = country;
                 countrySelect.appendChild(opt);
             });
+
+            // Reset selection state
+            currentCountry = "";
+            portSelect.innerHTML = '<option value="ALL">All Ports</option>';
+            portSelect.disabled = true;
+            renderTable([]);
         }
+
+        typeSelect.addEventListener('change', (e) => {
+            currentType = e.target.value;
+            populateCountries();
+        });
 
         countrySelect.addEventListener('change', (e) => {
             currentCountry = e.target.value;
@@ -238,7 +271,7 @@
 
             const ports = [...new Set(
                 parsedData
-                    .filter(item => item.country === currentCountry)
+                    .filter(item => item.rateType === currentType && item.country === currentCountry)
                     .map(item => item.port)
             )];
 
@@ -258,9 +291,10 @@
         function filterAndRender() {
             const selectedPort = portSelect.value;
             const filtered = parsedData.filter(item => {
+                const matchType = item.rateType === currentType;
                 const matchCountry = item.country === currentCountry;
                 const matchPort = selectedPort === 'ALL' || item.port === selectedPort;
-                return matchCountry && matchPort;
+                return matchType && matchCountry && matchPort;
             });
 
             renderTable(filtered);
@@ -270,7 +304,7 @@
             if (items.length === 0) {
                 tableBody.innerHTML = `
                     <tr>
-                        <td colspan="9" class="py-12 text-center text-slate-500">
+                        <td colspan="10" class="py-12 text-center text-slate-500">
                             <i data-lucide="globe" class="w-8 h-8 text-slate-300 mx-auto mb-2"></i>
                             Please select a destination country to display available rates.
                         </td>
@@ -281,6 +315,11 @@
 
             tableBody.innerHTML = items.map((item, idx) => `
                 <tr class="${idx % 2 === 0 ? 'bg-white' : 'bg-slate-50/60'} hover:bg-blue-50/50 transition-colors">
+                    <td class="py-3 px-4 font-bold ${item.rateType === 'REEFER' ? 'text-teal-600' : 'text-slate-600'}">
+                        <span class="px-2 py-0.5 rounded border text-[10px] ${item.rateType === 'REEFER' ? 'bg-teal-50 border-teal-200' : 'bg-slate-100 border-slate-200'}">
+                            ${item.rateType}
+                        </span>
+                    </td>
                     <td class="py-3 px-4 font-semibold text-slate-900">${item.country}</td>
                     <td class="py-3 px-4 font-medium text-blue-700">${item.port}</td>
                     <td class="py-3 px-4 text-right font-bold text-slate-900">${item.f20 !== '-' ? '$' + item.f20 : '-'}</td>
