@@ -1,6 +1,6 @@
 import os
 import re
-import fitz  # PyMuPDF
+import pdfplumber
 import pandas as pd
 import streamlit as st
 from langchain_openai import ChatOpenAI
@@ -32,7 +32,7 @@ if not st.session_state["authenticated"]:
             st.error("❌ Incorrect password. Access Denied.")
     st.stop()
 
-# --- MAIN APP LOGIC (ONLY RUNS AFTER SUCCESSFUL LOGIN) ---
+# --- MAIN APP LOGIC ---
 PREDETERMINED_FORMAT = """
 1. Ocean Freight Rate (USD):
 2. Origin Terminal Handling Charges (OTHC):
@@ -47,11 +47,11 @@ PREDETERMINED_FORMAT = """
 def extract_text_from_pdf(file_object):
     text = ""
     try:
-        file_bytes = file_object.read()
-        doc = fitz.open(stream=file_bytes, filetype="pdf")
-        for page in doc:
-            text += page.get_text() + "\n"
-        doc.close()
+        with pdfplumber.open(file_object) as pdf:
+            for page in pdf.pages:
+                extracted = page.extract_text()
+                if extracted:
+                    text += extracted + "\n"
     except Exception as e:
         st.error(f"Error decoding PDF: {e}")
     return text.strip()
@@ -66,8 +66,7 @@ def extract_text_from_excel(file_object):
 
 st.set_page_config(page_title="Liner Quotes", layout="centered")
 
-# Logout button for staff security
-col1, col2 = st.columns([4, 1])
+col1, col2 = st.columns()
 with col1:
     st.title("🚢 Liner Quote Interface")
 with col2:
@@ -125,8 +124,5 @@ if uploaded_file is not None:
                     st.success("Extraction Complete!")
                     st.code(response.content, language="markdown")
                     
-                    with st.expander("👀 View Decoded Text"):
-                        st.text(raw_content)
-                        
                 except Exception as e:
                     st.error(f"Error parsing file: {e}")
