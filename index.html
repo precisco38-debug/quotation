@@ -3,233 +3,445 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Precisco Singapore - Rate Enquiry</title>
+    <title>Precisco Singapore - Shipping Rate Inquiry</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
         :root {
             --primary: #003366;
             --secondary: #006699;
-            --bg: #f4f7f6;
-            --text: #333;
+            --accent: #e6f2ff;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --border: #dee2e6;
         }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            background-color: #f4f7f9;
+            color: var(--dark);
         }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 24px 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 28px;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        header p {
+            margin: 5px 0 0 0;
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
         .container {
             max-width: 1400px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 25px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .card {
+            background: white;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
         }
-        header {
-            border-bottom: 3px solid var(--primary);
-            padding-bottom: 12px;
-            margin-bottom: 20px;
-        }
-        header h1 {
-            color: var(--primary);
-            margin: 0;
-            font-size: 26px;
-        }
-        header p {
-            margin: 4px 0 0 0;
-            color: #666;
-            font-size: 13px;
-        }
-        .search-card {
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 6px;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-        .form-grid {
+
+        .search-panel {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
             align-items: end;
         }
+
         .form-group {
             display: flex;
             flex-direction: column;
         }
+
         .form-group label {
             font-weight: 600;
-            margin-bottom: 5px;
-            font-size: 13px;
-            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: var(--secondary);
         }
-        .form-group select {
-            padding: 8px 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 13px;
-            background-color: #fff;
+
+        .form-group select, .form-group input {
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
         }
-        .btn-search {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 9px 18px;
-            border-radius: 4px;
+
+        .form-group select:focus, .form-group input:focus {
+            border-color: var(--secondary);
+        }
+
+        .file-upload-wrapper {
+            background: var(--accent);
+            border: 2px dashed var(--secondary);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .file-upload-wrapper input[type="file"] {
+            display: none;
+        }
+
+        .file-upload-label {
             cursor: pointer;
-            font-weight: bold;
-            font-size: 13px;
+            color: var(--primary);
+            font-weight: 600;
         }
-        .btn-search:hover {
-            background: var(--secondary);
-        }
-        .results-container {
+
+        .table-wrapper {
             overflow-x: auto;
-            max-height: 600px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 11px;
+            font-size: 13px;
             text-align: left;
+            white-space: nowrap;
         }
+
         th {
             background-color: var(--primary);
             color: white;
-            padding: 8px 6px;
-            white-space: nowrap;
+            padding: 12px 10px;
+            font-weight: 600;
             position: sticky;
             top: 0;
-            z-index: 2;
         }
+
         td {
-            padding: 6px;
-            border-bottom: 1px solid #ddd;
-            white-space: nowrap;
+            padding: 10px;
+            border-bottom: 1px solid var(--border);
         }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
+
+        tbody tr:nth-child(even) {
+            background-color: #fafafa;
         }
-        tr:hover {
-            background-color: #eef5fc;
+
+        tbody tr:hover {
+            background-color: var(--accent);
         }
-        .badge-cntr {
-            background: #e1f0ff;
-            color: #0056b3;
-            padding: 2px 5px;
-            border-radius: 3px;
+
+        .badge {
+            background-color: var(--secondary);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
             font-weight: bold;
         }
+
         .no-data {
             text-align: center;
-            padding: 20px;
+            padding: 40px;
             color: #777;
+            font-size: 15px;
+        }
+
+        .btn-reset {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .btn-reset:hover {
+            background-color: #5a6268;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
     <header>
         <h1>Precisco Singapore</h1>
-        <p>Customer Shipping Rate Enquiry Portal</p>
+        <p>Freight & Shipping Rate Inquiry Portal</p>
     </header>
 
-    <div class="search-card">
-        <div class="form-grid">
-            <div class="form-group">
-                <label for="countrySelect">Select Country:</label>
-                <select id="countrySelect" onchange="onCountryChange()">
-                    <option value="ALL">All Countries</option>
-                </select>
-            </div>
+    <div class="container">
+        
+        <!-- Optional File Loader for Live Data -->
+        <div class="file-upload-wrapper">
+            <label class="file-upload-label" for="excelFile">
+                📁 Click here to load rates from your Excel File (.xls / .xlsx)
+            </label>
+            <input type="file" id="excelFile" accept=".xls, .xlsx" onchange="loadExcel(event)">
+            <div id="fileName" style="font-size: 12px; margin-top: 5px; color: #555;"></div>
+        </div>
 
-            <div class="form-group">
-                <label for="portSelect">Select Port:</label>
-                <select id="portSelect">
-                    <option value="ALL">All Ports</option>
-                </select>
-            </div>
+        <!-- Filter Controls -->
+        <div class="card">
+            <div class="search-panel">
+                <div class="form-group">
+                    <label for="countrySelect">Country of Destination</label>
+                    <select id="countrySelect" onchange="onCountryChange()">
+                        <option value="">-- All Countries --</option>
+                    </select>
+                </div>
 
-            <div class="form-group">
-                <label for="cntrSelect">Container Type:</label>
-                <select id="cntrSelect">
-                    <option value="ALL">All Types</option>
-                    <option value="GP20">20' Dry (GP20)</option>
-                    <option value="GP40">40' Dry (GP40)</option>
-                    <option value="GP40HC">40' High Cube (GP40HC)</option>
-                    <option value="TK20LD">Tank 20' (TK20LD)</option>
-                </select>
-            </div>
+                <div class="form-group">
+                    <label for="portSelect">Port of Destination (POD)</label>
+                    <select id="portSelect" onchange="filterRates()">
+                        <option value="">-- All Ports --</option>
+                    </select>
+                </div>
 
-            <div class="form-group">
-                <button class="btn-search" onclick="filterData()">Enquire Rates</button>
+                <div class="form-group">
+                    <label for="containerSelect">Container Type</label>
+                    <select id="containerSelect" onchange="filterRates()">
+                        <option value="">-- All Container Types --</option>
+                        <option value="GP20">GP20</option>
+                        <option value="GP40">GP40</option>
+                        <option value="GP40HC">GP40HC</option>
+                        <option value="TK20LD">TK20LD</option>
+                        <option value="DG2">DG2</option>
+                        <option value="DG3">DG3</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn-reset" onclick="resetFilters()">Reset Filters</button>
+                </div>
             </div>
+        </div>
+
+        <!-- Results Table -->
+        <div class="table-wrapper">
+            <table id="rateTable">
+                <thead>
+                    <tr>
+                        <th>Country</th>
+                        <th>Port</th>
+                        <th>Container Type</th>
+                        <th>SERVICE</th>
+                        <th>DIRECT / VIA</th>
+                        <th>FREQUENCY T/T</th>
+                        <th>GRI</th>
+                        <th>HWS</th>
+                        <th>BAF</th>
+                        <th>OTH</th>
+                        <th>AMS</th>
+                        <th>DG3</th>
+                        <th>DG2</th>
+                        <th>THC20</th>
+                        <th>THC40</th>
+                        <th>DIS - DG2</th>
+                        <th>SEAL</th>
+                        <th>BLF</th>
+                        <th>BLS</th>
+                        <th>SWB</th>
+                        <th>TTL DG3 USD</th>
+                        <th>TTL DG2 USD</th>
+                        <th>TTL SGD</th>
+                        <th>CANCELLATION USD</th>
+                        <th>DETENTION @ POD</th>
+                        <th>REMARKS</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr>
+                        <td colspan="26" class="no-data">Select filters above or load an Excel sheet to view shipping rates.</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
-    <div class="results-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>Carrier</th>
-                    <th>Port</th>
-                    <th>Container Type</th>
-                    <th>Base Rate</th>
-                    <th>GRI</th>
-                    <th>HWS</th>
-                    <th>BAF</th>
-                    <th>OTH</th>
-                    <th>AMS</th>
-                    <th>DG3</th>
-                    <th>DG2</th>
-                    <th>THC20</th>
-                    <th>THC40</th>
-                    <th>DIS - DG2</th>
-                    <th>SEAL</th>
-                    <th>BLF</th>
-                    <th>BLS</th>
-                    <th>SWB</th>
-                    <th>TTL DG3 USD</th>
-                    <th>TTL DG2 USD</th>
-                    <th>TTL SGD</th>
-                    <th>CANCELLATION USD</th>
-                    <th>REMARKS</th>
-                    <th>DETENTION @ POD</th>
-                    <th>DIRECT / VIA</th>
-                    <th>SERVICE</th>
-                    <th>FREQUENCY T/T</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody"></tbody>
-        </table>
-        <div id="noDataMessage" class="no-data" style="display:none;">No matching records found.</div>
-    </div>
-</div>
+    <script>
+        // Sample dataset to demonstrate functionality prior to uploading an Excel file
+        let shippingData = [
+            {
+                Country: "Japan", Port: "Tokyo", ContainerType: "GP20", SERVICE: "IA1", DirectVia: "Direct", FrequencyTT: "Weekly / 7 Days",
+                GRI: "0", HWS: "0", BAF: "150", OTH: "20", AMS: "30", DG3: "0", DG2: "0", THC20: "210", THC40: "0", DIS_DG2: "0",
+                SEAL: "10", BLF: "50", BLS: "0", SWB: "0", TTL_DG3_USD: "0", TTL_DG2_USD: "0", TTL_SGD: "280", CANCELLATION_USD: "50",
+                DETENTION: "14 Days Free", REMARKS: "Subject to space availability"
+            },
+            {
+                Country: "Japan", Port: "Tokyo", ContainerType: "GP40", SERVICE: "IA1", DirectVia: "Direct", FrequencyTT: "Weekly / 7 Days",
+                GRI: "0", HWS: "0", BAF: "300", OTH: "20", AMS: "30", DG3: "0", DG2: "0", THC20: "0", THC40: "310", DIS_DG2: "0",
+                SEAL: "10", BLF: "50", BLS: "0", SWB: "0", TTL_DG3_USD: "0", TTL_DG2_USD: "0", TTL_SGD: "380", CANCELLATION_USD: "50",
+                DETENTION: "14 Days Free", REMARKS: "Subject to space availability"
+            },
+            {
+                Country: "Thailand", Port: "Bangkok", ContainerType: "GP20", SERVICE: "CTS", DirectVia: "Direct", FrequencyTT: "Bi-Weekly / 3 Days",
+                GRI: "50", HWS: "0", BAF: "100", OTH: "15", AMS: "0", DG3: "0", DG2: "0", THC20: "200", THC40: "0", DIS_DG2: "0",
+                SEAL: "10", BLF: "45", BLS: "0", SWB: "0", TTL_DG3_USD: "0", TTL_DG2_USD: "0", TTL_SGD: "260", CANCELLATION_USD: "30",
+                DETENTION: "7 Days Free", REMARKS: "Direct service"
+            }
+        ];
 
-<script>
-// Embedded dataset loaded directly from precisco.xlsx
-let data = []; // Population handled automatically when opening HTML file
+        window.onload = function() {
+            populateCountries();
+            filterRates();
+        };
 
-function onCountryChange() {
-    const selectedCountry = document.getElementById('countrySelect').value;
-    populatePorts(selectedCountry);
-    filterData();
-}
+        function populateCountries() {
+            const countrySelect = document.getElementById("countrySelect");
+            const countries = [...new Set(shippingData.map(item => item.Country))].filter(Boolean).sort();
+            
+            countrySelect.innerHTML = '<option value="">-- All Countries --</option>';
+            countries.forEach(c => {
+                countrySelect.innerHTML += `<option value="${c}">${c}</option>`;
+            });
+            onCountryChange();
+        }
 
-function populatePorts(selectedCountry) {
-    const portSelect = document.getElementById('portSelect');
-    portSelect.innerHTML = '<option value="ALL">All Ports</option>';
-    
-    const allPorts = [...new Set(data.map(item => item.PORT))].sort();
-    allPorts.forEach(port => {
-        const opt = document.createElement('option');
-        opt.value = port;
-        opt.textContent = port;
-        portSelect.appendChild(opt);
-    });
-}
-</script>
+        function onCountryChange() {
+            const selectedCountry = document.getElementById("countrySelect").value;
+            const portSelect = document.getElementById("portSelect");
+            
+            let filteredPorts = shippingData;
+            if (selectedCountry) {
+                filteredPorts = shippingData.filter(item => item.Country === selectedCountry);
+            }
+            
+            const ports = [...new Set(filteredPorts.map(item => item.Port))].filter(Boolean).sort();
+            
+            portSelect.innerHTML = '<option value="">-- All Ports --</option>';
+            ports.forEach(p => {
+                portSelect.innerHTML += `<option value="${p}">${p}</option>`;
+            });
+
+            filterRates();
+        }
+
+        function filterRates() {
+            const country = document.getElementById("countrySelect").value;
+            const port = document.getElementById("portSelect").value;
+            const container = document.getElementById("containerSelect").value;
+
+            const filtered = shippingData.filter(item => {
+                const matchCountry = !country || item.Country === country;
+                const matchPort = !port || item.Port === port;
+                const matchContainer = !container || item.ContainerType === container;
+                return matchCountry && matchPort && matchContainer;
+            });
+
+            renderTable(filtered);
+        }
+
+        function renderTable(data) {
+            const tbody = document.getElementById("tableBody");
+            tbody.innerHTML = "";
+
+            if (data.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="26" class="no-data">No shipping rates found matching your criteria.</td></tr>`;
+                return;
+            }
+
+            data.forEach(row => {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                    <td><strong>${row.Country || '-'}</strong></td>
+                    <td><strong>${row.Port || '-'}</strong></td>
+                    <td><span class="badge">${row.ContainerType || '-'}</span></td>
+                    <td>${row.SERVICE || '-'}</td>
+                    <td>${row.DirectVia || '-'}</td>
+                    <td>${row.FrequencyTT || '-'}</td>
+                    <td>${row.GRI || '0'}</td>
+                    <td>${row.HWS || '0'}</td>
+                    <td>${row.BAF || '0'}</td>
+                    <td>${row.OTH || '0'}</td>
+                    <td>${row.AMS || '0'}</td>
+                    <td>${row.DG3 || '0'}</td>
+                    <td>${row.DG2 || '0'}</td>
+                    <td>${row.THC20 || '0'}</td>
+                    <td>${row.THC40 || '0'}</td>
+                    <td>${row.DIS_DG2 || '0'}</td>
+                    <td>${row.SEAL || '0'}</td>
+                    <td>${row.BLF || '0'}</td>
+                    <td>${row.BLS || '0'}</td>
+                    <td>${row.SWB || '0'}</td>
+                    <td>${row.TTL_DG3_USD || '0'}</td>
+                    <td>${row.TTL_DG2_USD || '0'}</td>
+                    <td>${row.TTL_SGD || '0'}</td>
+                    <td>${row.CANCELLATION_USD || '0'}</td>
+                    <td>${row.DETENTION || '-'}</td>
+                    <td>${row.REMARKS || '-'}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function resetFilters() {
+            document.getElementById("countrySelect").value = "";
+            document.getElementById("containerSelect").value = "";
+            onCountryChange();
+        }
+
+        function loadExcel(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            document.getElementById("fileName").innerText = "Loaded: " + file.name;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const data = new Uint8Array(e.target.result);
+                const workbook = XLSX.read(data, {type: 'array'});
+                const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+                const jsonData = XLSX.utils.sheet_to_json(firstSheet, {defval: ""});
+
+                // Map dynamic data structure from Excel headers
+                shippingData = jsonData.map(row => ({
+                    Country: row["Country"] || row["COUNTRY"] || "",
+                    Port: row["Port"] || row["PORT"] || row["POD"] || "",
+                    ContainerType: row["Container Type"] || row["CONTAINER TYPE"] || row["Container"] || "",
+                    SERVICE: row["SERVICE"] || "",
+                    DirectVia: row["DIRECT / VIA"] || row["DIRECT/VIA"] || "",
+                    FrequencyTT: row["FREQUENCY T/T"] || row["FREQUENCY"] || "",
+                    GRI: row["GRI"] || "0",
+                    HWS: row["HWS"] || "0",
+                    BAF: row["BAF"] || "0",
+                    OTH: row["OTH"] || "0",
+                    AMS: row["AMS"] || "0",
+                    DG3: row["DG3"] || "0",
+                    DG2: row["DG2"] || "0",
+                    THC20: row["THC20"] || "0",
+                    THC40: row["THC40"] || "0",
+                    DIS_DG2: row["DIS - DG2"] || row["DIS DG2"] || "0",
+                    SEAL: row["SEAL"] || "0",
+                    BLF: row["BLF"] || "0",
+                    BLS: row["BLS"] || "0",
+                    SWB: row["SWB"] || "0",
+                    TTL_DG3_USD: row["TTL DG3 USD"] || "0",
+                    TTL_DG2_USD: row["TTL DG2 USD"] || "0",
+                    TTL_SGD: row["TTL SGD"] || "0",
+                    CANCELLATION_USD: row["CANCELLATION USD"] || "0",
+                    DETENTION: row["DETENTION @ POD"] || row["DETENTION"] || "",
+                    REMARKS: row["REMARKS"] || ""
+                }));
+
+                populateCountries();
+            };
+            reader.readAsArrayBuffer(file);
+        }
+    </script>
 </body>
 </html>
