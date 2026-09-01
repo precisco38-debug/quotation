@@ -1,12 +1,13 @@
 import os
 import re
+import io
 import pdfplumber
 import pandas as pd
 import streamlit as st
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate
 
-# Check for keys
+# Check configuration parameters
 if "OPENAI_API_KEY" not in st.secrets or "COMPANY_PASSWORD" not in st.secrets:
     st.error("System configuration missing. Check Streamlit Secrets.")
     st.stop()
@@ -33,16 +34,15 @@ if not st.session_state["authenticated"]:
     st.stop()
 
 # --- MAIN APP LOGIC ---
-PREDETERMINED_FORMAT = """
-1. Ocean Freight Rate (USD):
-2. Origin Terminal Handling Charges (OTHC):
-3. Destination Terminal Handling Charges (DTHC):
-4. Bunker Adjustment Factor (BAF):
-5. Documentation Fee:
-6. Peak Season Surcharge (PSS):
-7. Estimated Transit Time (Days):
-8. Validity Period:
-"""
+st.set_page_config(page_title="Liner Quotes Table", layout="centered")
+
+col1, col2 = st.columns(2)
+with col1:
+    st.title("🚢 Liner Quote Portal")
+with col2:
+    if st.button("Log Out"):
+        st.session_state["authenticated"] = False
+        st.rerun()
 
 def extract_text_from_pdf(file_object):
     text = ""
@@ -63,16 +63,6 @@ def extract_text_from_excel(file_object):
         combined_text += f"--- Sheet: {sheet_name} ---\n"
         combined_text += sheet_df.to_string(index=False) + "\n"
     return combined_text.strip()
-
-st.set_page_config(page_title="Liner Quotes", layout="centered")
-
-col1, col2 = st.columns(2)
-with col1:
-    st.title("🚢 Liner Quote Interface")
-with col2:
-    if st.button("Log Out"):
-        st.session_state["authenticated"] = False
-        st.rerun()
 
 st.subheader("➕ Step 1: Upload Quotation File")
 uploaded_file = st.file_uploader("Choose a PDF or Excel file", type=["pdf", "xlsx"])
@@ -96,7 +86,7 @@ if uploaded_file is not None:
         st.info(f"📋 Detected Properties:\n* **Liner:** {liner}\n* **Year:** {year}\n* **Month:** {month}")
         
         if st.button("Extract Standardized Data", type="primary", use_container_width=True):
-            with st.spinner("AI reading document data layers..."):
+            with st.spinner("AI standardizing layout into table structure..."):
                 try:
                     if filename.endswith(".pdf"):
                         raw_content = extract_text_from_pdf(uploaded_file)
@@ -109,11 +99,23 @@ if uploaded_file is not None:
                     
                     llm = ChatOpenAI(model="gpt-4o-mini", temperature=0, openai_api_key=openai_api_key)
                     
+                    # Instruct AI to return a clean CSV table layout instead of plain text sentences
                     prompt = ChatPromptTemplate.from_messages([
                         ("system", (
-                            "You are an expert logistics analyst. Convert messy shipping quotes into a strict format.\n\n"
-                            f"REQUIRED FORMAT:\n{PREDETERMINED_FORMAT}\n"
-                            "Rules:\n- Never alter heading names.\n- Parse real values from text. Use 'Not Mentioned' ONLY if completely missing."
+                            "You are an expert logistics analyst. Convert messy shipping quotes into a strict text structure.\n"
+                            "You MUST respond ONLY with a clean CSV string format using a semicolon (;) as a separator. "
+                            "Do not write any introductory or concluding sentences. Do not use markdown backticks.\n\n"
+                            "The format must follow this exact output structure:\n"
+                            "Metric;Value\n"
+                            "Ocean Freight Rate (USD);[parsed value]\n"
+                            "Origin Terminal Handling Charges (OTHC);[parsed value]\n"
+                            "Destination Terminal Handling Charges (DTHC);[parsed value]\n"
+                            "Bunker Adjustment Factor (BAF);[parsed value]\n"
+                            "Documentation Fee;[parsed value]\n"
+                            "Peak Season Surcharge (PSS);[parsed value]\n"
+                            "Estimated Transit Time (Days);[parsed value]\n"
+                            "Validity Period;[parsed value]\n\n"
+                            "Rules:\n- Never alter heading names.\n- Use 'Not Mentioned' if data is missing."
                         )),
                         ("user", "{document_text}")
                     ])
@@ -121,8 +123,38 @@ if uploaded_file is not None:
                     chain = prompt | llm
                     response = chain.invoke({"document_text": raw_content})
                     
-                    st.success("Extraction Complete!")
-                    st.code(response.content, language="markdown")
+                    # Process the AI text string response back into a clean programmatic table grid
+                    csv_data = response.content.strip()
+                    lines = [line.split(";") for line in csv_data.split("\n") if ";" in line]
                     
+                    if len(lines) > 1:
+                        headers = lines[0]
+                        rows = lines[1:]
+                        df_result = pd.DataFrame(rows, columns=headers)
+                        
+                        st.success("Extraction Complete!")
+                        st.subheader("📋 Standardized Quotation Grid")
+                        
+                        # Render interactive dataframe table grid on mobile or desktop view layout
+                        st.dataframe(df_result, use_container_width=True, hide_index=True)
+                        
+                        # Generate data buffer stream to enable Excel file downloading on staff devices
+                        excel_buffer = io.BytesIO()
+                        with pd.ExcelWriter(excel_buffer, engine='openpyxl') as writer:
+                            df_result.to_excel(writer, index=False, sheet_name='Quotation')
+                        
+                        excel_data = excel_buffer.getvalue()
+                        
+                        st.download_button(
+                            label="📥 Download Data as Excel Spreadsheet",
+                            data=excel_data,
+                            file_name=f"{liner}_{year}_{month}_Standardized.xlsx",
+                            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                            use_container_width=True
+                        )
+                    else:
+                        st.error("AI engine output formatting error. Please retry the extraction click request.")
+                        st.text(csv_data)
+                        
                 except Exception as e:
-                    st.error(f"Error parsing file: {e}")
+                    st.error(f"Error parsing file elements: {e}")
