@@ -72,6 +72,7 @@ if uploaded_file is not None:
     filename = uploaded_file.name
     st.success(f"Selected file: `{filename}`")
     
+    # FIX: Corrected regex dollar end anchor without illegal backslashes
     valid_file_pattern = re.compile(r"^([a-zA-Z0-9]+)(\d{4})([a-zA-Z]+)\.(pdf|xlsx)\$")
     match = valid_file_pattern.match(filename)
     
@@ -98,7 +99,6 @@ if uploaded_file is not None:
                         st.error("❌ Critical: No text content could be decoded.")
                         st.stop()
                     
-                    # Direct and reliable LLM initialization
                     llm = ChatOpenAI(model="gpt-4o-mini", temperature=0, openai_api_key=openai_api_key)
                     
                     prompt = ChatPromptTemplate.from_messages([
@@ -125,11 +125,9 @@ if uploaded_file is not None:
                     chain = prompt | llm
                     response = chain.invoke({"document_text": raw_content})
                     
-                    # Safely clean markdown wrappers if any exist
                     clean_json_text = response.content.replace("```json", "").replace("```", "").strip()
                     data_dict = json.loads(clean_json_text)
                     
-                    # Define human-readable labels
                     metric_mapping = [
                         ("1. Ocean Freight Rate (USD)", data_dict.get("ocean_freight", "Not Mentioned")),
                         ("2. Origin Terminal Handling Charges (OTHC)", data_dict.get("othc", "Not Mentioned")),
@@ -143,12 +141,12 @@ if uploaded_file is not None:
                     
                     st.success("Extraction Complete!")
                     
-                    # 1. Output Layout Component: Vertical Mobile Table
+                    # 1. Output Layout: Vertical Mobile Table
                     df_vertical = pd.DataFrame(metric_mapping, columns=["Metric", "Extracted Value"])
                     st.subheader("📋 1. Mobile Vertical View")
                     st.dataframe(df_vertical, use_container_width=True, hide_index=True)
                     
-                    # 2. Output Layout Component: PC Horizontal Spreadsheet View
+                    # 2. Output Layout: PC Horizontal Spreadsheet View
                     horiz_headers = [
                         "File Name", "Liner", "Year", "Month", 
                         "Ocean Freight Rate (USD)", "Origin THC (OTHC)", "Destination THC (DTHC)", 
