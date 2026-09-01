@@ -3,68 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Precisco Singapore - Rate Enquiry Portal</title>
+    <title>Precisco Singapore - Rate Enquiry</title>
     <style>
         :root {
-            --primary: #0f2c59;
-            --secondary: #0077b6;
-            --accent: #e63946;
+            --primary: #003366;
+            --secondary: #006699;
+            --accent: #28a745;
             --bg: #f4f7f6;
-            --card-bg: #ffffff;
-            --text-dark: #1d3557;
-            --text-light: #6c757d;
-            --border: #dee2e6;
+            --text: #333;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg);
-            color: var(--text-dark);
+            color: var(--text);
             margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: var(--primary);
-            color: white;
-            padding: 24px 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 1.8rem;
-            letter-spacing: 0.5px;
-        }
-
-        header .subtitle {
-            font-size: 0.9rem;
-            color: #caf0f8;
-            margin-top: 4px;
+            padding: 20px;
         }
 
         .container {
-            max-width: 1200px;
-            margin: 30px auto;
-            padding: 0 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        header {
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            color: var(--primary);
+            margin: 0;
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            margin: 5px 0 0 0;
+            color: #666;
+            font-size: 14px;
         }
 
         .search-card {
-            background: var(--card-bg);
-            padding: 24px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
-            border: 1px solid var(--border);
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 25px;
         }
 
-        .search-grid {
+        .form-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
+            gap: 15px;
+            align-items: end;
         }
 
         .form-group {
@@ -74,184 +75,185 @@
 
         .form-group label {
             font-weight: 600;
-            margin-bottom: 8px;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            color: var(--text-light);
+            margin-bottom: 6px;
+            font-size: 13px;
+            color: var(--primary);
         }
 
         .form-group select {
-            padding: 12px;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            font-size: 0.95rem;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
             outline: none;
-            transition: border-color 0.2s;
         }
 
         .form-group select:focus {
             border-color: var(--secondary);
         }
 
-        .results-container {
-            display: flex;
-            flex-direction: column;
-            gap: 24px;
-        }
-
-        .rate-card {
-            background: var(--card-bg);
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            overflow: hidden;
-        }
-
-        .rate-card-header {
+        .btn-search {
             background: var(--primary);
             color: white;
-            padding: 16px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            border: none;
+            padding: 11px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            transition: background 0.2s;
         }
 
-        .rate-card-header h3 {
-            margin: 0;
-            font-size: 1.2rem;
-        }
-
-        .rate-card-header .carrier-tag {
+        .btn-search:hover {
             background: var(--secondary);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
         }
 
-        .table-responsive {
+        .results-container {
             overflow-x: auto;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.88rem;
+            font-size: 12px;
             text-align: left;
+            margin-top: 10px;
         }
 
         th {
-            background-color: #f8f9fa;
-            color: var(--text-dark);
-            font-weight: 600;
-            padding: 12px 14px;
-            border-bottom: 2px solid var(--border);
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 8px;
             white-space: nowrap;
+            position: sticky;
+            top: 0;
         }
 
         td {
-            padding: 12px 14px;
-            border-bottom: 1px solid var(--border);
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
             white-space: nowrap;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
         }
 
         tr:hover {
             background-color: #f1f5f9;
         }
 
-        .highlight {
+        .badge-cntr {
+            background: #e1f0ff;
+            color: #0056b3;
+            padding: 3px 6px;
+            border-radius: 3px;
             font-weight: bold;
-            color: var(--primary);
-        }
-
-        .total-cell {
-            background-color: #e8f4f8;
-            font-weight: bold;
-            color: var(--primary);
-        }
-
-        .remarks-box {
-            padding: 16px 24px;
-            background: #fff8e7;
-            border-top: 1px solid var(--border);
-            font-size: 0.85rem;
-            color: #8a6d3b;
         }
 
         .no-data {
             text-align: center;
-            padding: 40px;
-            background: white;
-            border-radius: 8px;
-            color: var(--text-light);
+            padding: 30px;
+            color: #777;
+            font-size: 15px;
         }
     </style>
 </head>
 <body>
 
+<div class="container">
     <header>
         <div>
             <h1>Precisco Singapore</h1>
-            <div class="subtitle">Freight & Rate Enquiry Portal</div>
+            <p>Freight & Shipping Rate Enquiry Portal</p>
         </div>
     </header>
 
-    <div class="container">
-        <div class="search-card">
-            <div class="search-grid">
-                <div class="form-group">
-                    <label for="countrySelect">Country of Port</label>
-                    <select id="countrySelect" onchange="onCountryChange()">
-                        <option value="">-- Select Country --</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="portSelect">Port</label>
-                    <select id="portSelect" onchange="renderRates()">
-                        <option value="ALL">All Ports</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="containerSelect">Container Type</label>
-                    <select id="containerSelect" onchange="renderRates()">
-                        <option value="ALL">All Types</option>
-                        <option value="GP20">20' Dry (GP20)</option>
-                        <option value="GP40">40' Dry (GP40)</option>
-                        <option value="GP40HC">40' High Cube (GP40HC)</option>
-                        <option value="TK20LD">20' Tank (TK20LD)</option>
-                    </select>
-                </div>
+    <div class="search-card">
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="countrySelect">Select Country:</label>
+                <select id="countrySelect" onchange="onCountryChange()">
+                    <option value="ALL">All Countries</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="portSelect">Select Port (Default: All):</label>
+                <select id="portSelect">
+                    <option value="ALL">All Ports</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="cntrSelect">Container Type:</label>
+                <select id="cntrSelect">
+                    <option value="ALL">All Types</option>
+                    <option value="GP20">20' Dry (GP20)</option>
+                    <option value="GP40">40' Dry (GP40)</option>
+                    <option value="GP40HC">40' High Cube (GP40HC)</option>
+                    <option value="TK20LD">Tank 20' (TK20LD)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <button class="btn-search" onclick="filterData()">Search Rates</button>
             </div>
         </div>
-
-        <div id="resultsContainer" class="results-container"></div>
     </div>
 
-    <script>
-        // Sample dataset structure matching the excel layout
-        const rateData = [
-            {
-                carrier: "ANL", country: "AUSTRALIA", port: "ADELAIDE", validity: "30TH SEP", directVia: "DIRECT", service: "AAA", frequencyTT: "14 Days",
-                GRI: 0, BAF: 0, OTH: 0, AMS: 0, HWS: 0, DG3: 100, DG2: 250, SEAL: 25, BLF: 145, BLS: 70, SWB: 0,
-                THC20: 370, THC40: 0, DIS_DG2: 0, TTL_DG3_USD: 2085.19, TTL_DG2_USD: 2185.19, TTL_SGD: 0, CANCELLATION_USD: 0,
-                DETENTION_POD: "14 Days", REMARKS: "S/C: QGNC038287",
-                containers: { GP20: 1900, GP40: 3800, GP40HC: 3800, TK20LD: 1900 }
-            },
-            {
-                carrier: "ANL", country: "AUSTRALIA", port: "BRISBANE", validity: "30TH SEP", directVia: "DIRECT", service: "AAA", frequencyTT: "12 Days",
-                GRI: 0, BAF: 0, OTH: 0, AMS: 0, HWS: 0, DG3: 100, DG2: 250, SEAL: 25, BLF: 145, BLS: 70, SWB: 0,
-                THC20: 370, THC40: 0, DIS_DG2: 0, TTL_DG3_USD: 2085.19, TTL_DG2_USD: 2185.19, TTL_SGD: 0, CANCELLATION_USD: 0,
-                DETENTION_POD: "14 Days", REMARKS: "S/C: QGNC038287",
-                containers: { GP20: 1900, GP40: 3800, GP40HC: 3800, TK20LD: 1900 }
-            },
-            {
-                carrier: "YANGMING", country: "CHINA", port: "HONG KONG", validity: "30TH SEP", directVia: "DIRECT", service: "CTS", frequencyTT: "4 Days",
-                GRI: 0, BAF: 65, OTH: 0, AMS: 0, HWS: 0, DG3: 65, DG2: 65, SEAL: 18, BLF: 180, BLS: 180, SWB: 0,
-                THC20: 65, THC40: 0, DIS_DG2: 0, TTL_DG3_USD: 135, TTL_DG2_USD: 135, TTL_SGD: 0, CANCELLATION_USD: 0,
-                DETENTION_POD: "7 Days", REMARKS: "CASE ID: IAPS29543000",
-                containers: { GP20: 135, GP40: 250, GP40HC: 250, TK20LD: 0 }
-            },
-            {
-                carrier: "YANGMING", country: "JAPAN", port: "YOKOHAMA", validity: "30TH SEP", directVia: "VIA CNSHA", service: "JTX", frequencyTT: "9 Days",
-                GRI: 0, BAF: 65, OTH: 0, AMS: 30, HWS: 0, DG3: 65, DG2: 65, SEAL: 18, BLF: 180, BLS: 180, SWB: 0,
-                THC20: 65, THC40:
+    <div class="results-container">
+        <table id="ratesTable">
+            <thead>
+                <tr>
+                    <th>Carrier</th>
+                    <th>Port</th>
+                    <th>Container Type</th>
+                    <th>Base Rate (USD)</th>
+                    <th>THC</th>
+                    <th>GRI</th>
+                    <th>HWS</th>
+                    <th>BAF</th>
+                    <th>OTH</th>
+                    <th>AMS</th>
+                    <th>DG3</th>
+                    <th>DG2</th>
+                    <th>DIS - DG2</th>
+                    <th>SEAL</th>
+                    <th>BLF</th>
+                    <th>BLS</th>
+                    <th>SWB</th>
+                    <th>TTL DG3 (USD)</th>
+                    <th>TTL DG2 (USD)</th>
+                    <th>TTL SGD</th>
+                    <th>Cancellation (USD)</th>
+                    <th>POD Detention</th>
+                    <th>Direct / Via</th>
+                    <th>Service</th>
+                    <th>Frequency / TT</th>
+                    <th>Remarks</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                </tbody>
+        </table>
+        <div id="noDataMessage" class="no-data" style="display: none;">
+            No rate information found matching your criteria.
+        </div>
+    </div>
+</div>
+
+<script>
+// Mock data mapping based on precisco.xlsx structural patterns
+const portCountryMap = {
+    "ADELAIDE": "Australia", "BRISBANE": "Australia", "FREMENTLE": "Australia", "SYDNEY": "Australia", "MELBOURNE": "Australia",
+    "HONG KONG": "China", "GAOLAN": "China", "WUHAN (VIA CNSHA)": "China", "SHANGHAI": "China", "NINGBO": "China",
+    "LAEM CHABANG": "Thailand", "CAT LAI": "Vietnam", "YOKOHAMA": "Japan", "KOBE": "Japan"
+};
+
+// Raw Rate Data extracted from Precisco spreadsheet
+const rawData = [
+    { carrier: "ANL", port: "ADELAIDE", validity: "30TH SEP", gri: 0, gp20: 1900, gp40: 3800, gp40hc: 3800, tk20ld: 1900, hws: "-", baf: "-", oth: "-", ams: "-", dg3: 0, dg2: 100, thc20: 250, thc40: 370, dis_dg2: "-", seal: 25, blf: 145, bls: 70, swb: 0, ttl_dg3: "2085.18", ttl_dg2: "2185.18", ttl_sgd: "-", cancellation: "-", remarks: "S/C: QGNC038287", detention: "14", direct_via: "Direct", service: "AAA", freq_tt: "Weekly / 12 Days" },
+    { carrier: "ANL", port: "BRISBANE", validity: "30TH SEP", gri: 0, gp20: 1900, gp40: 3800, gp40hc: 3800, tk20ld: 1900, hws: "-", baf: "-", oth: "-", ams: "-", dg3: 0, dg2: 100, thc20: 250, thc40: 370, dis_dg2: "-", seal: 25, blf: 145, bls: 70, swb: 0, ttl_dg3: "2085.18", ttl_dg2: "2185.18", ttl_sgd: "-", cancellation: "-", remarks: "S/C: QGNC038287", detention: "14", direct_via: "Direct", service: "AAA", freq_tt: "Weekly / 10 Days" },
+    { carrier: "YANGMING", port: "HONG KONG", validity: "30TH SEP", gri: 0, gp20: 135, gp40: 270, gp40hc: 270, tk20ld: 135, hws: "-", baf: "-", oth: "-", ams: "-", dg3: 0, dg2: 65, thc20: 65, thc40: 65, dis_dg2: "-", seal: 18, blf: 180, bls: 180, swb: 0, ttl_dg3: "65.00", ttl_dg2: "130.00", ttl_sgd: "-", cancellation: "-", remarks: "CASE ID: IAPS29543000", detention: "-", direct_via: "Direct", service: "PAS", freq_tt: "3 Days" },
+    { carrier: "YANGMING", port
