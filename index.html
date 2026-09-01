@@ -120,7 +120,7 @@
 <body>
 
 <div class="container">
-    <h1>Customer Self-Help Freight Query Interface</h1>
+    <h1>Precisco Self-Help Freight Query Interface</h1>
     
     <div class="filter-section">
         <div class="form-group">
@@ -136,7 +136,6 @@
         </div>
         <div class="form-group">
             <label for="portSelect">Port Name</label>
-            <!-- Completely removed 'disabled' structural tag elements to eliminate browser freezing bugs -->
             <select id="portSelect">
                 <option value="ALL">All Ports</option>
             </select>
@@ -199,9 +198,9 @@
 </div>
 
 <script>
-    // Structural static global registry matrix 
+    // Explicit static database matching manifest entities
     const shippingDatabase = [
-        // Australia
+        // Australia Corridor
         { carrier: 'ANL', validity: '30TH SEP', port: 'ADELAIDE', country: 'Australia', type: 'GP20', rate: 1900, baf: '318', dg3: '0' },
         { carrier: 'ANL', validity: '30TH SEP', port: 'ADELAIDE', country: 'Australia', type: 'GP40', rate: 3800, baf: '318', dg3: '0' },
         { carrier: 'ANL', validity: '30TH SEP', port: 'ADELAIDE', country: 'Australia', type: 'GP40HC', rate: 3800, baf: '318', dg3: '0' },
@@ -213,7 +212,7 @@
         { carrier: 'COSCO', validity: '31ST AUG', port: 'ADELAIDE', country: 'Australia', type: 'GP20', rate: 1400, dg3: 'INCL', remarks: 'Subject to BAF' },
         { carrier: 'COSCO', validity: '31ST AUG', port: 'ADELAIDE', country: 'Australia', type: 'GP40', rate: 2800, dg3: 'INCL', remarks: 'Subject to BAF' },
         
-        // China
+        // China Corridor
         { carrier: 'BENLINE', validity: '30TH SEP', port: 'SHANGHAI', country: 'China', type: 'GP20', rate: 2529, hws: '100', baf: '718', oth: '29', dg3: '200' },
         { carrier: 'BENLINE', validity: '30TH SEP', port: 'SHANGHAI', country: 'China', type: 'GP40', rate: 5058, hws: '100', baf: '718', oth: '29', dg3: '200' },
         { carrier: 'BENLINE', validity: '30TH SEP', port: 'SHANGHAI', country: 'China', type: 'GP40HC', rate: 4149, hws: '100', baf: '718', oth: '29', dg3: '200' },
@@ -221,14 +220,14 @@
         { carrier: 'BENLINE', validity: '30TH SEP', port: 'QINGDAO', country: 'China', type: 'GP20', rate: 1874, hws: '100', baf: '718', oth: '14', dg3: '200' },
         { carrier: 'BENLINE', validity: '30TH SEP', port: 'XINGANG', country: 'China', type: 'GP20', rate: 3243, hws: '100', baf: '718', oth: '83', dg3: '300' },
 
-        // New Zealand
+        // New Zealand Corridor
         { carrier: 'ANL', validity: '31ST AUG', port: 'AUCKLAND', country: 'New Zealand', type: 'GP20', rate: 1214, baf: '50', dg3: '50' },
         { carrier: 'ANL', validity: '31ST AUG', port: 'AUCKLAND', country: 'New Zealand', type: 'GP40', rate: 2428, baf: '50', dg3: '50' },
 
-        // Indonesia
+        // Indonesia Corridor
         { carrier: 'HMM', validity: '30TH SEP', port: 'JAKARTA', country: 'Indonesia', type: 'GP20', rate: 400, dg3: '30' },
         
-        // South Korea
+        // South Korea Corridor
         { carrier: 'BENLINE', validity: '30TH SEP', port: 'BUSAN', country: 'South Korea', type: 'GP20', rate: 3343, hws: '100', baf: '718', oth: '83', dg3: '300' }
     ];
 
@@ -237,13 +236,14 @@
     const typeSelect = document.getElementById('typeSelect');
     const tableBody = document.getElementById('rateTableBody');
 
-    // Dynamic reconstruction ensures ports populate safely without altering DOM attribute states
+    // Rebuilds port dropdown dynamically using an array scan method to prevent browser loading errors
     function handleCountryChange() {
         const selectedCountry = countrySelect.value;
         
-        // Always reset base option structure cleanly
+        // Clear all previous options entirely
         portSelect.innerHTML = '';
         
+        // Append default option
         const defaultOpt = document.createElement('option');
         defaultOpt.value = 'ALL';
         defaultOpt.textContent = 'All Ports';
