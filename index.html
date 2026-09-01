@@ -107,13 +107,17 @@
             background-color: #f1f5f9;
         }
 
-        .highlight {
-            font-weight: 600;
-            background-color: #eff6ff;
-            color: #1e40af;
+        .badge-type {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            background: #e0e7ff;
+            color: #3730a3;
         }
 
-        .badge {
+        .badge-val {
             display: inline-block;
             padding: 2px 6px;
             border-radius: 4px;
@@ -125,185 +129,3 @@
 <body>
 
 <div class="container">
-    <div class="header">
-        <h1>Shipping Rate Enquiry Portal</h1>
-        <p>Select your criteria to view comprehensive carrier freight rates and surcharges.</p>
-    </div>
-
-    <div class="filter-card">
-        <div class="form-group">
-            <label for="countrySelect">Country / Region</label>
-            <select id="countrySelect" onchange="updatePorts()">
-                <option value="ALL">All Countries</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="portSelect">Port (Default: All)</label>
-            <select id="portSelect" onchange="filterData()">
-                <option value="ALL">All Ports</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="containerSelect">Container Type Focus</label>
-            <select id="containerSelect" onchange="filterData()">
-                <option value="ALL">All Container Types</option>
-                <option value="GP20">20' Dry (GP20)</option>
-                <option value="GP40">40' Dry (GP40)</option>
-                <option value="GP40HC">40' High Cube (GP40HC)</option>
-                <option value="TK20LD">20' Tank Laden (TK20LD)</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="table-wrapper">
-        <table id="rateTable">
-            <thead>
-                <tr>
-                    <th>Carrier</th>
-                    <th>Validity</th>
-                    <th>Port</th>
-                    <th>GRI</th>
-                    <th class="col-gp20">GP20</th>
-                    <th class="col-gp40">GP40</th>
-                    <th class="col-gp40hc">GP40HC</th>
-                    <th class="col-tk20ld">TK20LD</th>
-                    <th>HWS</th>
-                    <th>BAF</th>
-                    <th>OTH</th>
-                    <th>AMS</th>
-                    <th>DG3</th>
-                    <th>DG2</th>
-                    <th>THC20</th>
-                    <th>THC40</th>
-                    <th>DIS - DG2</th>
-                    <th>SEAL</th>
-                    <th>BLF</th>
-                    <th>BLS</th>
-                    <th>SWB</th>
-                    <th>TTL DG3 USD</th>
-                    <th>TTL DG2 USD</th>
-                    <th>TTL SGD</th>
-                    <th>Cancellation (USD)</th>
-                    <th>Remarks</th>
-                    <th>Detention @ POD</th>
-                    <th>Direct / Via</th>
-                    <th>Service</th>
-                    <th>Frequency T/T</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody">
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<script>
-    // Sample dataset based on the sheet structures (ANL, YANGMING, etc.)
-    const rateData = [
-        { country: "Australia", carrier: "ANL", validity: "30TH SEP", port: "ADELAIDE", gri: "", gp20: 1900, gp40: 3800, gp40hc: 3800, tk20ld: 1900, hws: "", baf: "", oth: "", ams: "", dg3: 0, dg2: 100, thc20: 250, thc40: 370, dis_dg2: "", seal: 25, blf: 145, bls: 70, swb: 0, ttl_dg3_usd: 2085.18, ttl_dg2_usd: 2185.18, ttl_sgd: "", cancellation_usd: "", remarks: "S/C: QGNC038287", detention: 14, direct_via: "", service: "", freq_tt: "" },
-        { country: "Australia", carrier: "ANL", validity: "30TH SEP", port: "BRISBANE", gri: "", gp20: 1900, gp40: 3800, gp40hc: 3800, tk20ld: 1900, hws: "", baf: "", oth: "", ams: "", dg3: 0, dg2: 100, thc20: 250, thc40: 370, dis_dg2: "", seal: 25, blf: 145, bls: 70, swb: 0, ttl_dg3_usd: 2085.18, ttl_dg2_usd: 2185.18, ttl_sgd: "", cancellation_usd: "", remarks: "S/C: QGNC038287", detention: 14, direct_via: "", service: "", freq_tt: "" },
-        { country: "Australia", carrier: "ANL", validity: "30TH SEP", port: "FREMANTLE", gri: "", gp20: 1900, gp40: 3800, gp40hc: 3800, tk20ld: 1900, hws: "", baf: "", oth: "", ams: "", dg3: 0, dg2: 100, thc20: 250, thc40: 370, dis_dg2: "", seal: 25, blf: 145, bls: 70, swb: 0, ttl_dg3_usd: 2085.18, ttl_dg2_usd: 2185.18, ttl_sgd: "", cancellation_usd: "", remarks: "S/C: QGNC038287", detention: 14, direct_via: "", service: "", freq_tt: "" },
-        { country: "Hong Kong", carrier: "YANGMING", validity: "30TH SEP", port: "HONG KONG", gri: "", gp20: 135, gp40: "", gp40hc: "", tk20ld: "", hws: "", baf: "", oth: "", ams: "", dg3: "", dg2: "", thc20: 65, thc40: 65, dis_dg2: "", seal: 18, blf: 180, bls: 180, swb: 0, ttl_dg3_usd: 65, ttl_dg2_usd: "", ttl_sgd: "", cancellation_usd: "", remarks: "CASE ID: IAPS29543000", detention: "", direct_via: "", service: "", freq_tt: "" },
-        { country: "China", carrier: "YANGMING", validity: "30TH SEP", port: "GAOLAN", gri: "", gp20: 410, gp40: "", gp40hc: "", tk20ld: "", hws: "", baf: 30, oth: "", ams: "", dg3: "", dg2: "", thc20: 65, thc40: 65, dis_dg2: "", seal: 18, blf: 180, bls: 180, swb: 0, ttl_dg3_usd: 65, ttl_dg2_usd: "", ttl_sgd: "", cancellation_usd: "", remarks: "CASE ID: IAPS29543000", detention: "", direct_via: "", service: "", freq_tt: "" },
-        { country: "Thailand", carrier: "YANGMING", validity: "30TH SEP", port: "LAEM CHABANG", gri: "", gp20: 205, gp40: "", gp40hc: "", tk20ld: "", hws: "", baf: "", oth: "", ams: "", dg3: "", dg2: "", thc20: 65, thc40: 65, dis_dg2: "", seal: 18, blf: 180, bls: 180, swb: 0, ttl_dg3_usd: 65, ttl_dg2_usd: "", ttl_sgd: "", cancellation_usd: "", remarks: "CASE ID: IAPS29543000", detention: "", direct_via: "", service: "", freq_tt: "" },
-        { country: "Vietnam", carrier: "YANGMING", validity: "30TH SEP", port: "CAT LAI", gri: "", gp20: 155, gp40: "", gp40hc: "", tk20ld: "", hws: "", baf: "", oth: "", ams: "", dg3: "", dg2: "", thc20: 65, thc40: 65, dis_dg2: "", seal: 18, blf: 180, bls: 180, swb: 0, ttl_dg3_usd: 65, ttl_dg2_usd: "", ttl_sgd: "", cancellation_usd: "", remarks: "CASE ID: IAPS29543000", detention: "", direct_via: "", service: "", freq_tt: "" },
-        { country: "Japan", carrier: "YANGMING", validity: "30TH SEP", port: "YOKOHAMA", gri: "", gp20: 185, gp40: "", gp40hc: "", tk20ld: "", hws: "", baf: "", oth: "", ams: "", dg3: "", dg2: "", thc20: 65, thc40: 65, dis_dg2: "", seal: 18, blf: 180, bls: 180, swb: 0, ttl_dg3_usd: 65, ttl_dg2_usd: "", ttl_sgd: "", cancellation_usd: "", remarks: "CASE ID: IAPS29543000", detention: "", direct_via: "", service: "", freq_tt: "" }
-    ];
-
-    // Populate country dropdown on load
-    window.onload = function() {
-        const countrySelect = document.getElementById("countrySelect");
-        const countries = [...new Set(rateData.map(item => item.country))];
-        
-        countries.forEach(country => {
-            const opt = document.createElement("option");
-            opt.value = country;
-            opt.textContent = country;
-            countrySelect.appendChild(opt);
-        });
-
-        updatePorts();
-    };
-
-    // Update port dropdown based on selected country
-    function updatePorts() {
-        const selectedCountry = document.getElementById("countrySelect").value;
-        const portSelect = document.getElementById("portSelect");
-        
-        portSelect.innerHTML = '<option value="ALL">All Ports</option>';
-        
-        const filteredPorts = rateData
-            .filter(item => selectedCountry === "ALL" || item.country === selectedCountry)
-            .map(item => item.port);
-
-        const uniquePorts = [...new Set(filteredPorts)];
-
-        uniquePorts.forEach(port => {
-            const opt = document.createElement("option");
-            opt.value = port;
-            opt.textContent = port;
-            portSelect.appendChild(opt);
-        });
-
-        filterData();
-    }
-
-    // Filter table records and handle container highlighting
-    function filterData() {
-        const country = document.getElementById("countrySelect").value;
-        const port = document.getElementById("portSelect").value;
-        const container = document.getElementById("containerSelect").value;
-        
-        const tbody = document.getElementById("tableBody");
-        tbody.innerHTML = "";
-
-        const filtered = rateData.filter(item => {
-            const matchCountry = (country === "ALL" || item.country === country);
-            const matchPort = (port === "ALL" || item.port === port);
-            return matchCountry && matchPort;
-        });
-
-        filtered.forEach(row => {
-            const tr = document.createElement("tr");
-
-            tr.innerHTML = `
-                <td><strong>${row.carrier}</strong></td>
-                <td><span class="badge">${row.validity}</span></td>
-                <td><strong>${row.port}</strong></td>
-                <td>${row.gri}</td>
-                <td class="${container === 'GP20' ? 'highlight' : ''}">${row.gp20}</td>
-                <td class="${container === 'GP40' ? 'highlight' : ''}">${row.gp40}</td>
-                <td class="${container === 'GP40HC' ? 'highlight' : ''}">${row.gp40hc}</td>
-                <td class="${container === 'TK20LD' ? 'highlight' : ''}">${row.tk20ld}</td>
-                <td>${row.hws}</td>
-                <td>${row.baf}</td>
-                <td>${row.oth}</td>
-                <td>${row.ams}</td>
-                <td>${row.dg3}</td>
-                <td>${row.dg2}</td>
-                <td>${row.thc20}</td>
-                <td>${row.thc40}</td>
-                <td>${row.dis_dg2}</td>
-                <td>${row.seal}</td>
-                <td>${row.blf}</td>
-                <td>${row.bls}</td>
-                <td>${row.swb}</td>
-                <td>${row.ttl_dg3_usd}</td>
-                <td>${row.ttl_dg2_usd}</td>
-                <td>${row.ttl_sgd}</td>
-                <td>${row.cancellation_usd}</td>
-                <td>${row.remarks}</td>
-                <td>${row.detention}</td>
-                <td>${row.direct_via}</td>
-                <td>${row.service}</td>
-                <td>${row.freq_tt}</td>
-            `;
-            tbody.appendChild(tr);
-        });
-    }
-</script>
-
-</body>
-</html>
