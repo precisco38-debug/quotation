@@ -3,445 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Precisco Singapore - Shipping Rate Inquiry</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <title>Customer Self-Help: Shipping Rates Query</title>
     <style>
-        :root {
-            --primary: #003366;
-            --secondary: #006699;
-            --accent: #e6f2ff;
-            --light: #f8f9fa;
-            --dark: #212529;
-            --border: #dee2e6;
-        }
-
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f7f9;
-            color: var(--dark);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+            color: #333;
         }
-
-        header {
-            background-color: var(--primary);
-            color: white;
-            padding: 24px 40px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 28px;
-            letter-spacing: 1px;
-            font-weight: 700;
-        }
-
-        header p {
-            margin: 5px 0 0 0;
-            font-size: 14px;
-            opacity: 0.8;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 30px auto;
-            padding: 0 20px;
-        }
-
-        .card {
-            background: white;
-            border-radius: 8px;
-            padding: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            margin-bottom: 25px;
-        }
-
-        .search-panel {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            align-items: end;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-group label {
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-size: 14px;
-            color: var(--secondary);
-        }
-
-        .form-group select, .form-group input {
-            padding: 10px 12px;
-            border: 1px solid var(--border);
-            border-radius: 5px;
-            font-size: 14px;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .form-group select:focus, .form-group input:focus {
-            border-color: var(--secondary);
-        }
-
-        .file-upload-wrapper {
-            background: var(--accent);
-            border: 2px dashed var(--secondary);
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
+        h2 {
+            color: #0056b3;
             margin-bottom: 20px;
         }
-
-        .file-upload-wrapper input[type="file"] {
-            display: none;
-        }
-
-        .file-upload-label {
-            cursor: pointer;
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        .table-wrapper {
-            overflow-x: auto;
-            background: white;
+        .filter-container {
+            background-color: #fff;
+            padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            align-items: flex-end;
         }
-
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .filter-group label {
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .filter-group input, .filter-group select {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            min-width: 180px;
+        }
+        .btn-clear {
+            padding: 8px 15px;
+            background-color: #6c757d;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            height: 38px;
+        }
+        .btn-clear:hover {
+            background-color: #5a6268;
+        }
+        .table-responsive {
+            overflow-x: auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
         table {
             width: 100%;
             border-collapse: collapse;
             font-size: 13px;
             text-align: left;
-            white-space: nowrap;
         }
-
         th {
-            background-color: var(--primary);
+            background-color: #0056b3;
             color: white;
             padding: 12px 10px;
-            font-weight: 600;
+            white-space: nowrap;
             position: sticky;
             top: 0;
         }
-
         td {
             padding: 10px;
-            border-bottom: 1px solid var(--border);
+            border-bottom: 1px solid #dee2e6;
+            white-space: nowrap;
         }
-
-        tbody tr:nth-child(even) {
-            background-color: #fafafa;
+        tr:hover {
+            background-color: #f1f3f5;
         }
-
-        tbody tr:hover {
-            background-color: var(--accent);
-        }
-
-        .badge {
-            background-color: var(--secondary);
-            color: white;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: bold;
-        }
-
-        .no-data {
+        .no-results {
+            padding: 20px;
             text-align: center;
-            padding: 40px;
-            color: #777;
-            font-size: 15px;
-        }
-
-        .btn-reset {
-            background-color: #6c757d;
-            color: white;
-            border: none;
-            padding: 10px 18px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: background 0.2s;
-        }
-
-        .btn-reset:hover {
-            background-color: #5a6268;
+            font-size: 16px;
+            color: #6c757d;
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Precisco Singapore</h1>
-        <p>Freight & Shipping Rate Inquiry Portal</p>
-    </header>
+    <h2>Shipping Rates Query System</h2>
 
-    <div class="container">
-        
-        <!-- Optional File Loader for Live Data -->
-        <div class="file-upload-wrapper">
-            <label class="file-upload-label" for="excelFile">
-                📁 Click here to load rates from your Excel File (.xls / .xlsx)
-            </label>
-            <input type="file" id="excelFile" accept=".xls, .xlsx" onchange="loadExcel(event)">
-            <div id="fileName" style="font-size: 12px; margin-top: 5px; color: #555;"></div>
+    <div class="filter-container">
+        <div class="filter-group">
+            <label for="portSelect">Port Name</label>
+            <select id="portSelect">
+                <option value="">All Ports</option>
+            </select>
         </div>
-
-        <!-- Filter Controls -->
-        <div class="card">
-            <div class="search-panel">
-                <div class="form-group">
-                    <label for="countrySelect">Country of Destination</label>
-                    <select id="countrySelect" onchange="onCountryChange()">
-                        <option value="">-- All Countries --</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="portSelect">Port of Destination (POD)</label>
-                    <select id="portSelect" onchange="filterRates()">
-                        <option value="">-- All Ports --</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="containerSelect">Container Type</label>
-                    <select id="containerSelect" onchange="filterRates()">
-                        <option value="">-- All Container Types --</option>
-                        <option value="GP20">GP20</option>
-                        <option value="GP40">GP40</option>
-                        <option value="GP40HC">GP40HC</option>
-                        <option value="TK20LD">TK20LD</option>
-                        <option value="DG2">DG2</option>
-                        <option value="DG3">DG3</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <button class="btn-reset" onclick="resetFilters()">Reset Filters</button>
-                </div>
-            </div>
+        <div class="filter-group">
+            <label for="countryInput">Country of Port</label>
+            <input type="text" id="countryInput" placeholder="e.g. Australia, China">
         </div>
-
-        <!-- Results Table -->
-        <div class="table-wrapper">
-            <table id="rateTable">
-                <thead>
-                    <tr>
-                        <th>Country</th>
-                        <th>Port</th>
-                        <th>Container Type</th>
-                        <th>SERVICE</th>
-                        <th>DIRECT / VIA</th>
-                        <th>FREQUENCY T/T</th>
-                        <th>GRI</th>
-                        <th>HWS</th>
-                        <th>BAF</th>
-                        <th>OTH</th>
-                        <th>AMS</th>
-                        <th>DG3</th>
-                        <th>DG2</th>
-                        <th>THC20</th>
-                        <th>THC40</th>
-                        <th>DIS - DG2</th>
-                        <th>SEAL</th>
-                        <th>BLF</th>
-                        <th>BLS</th>
-                        <th>SWB</th>
-                        <th>TTL DG3 USD</th>
-                        <th>TTL DG2 USD</th>
-                        <th>TTL SGD</th>
-                        <th>CANCELLATION USD</th>
-                        <th>DETENTION @ POD</th>
-                        <th>REMARKS</th>
-                    </tr>
-                </thead>
-                <tbody id="tableBody">
-                    <tr>
-                        <td colspan="26" class="no-data">Select filters above or load an Excel sheet to view shipping rates.</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="filter-group">
+            <label for="typeSelect">Container Type</label>
+            <select id="typeSelect">
+                <option value="">All Types</option>
+                <option value="GP20">GP20</option>
+                <option value="GP40">GP40</option>
+                <option value="GP40HC">GP40HC</option>
+                <option value="TK20LD">TK20LD</option>
+            </select>
         </div>
+        <button class="btn-clear" onclick="clearFilters()">Clear Filters</button>
+    </div>
+
+    <div class="table-responsive">
+        <table id="ratesTable">
+            <thead>
+                <tr>
+                    <th>CARRIER</th>
+                    <th>Validity</th>
+                    <th>PORT</th>
+                    <th>COUNTRY</th>
+                    <th>CONTAINER TYPE</th>
+                    <th>RATE (USD)</th>
+                    <th>GRI</th>
+                    <th>HWS</th>
+                    <th>BAF</th>
+                    <th>OTH</th>
+                    <th>AMS</th>
+                    <th>DG3</th>
+                    <th>DG2</th>
+                    <th>THC20</th>
+                    <th>THC40</th>
+                    <th>DIS - DG2</th>
+                    <th>SEAL</th>
+                    <th>BLF</th>
+                    <th>BLS</th>
+                    <th>SWB</th>
+                    <th>TTL DG3 USD</th>
+                    <th>TTL DG2 USD</th>
+                    <th>TTL SGD</th>
+                    <th>CANCELLATION USD</th>
+                    <th>REMARKS</th>
+                    <th>DETENTION @ POD</th>
+                    <th>DIRECT / VIA</th>
+                    <th>SERVICE</th>
+                    <th>FREQUENCY T/T</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Dynamic rows injected here -->
+            </tbody>
+        </table>
+        <div id="noResults" class="no-results" style="display: none;">No matching shipping rates found.</div>
     </div>
 
     <script>
-        // Sample dataset to demonstrate functionality prior to uploading an Excel file
-        let shippingData = [
-            {
-                Country: "Japan", Port: "Tokyo", ContainerType: "GP20", SERVICE: "IA1", DirectVia: "Direct", FrequencyTT: "Weekly / 7 Days",
-                GRI: "0", HWS: "0", BAF: "150", OTH: "20", AMS: "30", DG3: "0", DG2: "0", THC20: "210", THC40: "0", DIS_DG2: "0",
-                SEAL: "10", BLF: "50", BLS: "0", SWB: "0", TTL_DG3_USD: "0", TTL_DG2_USD: "0", TTL_SGD: "280", CANCELLATION_USD: "50",
-                DETENTION: "14 Days Free", REMARKS: "Subject to space availability"
-            },
-            {
-                Country: "Japan", Port: "Tokyo", ContainerType: "GP40", SERVICE: "IA1", DirectVia: "Direct", FrequencyTT: "Weekly / 7 Days",
-                GRI: "0", HWS: "0", BAF: "300", OTH: "20", AMS: "30", DG3: "0", DG2: "0", THC20: "0", THC40: "310", DIS_DG2: "0",
-                SEAL: "10", BLF: "50", BLS: "0", SWB: "0", TTL_DG3_USD: "0", TTL_DG2_USD: "0", TTL_SGD: "380", CANCELLATION_USD: "50",
-                DETENTION: "14 Days Free", REMARKS: "Subject to space availability"
-            },
-            {
-                Country: "Thailand", Port: "Bangkok", ContainerType: "GP20", SERVICE: "CTS", DirectVia: "Direct", FrequencyTT: "Bi-Weekly / 3 Days",
-                GRI: "50", HWS: "0", BAF: "100", OTH: "15", AMS: "0", DG3: "0", DG2: "0", THC20: "200", THC40: "0", DIS_DG2: "0",
-                SEAL: "10", BLF: "45", BLS: "0", SWB: "0", TTL_DG3_USD: "0", TTL_DG2_USD: "0", TTL_SGD: "260", CANCELLATION_USD: "30",
-                DETENTION: "7 Days Free", REMARKS: "Direct service"
-            }
-        ];
-
-        window.onload = function() {
-            populateCountries();
-            filterRates();
+        // Mapping reference to assign countries loosely based on port keywords
+        const countryMapping = {
+            "ADELAIDE": "Australia", "BRISBANE": "Australia", "FREMENTLE": "Australia", "MELBOURNE": "Australia", "SYDNEY": "Australia", "TOWNSVILLE": "Australia", "DARWIN": "Australia", "PORT HEDLAND": "Australia", "DAMPIER": "Australia",
+            "AUCKLAND": "New Zealand", "LYTTELTON": "New Zealand", "WELLINGTON": "New Zealand", "NAPIER": "New Zealand", "TAURANGA": "New Zealand", "NELSON": "New Zealand",
+            "BUSAN": "South Korea", "INCHEON": "South Korea", "GWANGYANG": "South Korea", "ULSAN": "South Korea", "POHANG": "South Korea", "KWANG YANG": "South Korea",
+            "SHANGHAI": "China", "QINGDAO": "China", "NINGBO": "China", "XINGANG": "China", "YANTIAN": "China", "XIAMEN": "China", "WUHAN": "China", "NANJING": "China", "HUANGPU": "China", "NANSHA": "China", "CHANGSHU": "China", "LIAN YUN GANG": "China", "ZHANG JIA GANG": "China", "ZHANJIANG": "China", "ZHUHAI": "China", "QINZHOU": "China", "CHENGDU": "China", "CHONGQING": "China", "KUNMING": "China", "DALIAN": "China", "SHEKOU": "China", "FUZHOU": "China", "HONG KONG": "Hong Kong", "MACAU": "Macau", "TAICHUNG": "Taiwan", "KAOHSIUNG": "Taiwan", "TAIPEI": "Taiwan", "KEELUNG": "Taiwan", "TAOYUAN": "Taiwan",
+            "NHAVA SHEVA": "India", "MUNDRA": "India", "CHENNAI": "India", "COCHIN": "India", "KOLKATA": "India", "VIZAG": "India", "TUTICORIN": "India", "PIPAVAV": "India", "KATTUPALLI": "India", "HALDIA": "India", "BENGALURU": "India", "BANGALORE": "India", "CALCUTTA": "India", "DADRI": "India", "HAZIRA": "India", "HYDERABAD": "India", "LUDHINA": "India", "AHMEDABAD": "India", "KANPUR": "India", "MULUND": "India", "NEW DELHI": "India", "TUMB": "India", "GANGGAVARAM": "India", "MANGALORE": "India",
+            "JAKARTA": "Indonesia", "SURABAYA": "Indonesia", "SEMARANG": "Indonesia", "BELAWAN": "Indonesia", "PALEMBANG": "Indonesia", "PONTIANAK": "Indonesia", "BALIKPAPAN": "Indonesia", "BANJARMASIN": "Indonesia", "PANJANG": "Indonesia", "BATAM": "Indonesia", "MAKASSAR": "Indonesia", "PADANG": "Indonesia", "SAMARINDA": "Indonesia", "BITUNG": "Indonesia", "PATIMBAN": "Indonesia",
+            "HO CHI MINH": "Vietnam", "HAIPHONG": "Vietnam", "DANANG": "Vietnam", "QUI NHON": "Vietnam", "VUNG TAU": "Vietnam", "CAT LAI": "Vietnam", "PHUOC LONG": "Vietnam", "CAI MEP": "Vietnam",
+            "LAEM CHABANG": "Thailand", "BANGKOK": "Thailand", "LAT KRABANG": "Thailand", "SONGKHLA": "Thailand",
+            "PORT KELANG": "Malaysia", "PENANG": "Malaysia", "PASIR GUDANG": "Malaysia", "KUANTAN": "Malaysia", "TANJUNG PELEPAS": "Malaysia", "LABUAN": "Malaysia", "SIBU": "Malaysia",
+            "MANILA": "Philippines", "CEBU": "Philippines", "DAVAO": "Philippines", "GENERAL SANTOS": "Philippines", "SUBIC": "Philippines", "CAGAYAN": "Philippines", "BATANGAS": "Philippines",
+            "KARACHI": "Pakistan", "JEBEL ALI": "UAE", "SHARJAH": "UAE", "DAMMAN": "Saudi Arabia", "DAMMAM": "Saudi Arabia", "RIYADH": "Saudi Arabia", "JEDDAH": "Saudi Arabia", "KHOR FAKKAN": "UAE", "SOHAR": "Oman", "HAMAD": "Qatar", "SHUAIBA": "Kuwait", "KUWAIT": "Kuwait", "SHUWAIKH": "Kuwait", "UMM QASR": "Iraq", "BAHRAIN": "Bahrain", "DOHA": "Qatar", "ABU DHABI": "UAE", "AJMAN": "UAE", "UMM AL QUWAIN": "UAE", "RAS AL KHAIMAH": "UAE",
+            "CHITTAGONG": "Bangladesh", "DHAKA": "Bangladesh", "CHATTOGRAM": "Bangladesh", "MONGLA": "Bangladesh", "PANGAON": "Bangladesh",
+            "COLOMBO": "Sri Lanka", "MALE": "Maldives", "MALDIVES": "Maldives",
+            "YANGON": "Myanmar", "THILAWA": "Myanmar", "SIHANOUKVILLE": "Cambodia", "PHNOM PENH": "Cambodia", "MUARA": "Brunei", "DILI": "East Timor",
+            "MOMBASA": "Kenya", "DAR ES SALAAM": "Tanzania", "MAPUTO": "Mozambique", "BEIRA": "Mozambique", "PORT SUDAN": "Sudan", "DJIBOUTI": "Djibouti", "AQABA": "Jordan", "SOKHNA": "Egypt", "ADEN": "Yemen"
         };
 
-        function populateCountries() {
-            const countrySelect = document.getElementById("countrySelect");
-            const countries = [...new Set(shippingData.map(item => item.Country))].filter(Boolean).sort();
-            
-            countrySelect.innerHTML = '<option value="">-- All Countries --</option>';
-            countries.forEach(c => {
-                countrySelect.innerHTML += `<option value="${c}">${c}</option>`;
-            });
-            onCountryChange();
-        }
-
-        function onCountryChange() {
-            const selectedCountry = document.getElementById("countrySelect").value;
-            const portSelect = document.getElementById("portSelect");
-            
-            let filteredPorts = shippingData;
-            if (selectedCountry) {
-                filteredPorts = shippingData.filter(item => item.Country === selectedCountry);
-            }
-            
-            const ports = [...new Set(filteredPorts.map(item => item.Port))].filter(Boolean).sort();
-            
-            portSelect.innerHTML = '<option value="">-- All Ports --</option>';
-            ports.forEach(p => {
-                portSelect.innerHTML += `<option value="${p}">${p}</option>`;
-            });
-
-            filterRates();
-        }
-
-        function filterRates() {
-            const country = document.getElementById("countrySelect").value;
-            const port = document.getElementById("portSelect").value;
-            const container = document.getElementById("containerSelect").value;
-
-            const filtered = shippingData.filter(item => {
-                const matchCountry = !country || item.Country === country;
-                const matchPort = !port || item.Port === port;
-                const matchContainer = !container || item.ContainerType === container;
-                return matchCountry && matchPort && matchContainer;
-            });
-
-            renderTable(filtered);
-        }
-
-        function renderTable(data) {
-            const tbody = document.getElementById("tableBody");
-            tbody.innerHTML = "";
-
-            if (data.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="26" class="no-data">No shipping rates found matching your criteria.</td></tr>`;
-                return;
-            }
-
-            data.forEach(row => {
-                const tr = document.createElement("tr");
-                tr.innerHTML = `
-                    <td><strong>${row.Country || '-'}</strong></td>
-                    <td><strong>${row.Port || '-'}</strong></td>
-                    <td><span class="badge">${row.ContainerType || '-'}</span></td>
-                    <td>${row.SERVICE || '-'}</td>
-                    <td>${row.DirectVia || '-'}</td>
-                    <td>${row.FrequencyTT || '-'}</td>
-                    <td>${row.GRI || '0'}</td>
-                    <td>${row.HWS || '0'}</td>
-                    <td>${row.BAF || '0'}</td>
-                    <td>${row.OTH || '0'}</td>
-                    <td>${row.AMS || '0'}</td>
-                    <td>${row.DG3 || '0'}</td>
-                    <td>${row.DG2 || '0'}</td>
-                    <td>${row.THC20 || '0'}</td>
-                    <td>${row.THC40 || '0'}</td>
-                    <td>${row.DIS_DG2 || '0'}</td>
-                    <td>${row.SEAL || '0'}</td>
-                    <td>${row.BLF || '0'}</td>
-                    <td>${row.BLS || '0'}</td>
-                    <td>${row.SWB || '0'}</td>
-                    <td>${row.TTL_DG3_USD || '0'}</td>
-                    <td>${row.TTL_DG2_USD || '0'}</td>
-                    <td>${row.TTL_SGD || '0'}</td>
-                    <td>${row.CANCELLATION_USD || '0'}</td>
-                    <td>${row.DETENTION || '-'}</td>
-                    <td>${row.REMARKS || '-'}</td>
-                `;
-                tbody.appendChild(tr);
-            });
-        }
-
-        function resetFilters() {
-            document.getElementById("countrySelect").value = "";
-            document.getElementById("containerSelect").value = "";
-            onCountryChange();
-        }
-
-        function loadExcel(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            document.getElementById("fileName").innerText = "Loaded: " + file.name;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const data = new Uint8Array(e.target.result);
-                const workbook = XLSX.read(data, {type: 'array'});
-                const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
-                const jsonData = XLSX.utils.sheet_to_json(firstSheet, {defval: ""});
-
-                // Map dynamic data structure from Excel headers
-                shippingData = jsonData.map(row => ({
-                    Country: row["Country"] || row["COUNTRY"] || "",
-                    Port: row["Port"] || row["PORT"] || row["POD"] || "",
-                    ContainerType: row["Container Type"] || row["CONTAINER TYPE"] || row["Container"] || "",
-                    SERVICE: row["SERVICE"] || "",
-                    DirectVia: row["DIRECT / VIA"] || row["DIRECT/VIA"] || "",
-                    FrequencyTT: row["FREQUENCY T/T"] || row["FREQUENCY"] || "",
-                    GRI: row["GRI"] || "0",
-                    HWS: row["HWS"] || "0",
-                    BAF: row["BAF"] || "0",
-                    OTH: row["OTH"] || "0",
-                    AMS: row["AMS"] || "0",
-                    DG3: row["DG3"] || "0",
-                    DG2: row["DG2"] || "0",
-                    THC20: row["THC20"] || "0",
-                    THC40: row["THC40"] || "0",
-                    DIS_DG2: row["DIS - DG2"] || row["DIS DG2"] || "0",
-                    SEAL: row["SEAL"] || "0",
-                    BLF: row["BLF"] || "0",
-                    BLS: row["BLS"] || "0",
-                    SWB: row["SWB"] || "0",
-                    TTL_DG3_USD: row["TTL DG3 USD"] || "0",
-                    TTL_DG2_USD: row["TTL DG2 USD"] || "0",
-                    TTL_SGD: row["TTL SGD"] || "0",
-                    CANCELLATION_USD: row["CANCELLATION USD"] || "0",
-                    DETENTION: row["DETENTION @ POD"] || row["DETENTION"] || "",
-                    REMARKS: row["REMARKS"] || ""
-                }));
-
-                populateCountries();
-            };
-            reader.readAsArrayBuffer(file);
-        }
-    </script>
-</body>
-</html>
+        // Raw array parsing data directly from the freight sheet
+        const rawCSV = [
+            ["ANL","30TH SEP","ADELAIDE","",1900,3800,3800,1900,"","","","","0","100","250","370","","25","145","70","0","2085.185","2185.185","","","S/C: QGNC038287","14","","",""],
+            ["ANL","30TH SEP","BRISBANE","",1900,3800,3800,1900,"","","","","0","100","250","370","","25","145","70","0","2085.185","2185.185","","","S/C: QGNC038287","14","","",""],
+            ["ANL","30TH SEP","FREMENTLE","",1900,3800,3800,1900,"","","","","0","100","250","370","","25","145","70","0","2085.185","2185.185","","","S/C: QGNC038287","14","","",""],
+            ["ANL","30TH SEP","MELBOURNE","",1900,3800,3800,1900,"","","","","0","100","250","370","","25","145","70","0","2085.185","2185.185","","","S/C: QGNC038287","14","","",""],
