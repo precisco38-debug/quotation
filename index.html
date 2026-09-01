@@ -1,127 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shipping Rate Enquiry</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
-  <style>
-    :root {
-      --primary: #0056b3;
-      --bg: #f8f9fa;
-      --border: #dee2e6;
-    }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      margin: 20px;
-      background-color: var(--bg);
-      color: #333;
-    }
-    h2 { color: var(--primary); }
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      margin-bottom: 20px;
-    }
-    .filter-group {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-      margin-bottom: 15px;
-    }
-    .field {
-      display: flex;
-      flex-direction: column;
-      min-width: 180px;
-    }
-    label {
-      font-weight: bold;
-      margin-bottom: 5px;
-      font-size: 0.9em;
-    }
-    select, input[type="file"] {
-      padding: 8px;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-    }
-    .table-container {
-      overflow-x: auto;
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.85em;
-    }
-    th, td {
-      border: 1px solid var(--border);
-      padding: 8px 10px;
-      text-align: left;
-      white-space: nowrap;
-    }
-    th {
-      background-color: var(--primary);
-      color: white;
-      position: sticky;
-      top: 0;
-    }
-    tr:nth-child(even) { background-color: #f2f2f2; }
-    .no-data {
-      padding: 20px;
-      text-align: center;
-      color: #666;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precisco Singapore - Rate Enquiry Portal</title>
+    <style>
+        :root {
+            --primary: #0f2c59;
+            --secondary: #0077b6;
+            --accent: #e63946;
+            --bg: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-dark: #1d3557;
+            --text-light: #6c757d;
+            --border: #dee2e6;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-dark);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 24px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        header .subtitle {
+            font-size: 0.9rem;
+            color: #caf0f8;
+            margin-top: 4px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        .search-card {
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+        }
+
+        .search-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: var(--text-light);
+        }
+
+        .form-group select {
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group select:focus {
+            border-color: var(--secondary);
+        }
+
+        .results-container {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .rate-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+
+        .rate-card-header {
+            background: var(--primary);
+            color: white;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .rate-card-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .rate-card-header .carrier-tag {
+            background: var(--secondary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.88rem;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            color: var(--text-dark);
+            font-weight: 600;
+            padding: 12px 14px;
+            border-bottom: 2px solid var(--border);
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--border);
+            white-space: nowrap;
+        }
+
+        tr:hover {
+            background-color: #f1f5f9;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .total-cell {
+            background-color: #e8f4f8;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .remarks-box {
+            padding: 16px 24px;
+            background: #fff8e7;
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: #8a6d3b;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 8px;
+            color: var(--text-light);
+        }
+    </style>
 </head>
 <body>
 
-  <h2>Shipping Rate Enquiry</h2>
+    <header>
+        <div>
+            <h1>Precisco Singapore</h1>
+            <div class="subtitle">Freight & Rate Enquiry Portal</div>
+        </div>
+    </header>
 
-  <div class="card">
-    <div class="filter-group">
-      <div class="field">
-        <label for="csvFile">1. Load Data (CSV):</label>
-        <input type="file" id="csvFile" accept=".csv" />
-      </div>
-      <div class="field">
-        <label for="countrySelect">2. Select Country:</label>
-        <select id="countrySelect" disabled>
-          <option value="ALL">-- Select Country --</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="portSelect">3. Select Port:</label>
-        <select id="portSelect" disabled>
-          <option value="ALL">All Ports</option>
-        </select>
-      </div>
-      <div class="field">
-        <label for="containerSelect">4. Container Type Filter:</label>
-        <select id="containerSelect" disabled>
-          <option value="ALL">All Container Types</option>
-          <option value="GP20">GP20</option>
-          <option value="GP40">GP40</option>
-          <option value="GP40HC">GP40HC</option>
-          <option value="TK20LD">TK20LD</option>
-        </select>
-      </div>
+    <div class="container">
+        <div class="search-card">
+            <div class="search-grid">
+                <div class="form-group">
+                    <label for="countrySelect">Country of Port</label>
+                    <select id="countrySelect" onchange="onCountryChange()">
+                        <option value="">-- Select Country --</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="portSelect">Port</label>
+                    <select id="portSelect" onchange="renderRates()">
+                        <option value="ALL">All Ports</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="containerSelect">Container Type</label>
+                    <select id="containerSelect" onchange="renderRates()">
+                        <option value="ALL">All Types</option>
+                        <option value="GP20">20' Dry (GP20)</option>
+                        <option value="GP40">40' Dry (GP40)</option>
+                        <option value="GP40HC">40' High Cube (GP40HC)</option>
+                        <option value="TK20LD">20' Tank (TK20LD)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div id="resultsContainer" class="results-container"></div>
     </div>
-  </div>
 
-  <div class="table-container">
-    <table id="rateTable">
-      <thead>
-        <tr>
-          <th>Carrier</th>
-          <th>Validity</th>
-          <th>Port</th>
-          <th>Country</th>
-          <th>Container Type</th>
-          <th>Base Rate</th>
-          <th>GRI</th>
-          <th>HWS</th>
-          <th>BAF</th>
+    <script>
+        // Sample dataset structure matching the excel layout
+        const rateData = [
+            {
+                carrier: "ANL", country: "AUSTRALIA", port: "ADELAIDE", validity: "30TH SEP", directVia: "DIRECT", service: "AAA", frequencyTT: "14 Days",
+                GRI: 0, BAF: 0, OTH: 0, AMS: 0, HWS: 0, DG3: 100, DG2: 250, SEAL: 25, BLF: 145, BLS: 70, SWB: 0,
+                THC20: 370, THC40: 0, DIS_DG2: 0, TTL_DG3_USD: 2085.19, TTL_DG2_USD: 2185.19, TTL_SGD: 0, CANCELLATION_USD: 0,
+                DETENTION_POD: "14 Days", REMARKS: "S/C: QGNC038287",
+                containers: { GP20: 1900, GP40: 3800, GP40HC: 3800, TK20LD: 1900 }
+            },
+            {
+                carrier: "ANL", country: "AUSTRALIA", port: "BRISBANE", validity: "30TH SEP", directVia: "DIRECT", service: "AAA", frequencyTT: "12 Days",
+                GRI: 0, BAF: 0, OTH: 0, AMS: 0, HWS: 0, DG3: 100, DG2: 250, SEAL: 25, BLF: 145, BLS: 70, SWB: 0,
+                THC20: 370, THC40: 0, DIS_DG2: 0, TTL_DG3_USD: 2085.19, TTL_DG2_USD: 2185.19, TTL_SGD: 0, CANCELLATION_USD: 0,
+                DETENTION_POD: "14 Days", REMARKS: "S/C: QGNC038287",
+                containers: { GP20: 1900, GP40: 3800, GP40HC: 3800, TK20LD: 1900 }
+            },
+            {
+                carrier: "YANGMING", country: "CHINA", port: "HONG KONG", validity: "30TH SEP", directVia: "DIRECT", service: "CTS", frequencyTT: "4 Days",
+                GRI: 0, BAF: 65, OTH: 0, AMS: 0, HWS: 0, DG3: 65, DG2: 65, SEAL: 18, BLF: 180, BLS: 180, SWB: 0,
+                THC20: 65, THC40: 0, DIS_DG2: 0, TTL_DG3_USD: 135, TTL_DG2_USD: 135, TTL_SGD: 0, CANCELLATION_USD: 0,
+                DETENTION_POD: "7 Days", REMARKS: "CASE ID: IAPS29543000",
+                containers: { GP20: 135, GP40: 250, GP40HC: 250, TK20LD: 0 }
+            },
+            {
+                carrier: "YANGMING", country: "JAPAN", port: "YOKOHAMA", validity: "30TH SEP", directVia: "VIA CNSHA", service: "JTX", frequencyTT: "9 Days",
+                GRI: 0, BAF: 65, OTH: 0, AMS: 30, HWS: 0, DG3: 65, DG2: 65, SEAL: 18, BLF: 180, BLS: 180, SWB: 0,
+                THC20: 65, THC40:
