@@ -66,7 +66,7 @@ def extract_text_from_excel(file_object):
 
 st.set_page_config(page_title="Liner Quotes", layout="centered")
 
-col1, col2 = st.columns()
+col1, col2 = st.columns(2)
 with col1:
     st.title("🚢 Liner Quote Interface")
 with col2:
