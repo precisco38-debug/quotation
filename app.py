@@ -102,26 +102,27 @@ if uploaded_file is not None:
                     llm = ChatOpenAI(model="gpt-4o-mini", temperature=0, openai_api_key=openai_api_key)
                     
                     # Force response model schema to bind strictly to standard JSON keys
-                    structured_llm = llm.bind_to_tool(
-                        {
-                            "name": "render_shipping_metrics",
-                            "description": "Output shipping quote parameters precisely inside object fields.",
-                            "parameters": {
-                                "type": "object",
-                                "properties": {
-                                    "ocean_freight": {"type": "string", "description": "Ocean Freight Rate (USD)"},
-                                    "othc": {"type": "string", "description": "Origin Terminal Handling Charges (OTHC)"},
-                                    "dthc": {"type": "string", "description": "Destination Terminal Handling Charges (DTHC)"},
-                                    "baf": {"type": "string", "description": "Bunker Adjustment Factor (BAF)"},
-                                    "doc_fee": {"type": "string", "description": "Documentation Fee"},
-                                    "pss": {"type": "string", "description": "Peak Season Surcharge (PSS)"},
-                                    "transit_time": {"type": "string", "description": "Estimated Transit Time (Days)"},
-                                    "validity": {"type": "string", "description": "Validity Period"}
-                                },
-                                "required": ["ocean_freight", "othc", "dthc", "baf", "doc_fee", "pss", "transit_time", "validity"]
-                            }
+                    shipping_tool = {
+                        "name": "render_shipping_metrics",
+                        "description": "Output shipping quote parameters precisely inside object fields.",
+                        "parameters": {
+                            "type": "object",
+                            "properties": {
+                                "ocean_freight": {"type": "string", "description": "Ocean Freight Rate (USD)"},
+                                "othc": {"type": "string", "description": "Origin Terminal Handling Charges (OTHC)"},
+                                "dthc": {"type": "string", "description": "Destination Terminal Handling Charges (DTHC)"},
+                                "baf": {"type": "string", "description": "Bunker Adjustment Factor (BAF)"},
+                                "doc_fee": {"type": "string", "description": "Documentation Fee"},
+                                "pss": {"type": "string", "description": "Peak Season Surcharge (PSS)"},
+                                "transit_time": {"type": "string", "description": "Estimated Transit Time (Days)"},
+                                "validity": {"type": "string", "description": "Validity Period"}
+                            },
+                            "required": ["ocean_freight", "othc", "dthc", "baf", "doc_fee", "pss", "transit_time", "validity"]
                         }
-                    )
+                    }
+                    
+                    # Bind using the corrected library function wrapper
+                    structured_llm = llm.bind_tools([shipping_tool])
                     
                     prompt = ChatPromptTemplate.from_messages([
                         ("system", "You are an expert logistics analyst. Parse structural cost metrics out of messy text profiles. If any field is completely missing, write 'Not Mentioned'."),
@@ -150,12 +151,12 @@ if uploaded_file is not None:
                         
                         st.success("Extraction Complete!")
                         
-                        # 1. Output Layout Layout Component: Vertical Mobile List Table
+                        # 1. Output Layout Component: Vertical Mobile List Table
                         df_vertical = pd.DataFrame(metric_mapping, columns=["Metric", "Extracted Value"])
                         st.subheader("📋 1. Mobile Vertical View")
                         st.dataframe(df_vertical, use_container_width=True, hide_index=True)
                         
-                        # 2. Output Layout Layout Component: Wide Horizontal Record Row Grid Spreadsheet
+                        # 2. Output Layout Component: Wide Horizontal Record Row Grid Spreadsheet
                         horiz_headers = ["File Name", "Liner", "Year", "Month", 
                                          "Ocean Freight Rate (USD)", "Origin THC (OTHC)", "Destination THC (DTHC)", 
                                          "Bunker Surcharge (BAF)", "Documentation Fee", "Peak Season Surcharge (PSS)", 
