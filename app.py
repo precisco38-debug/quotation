@@ -34,7 +34,7 @@ if not st.session_state["authenticated"]:
     st.stop()
 
 # --- MAIN APP LOGIC ---
-st.set_page_config(page_title="Liner Quotes Table", layout="centered")
+st.set_page_config(page_title="Liner Quotes Table", layout="wide") # Forced wide layout for spreadsheets
 
 col1, col2 = st.columns(2)
 with col1:
@@ -99,23 +99,15 @@ if uploaded_file is not None:
                     
                     llm = ChatOpenAI(model="gpt-4o-mini", temperature=0, openai_api_key=openai_api_key)
                     
-                    # Instruct AI to return a clean CSV table layout instead of plain text sentences
+                    # Force AI to return data in a single row string mapping perfectly to your wide layout columns
                     prompt = ChatPromptTemplate.from_messages([
                         ("system", (
-                            "You are an expert logistics analyst. Convert messy shipping quotes into a strict text structure.\n"
-                            "You MUST respond ONLY with a clean CSV string format using a semicolon (;) as a separator. "
+                            "You are an expert logistics analyst. Convert messy shipping quotes into a single text row.\n"
+                            "You MUST respond ONLY with a clean single row using a semicolon (;) as a separator. "
                             "Do not write any introductory or concluding sentences. Do not use markdown backticks.\n\n"
                             "The format must follow this exact output structure:\n"
-                            "Metric;Value\n"
-                            "Ocean Freight Rate (USD);[parsed value]\n"
-                            "Origin Terminal Handling Charges (OTHC);[parsed value]\n"
-                            "Destination Terminal Handling Charges (DTHC);[parsed value]\n"
-                            "Bunker Adjustment Factor (BAF);[parsed value]\n"
-                            "Documentation Fee;[parsed value]\n"
-                            "Peak Season Surcharge (PSS);[parsed value]\n"
-                            "Estimated Transit Time (Days);[parsed value]\n"
-                            "Validity Period;[parsed value]\n\n"
-                            "Rules:\n- Never alter heading names.\n- Use 'Not Mentioned' if data is missing."
+                            "[Ocean Freight Rate (USD)];[OTHC];[DTHC];[BAF];[Documentation Fee];[Peak Season Surcharge (PSS)];[Estimated Transit Time (Days)];[Validity Period]\n\n"
+                            "Rules:\n- Extract values carefully.\n- Use 'Not Mentioned' if data is missing."
                         )),
                         ("user", "{document_text}")
                     ])
@@ -123,38 +115,46 @@ if uploaded_file is not None:
                     chain = prompt | llm
                     response = chain.invoke({"document_text": raw_content})
                     
-                    # Process the AI text string response back into a clean programmatic table grid
-                    csv_data = response.content.strip()
-                    lines = [line.split(";") for line in csv_data.split("\n") if ";" in line]
+                    row_data = response.content.strip().split(";")
                     
-                    if len(lines) > 1:
-                        headers = lines[0]
-                        rows = lines[1:]
-                        df_result = pd.DataFrame(rows, columns=headers)
-                        
-                        st.success("Extraction Complete!")
-                        st.subheader("📋 Standardized Quotation Grid")
-                        
-                        # Render interactive dataframe table grid on mobile or desktop view layout
-                        st.dataframe(df_result, use_container_width=True, hide_index=True)
-                        
-                        # Generate data buffer stream to enable Excel file downloading on staff devices
-                        excel_buffer = io.BytesIO()
-                        with pd.ExcelWriter(excel_buffer, engine='openpyxl') as writer:
-                            df_result.to_excel(writer, index=False, sheet_name='Quotation')
-                        
-                        excel_data = excel_buffer.getvalue()
-                        
-                        st.download_button(
-                            label="📥 Download Data as Excel Spreadsheet",
-                            data=excel_data,
-                            file_name=f"{liner}_{year}_{month}_Standardized.xlsx",
-                            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                            use_container_width=True
-                        )
-                    else:
-                        st.error("AI engine output formatting error. Please retry the extraction click request.")
-                        st.text(csv_data)
+                    # Define full database columns including tracking metadata properties
+                    headers = [
+                        "File Name", "Liner", "Year", "Month", 
+                        "Ocean Freight Rate (USD)", "Origin THC (OTHC)", "Destination THC (DTHC)", 
+                        "Bunker Surcharge (BAF)", "Documentation Fee", "Peak Season Surcharge (PSS)", 
+                        "Transit Time (Days)", "Validity Period"
+                    ]
+                    
+                    # Build row content array tracking all extra metrics
+                    full_row = [filename, liner, year, month] + row_data
+                    
+                    # Handle safety slice alignment anomalies
+                    if len(full_row) > len(headers):
+                        full_row = full_row[:len(headers)]
+                    elif len(full_row) < len(headers):
+                        full_row += ["Not Mentioned"] * (len(headers) - len(full_row))
+                    
+                    df_result = pd.DataFrame([full_row], columns=headers)
+                    
+                    st.success("Extraction Complete!")
+                    st.subheader("📋 Standardized Logistical Record Row")
+                    
+                    # Render full horizontal spreadsheet row block display
+                    st.dataframe(df_result, use_container_width=True, hide_index=True)
+                    
+                    excel_buffer = io.BytesIO()
+                    with pd.ExcelWriter(excel_buffer, engine='openpyxl') as writer:
+                        df_result.to_excel(writer, index=False, sheet_name='QuotationData')
+                    
+                    excel_data = excel_buffer.getvalue()
+                    
+                    st.download_button(
+                        label="📥 Download Row as Excel Spreadsheet",
+                        data=excel_data,
+                        file_name=f"{liner}_{year}_{month}_Record.xlsx",
+                        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        use_container_width=True
+                    )
                         
                 except Exception as e:
                     st.error(f"Error parsing file elements: {e}")
