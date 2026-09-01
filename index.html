@@ -136,8 +136,9 @@
         </div>
         <div class="form-group">
             <label for="portSelect">Port Name</label>
-            <select id="portSelect" disabled>
-                <option value="" disabled selected hidden>Select a country first...</option>
+            <!-- Completely removed 'disabled' structural tag elements to eliminate browser freezing bugs -->
+            <select id="portSelect">
+                <option value="ALL">All Ports</option>
             </select>
         </div>
         <div class="form-group">
@@ -189,7 +190,7 @@
             <tbody id="rateTableBody">
                 <tr id="messageRow">
                     <td colspan="28" style="text-align: center; color: #4a5568; padding: 40px; font-weight: 500; font-size: 15px;">
-                        Please select a country and port to view available shipping rates.
+                        Please select a country to view available shipping rates.
                     </td>
                 </tr>
             </tbody>
@@ -198,7 +199,7 @@
 </div>
 
 <script>
-    // Complete relational dataset mapping ports strictly to their respective countries
+    // Structural static global registry matrix 
     const shippingDatabase = [
         // Australia
         { carrier: 'ANL', validity: '30TH SEP', port: 'ADELAIDE', country: 'Australia', type: 'GP20', rate: 1900, baf: '318', dg3: '0' },
@@ -236,12 +237,13 @@
     const typeSelect = document.getElementById('typeSelect');
     const tableBody = document.getElementById('rateTableBody');
 
-    // Rebuilds port dropdown dynamically using JS option element removal and generation to eliminate browser rendering errors
+    // Dynamic reconstruction ensures ports populate safely without altering DOM attribute states
     function handleCountryChange() {
         const selectedCountry = countrySelect.value;
         
-        // Clear all previous options entirely
+        // Always reset base option structure cleanly
         portSelect.innerHTML = '';
         
-        if (!selectedCountry) {
-            portSelect.disabled = true;
+        const defaultOpt = document.createElement('option');
+        defaultOpt.value = 'ALL';
+        defaultOpt.textContent = 'All Ports';
