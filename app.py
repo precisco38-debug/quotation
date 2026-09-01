@@ -34,7 +34,7 @@ if not st.session_state["authenticated"]:
     st.stop()
 
 # --- MAIN APP LOGIC ---
-st.set_page_config(page_title="Liner Quotes Table", layout="wide") # Forced wide layout for spreadsheets
+st.set_page_config(page_title="Liner Quotes Table", layout="wide")
 
 col1, col2 = st.columns(2)
 with col1:
@@ -99,15 +99,20 @@ if uploaded_file is not None:
                     
                     llm = ChatOpenAI(model="gpt-4o-mini", temperature=0, openai_api_key=openai_api_key)
                     
-                    # Force AI to return data in a single row string mapping perfectly to your wide layout columns
+                    # Unified extraction format template request block
                     prompt = ChatPromptTemplate.from_messages([
                         ("system", (
-                            "You are an expert logistics analyst. Convert messy shipping quotes into a single text row.\n"
-                            "You MUST respond ONLY with a clean single row using a semicolon (;) as a separator. "
-                            "Do not write any introductory or concluding sentences. Do not use markdown backticks.\n\n"
-                            "The format must follow this exact output structure:\n"
-                            "[Ocean Freight Rate (USD)];[OTHC];[DTHC];[BAF];[Documentation Fee];[Peak Season Surcharge (PSS)];[Estimated Transit Time (Days)];[Validity Period]\n\n"
-                            "Rules:\n- Extract values carefully.\n- Use 'Not Mentioned' if data is missing."
+                            "You are an expert logistics analyst. Convert messy shipping quotes into a strict layout.\n"
+                            "You MUST respond ONLY with a clean semicolon (;) separated string format using this text profile template structure:\n"
+                            "Ocean Freight Rate (USD);[parsed value]\n"
+                            "Origin Terminal Handling Charges (OTHC);[parsed value]\n"
+                            "Destination Terminal Handling Charges (DTHC);[parsed value]\n"
+                            "Bunker Adjustment Factor (BAF);[parsed value]\n"
+                            "Documentation Fee;[parsed value]\n"
+                            "Peak Season Surcharge (PSS);[parsed value]\n"
+                            "Estimated Transit Time (Days);[parsed value]\n"
+                            "Validity Period;[parsed value]\n\n"
+                            "Rules:\n- Never alter heading names.\n- Use 'Not Mentioned' if data is missing."
                         )),
                         ("user", "{document_text}")
                     ])
@@ -115,46 +120,39 @@ if uploaded_file is not None:
                     chain = prompt | llm
                     response = chain.invoke({"document_text": raw_content})
                     
-                    row_data = response.content.strip().split(";")
+                    csv_lines = [line.split(";") for line in response.content.strip().split("\n") if ";" in line]
                     
-                    # Define full database columns including tracking metadata properties
-                    headers = [
-                        "File Name", "Liner", "Year", "Month", 
-                        "Ocean Freight Rate (USD)", "Origin THC (OTHC)", "Destination THC (DTHC)", 
-                        "Bunker Surcharge (BAF)", "Documentation Fee", "Peak Season Surcharge (PSS)", 
-                        "Transit Time (Days)", "Validity Period"
-                    ]
-                    
-                    # Build row content array tracking all extra metrics
-                    full_row = [filename, liner, year, month] + row_data
-                    
-                    # Handle safety slice alignment anomalies
-                    if len(full_row) > len(headers):
-                        full_row = full_row[:len(headers)]
-                    elif len(full_row) < len(headers):
-                        full_row += ["Not Mentioned"] * (len(headers) - len(full_row))
-                    
-                    df_result = pd.DataFrame([full_row], columns=headers)
-                    
-                    st.success("Extraction Complete!")
-                    st.subheader("📋 Standardized Logistical Record Row")
-                    
-                    # Render full horizontal spreadsheet row block display
-                    st.dataframe(df_result, use_container_width=True, hide_index=True)
-                    
-                    excel_buffer = io.BytesIO()
-                    with pd.ExcelWriter(excel_buffer, engine='openpyxl') as writer:
-                        df_result.to_excel(writer, index=False, sheet_name='QuotationData')
-                    
-                    excel_data = excel_buffer.getvalue()
-                    
-                    st.download_button(
-                        label="📥 Download Row as Excel Spreadsheet",
-                        data=excel_data,
-                        file_name=f"{liner}_{year}_{month}_Record.xlsx",
-                        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                        use_container_width=True
-                    )
+                    if csv_lines:
+                        # 1. Build a Vertical Mobile-Friendly Table Block Structure
+                        df_vertical = pd.DataFrame(csv_lines, columns=["Metric", "Extracted Value"])
+                        
+                        st.success("Extraction Complete!")
+                        st.subheader("📋 1. Mobile Vertical View")
+                        st.dataframe(df_vertical, use_container_width=True, hide_index=True)
+                        
+                        # 2. Build a Wide Horizontal Row Layout Spreadsheet Block
+                        horiz_headers = ["File Name", "Liner", "Year", "Month"] + [row[0] for row in csv_lines]
+                        horiz_values = [filename, liner, year, month] + [row[1] for row in csv_lines]
+                        df_horizontal = pd.DataFrame([horiz_values], columns=horiz_headers)
+                        
+                        st.subheader("📋 2. PC Horizontal Spreadsheet Record View")
+                        st.dataframe(df_horizontal, use_container_width=True, hide_index=True)
+                        
+                        # 3. Export to Excel File Action Logic
+                        excel_buffer = io.BytesIO()
+                        with pd.ExcelWriter(excel_buffer, engine='openpyxl') as writer:
+                            df_horizontal.to_excel(writer, index=False, sheet_name='QuotationData')
+                        excel_data = excel_buffer.getvalue()
+                        
+                        st.download_button(
+                            label="📥 Download Record as Excel Spreadsheet File",
+                            data=excel_data,
+                            file_name=f"{liner}_{year}_{month}_Record.xlsx",
+                            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                            use_container_width=True
+                        )
+                    else:
+                        st.error("AI returned faulty processing blocks. Try re-clicking the extraction button.")
                         
                 except Exception as e:
                     st.error(f"Error parsing file elements: {e}")
