@@ -8,7 +8,6 @@
         :root {
             --primary-color: #1a365d;
             --secondary-color: #2b6cb0;
-            --accent-color: #3182ce;
             --bg-color: #f7fafc;
             --table-border: #e2e8f0;
             --text-color: #2d3748;
@@ -100,6 +99,10 @@
             border-bottom: 1px solid var(--table-border);
         }
 
+        .rate-row {
+            display: table-row;
+        }
+
         tr:nth-child(even) {
             background-color: #f8fafc;
         }
@@ -108,7 +111,8 @@
             background-color: #edf2f7;
         }
 
-        .no-results {
+        .no-results-row {
+            display: none;
             padding: 30px;
             text-align: center;
             color: #718096;
@@ -128,19 +132,38 @@
 <body>
 
 <div class="container">
-    <h1>Self-Help Freight Query Interface</h1>
+    <h1>Customer Self-Help Freight Query Interface</h1>
     
     <div class="filter-section">
+        <!-- Native dropdown options prevent JavaScript dynamic rendering errors -->
         <div class="form-group">
             <label for="countrySelect">Country of Port</label>
             <select id="countrySelect">
                 <option value="ALL">All Countries</option>
+                <option value="Australia">Australia</option>
+                <option value="China">China</option>
+                <option value="Indonesia">Indonesia</option>
+                <option value="New Zealand">New Zealand</option>
+                <option value="South Korea">South Korea</option>
             </select>
         </div>
         <div class="form-group">
             <label for="portSelect">Port Name</label>
             <select id="portSelect">
                 <option value="ALL">All Ports</option>
+                <!-- Australia Ports -->
+                <option value="ADELAIDE" data-country="Australia">ADELAIDE</option>
+                <option value="BRISBANE" data-country="Australia">BRISBANE</option>
+                <!-- New Zealand Ports -->
+                <option value="AUCKLAND" data-country="New Zealand">AUCKLAND</option>
+                <!-- China Ports -->
+                <option value="SHANGHAI" data-country="China">SHANGHAI</option>
+                <option value="QINGDAO" data-country="China">QINGDAO</option>
+                <option value="XINGANG" data-country="China">XINGANG</option>
+                <!-- South Korea Ports -->
+                <option value="BUSAN" data-country="South Korea">BUSAN</option>
+                <!-- Indonesia Ports -->
+                <option value="JAKARTA" data-country="Indonesia">JAKARTA</option>
             </select>
         </div>
         <div class="form-group">
@@ -190,64 +213,22 @@
                 </tr>
             </thead>
             <tbody id="rateTableBody">
-                <!-- Data populated dynamically via script -->
-            </tbody>
-        </table>
-    </div>
-</div>
+                <!-- Static layout mapping separated container types onto unique rows -->
+                <!-- Australia Corridor -->
+                <tr class="rate-row" data-country="Australia" data-port="ADELAIDE" data-type="GP20">
+                    <td><strong>ANL</strong></td><td>30TH SEP</td><td>ADELAIDE <small style="color:#718096;display:block;">(Australia)</small></td><td><span class="badge">GP20</span></td><td><strong>$1900</strong></td><td>-</td><td>-</td><td>318</td><td>-</td><td>-</td><td>0</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
+                </tr>
+                <tr class="rate-row" data-country="Australia" data-port="ADELAIDE" data-type="GP40">
+                    <td><strong>ANL</strong></td><td>30TH SEP</td><td>ADELAIDE <small style="color:#718096;display:block;">(Australia)</small></td><td><span class="badge">GP40</span></td><td><strong>$3800</strong></td><td>-</td><td>-</td><td>318</td><td>-</td><td>-</td><td>0</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
+                </tr>
+                <tr class="rate-row" data-country="Australia" data-port="ADELAIDE" data-type="GP40HC">
+                    <td><strong>ANL</strong></td><td>30TH SEP</td><td>ADELAIDE <small style="color:#718096;display:block;">(Australia)</small></td><td><span class="badge">GP40HC</span></td><td><strong>$3800</strong></td><td>-</td><td>-</td><td>318</td><td>-</td><td>-</td><td>0</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
+                </tr>
+                <tr class="rate-row" data-country="Australia" data-port="ADELAIDE" data-type="TK20LD">
+                    <td><strong>ANL</strong></td><td>30TH SEP</td><td>ADELAIDE <small style="color:#718096;display:block;">(Australia)</small></td><td><span class="badge">TK20LD</span></td><td><strong>$1900</strong></td><td>-</td><td>-</td><td>318</td><td>-</td><td>-</td><td>0</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
+                </tr>
 
-<script>
-    // Flattened structural matrix from manifest source index files
-    const manifestRows = [
-        { carrier: 'ANL', validity: '30TH SEP', port: 'ADELAIDE', country: 'Australia', type: 'GP20', rate: 1900, baf: '318', dg3: '0' },
-        { carrier: 'ANL', validity: '30TH SEP', port: 'ADELAIDE', country: 'Australia', type: 'GP40', rate: 3800, baf: '318', dg3: '0' },
-        { carrier: 'ANL', validity: '30TH SEP', port: 'ADELAIDE', country: 'Australia', type: 'GP40HC', rate: 3800, baf: '318', dg3: '0' },
-        { carrier: 'ANL', validity: '30TH SEP', port: 'ADELAIDE', country: 'Australia', type: 'TK20LD', rate: 1900, baf: '318', dg3: '0' },
-        
-        { carrier: 'ANL', validity: '30TH SEP', port: 'BRISBANE', country: 'Australia', type: 'GP20', rate: 1900, baf: '318', dg3: '0' },
-        { carrier: 'ANL', validity: '30TH SEP', port: 'BRISBANE', country: 'Australia', type: 'GP40', rate: 3800, baf: '318', dg3: '0' },
-        { carrier: 'ANL', validity: '30TH SEP', port: 'BRISBANE', country: 'Australia', type: 'GP40HC', rate: 3800, baf: '318', dg3: '0' },
-        { carrier: 'ANL', validity: '30TH SEP', port: 'BRISBANE', country: 'Australia', type: 'TK20LD', rate: 1900, baf: '318', dg3: '0' },
-
-        { carrier: 'ANL', validity: '31ST AUG', port: 'AUCKLAND', country: 'New Zealand', type: 'GP20', rate: 1214, baf: '50', dg3: '50' },
-        { carrier: 'ANL', validity: '31ST AUG', port: 'AUCKLAND', country: 'New Zealand', type: 'GP40', rate: 2428, baf: '50', dg3: '50' },
-        { carrier: 'ANL', validity: '31ST AUG', port: 'AUCKLAND', country: 'New Zealand', type: 'GP40HC', rate: 2428, baf: '50', dg3: '50' },
-        { carrier: 'ANL', validity: '31ST AUG', port: 'AUCKLAND', country: 'New Zealand', type: 'TK20LD', rate: 1214, baf: '50', dg3: '50' },
-
-        { carrier: 'BENLINE', validity: '30TH SEP', port: 'SHANGHAI', country: 'China', type: 'GP20', rate: 2529, hws: '100', baf: '718', oth: '29', dg3: '200' },
-        { carrier: 'BENLINE', validity: '30TH SEP', port: 'SHANGHAI', country: 'China', type: 'GP40', rate: 5058, hws: '100', baf: '718', oth: '29', dg3: '200' },
-        { carrier: 'BENLINE', validity: '30TH SEP', port: 'SHANGHAI', country: 'China', type: 'GP40HC', rate: 4149, hws: '100', baf: '718', oth: '29', dg3: '200' },
-        { carrier: 'BENLINE', validity: '30TH SEP', port: 'SHANGHAI', country: 'China', type: 'TK20LD', rate: 2529, hws: '100', baf: '718', oth: '29', dg3: '200' },
-
-        { carrier: 'COSCO', validity: '31ST AUG', port: 'ADELAIDE', country: 'Australia', type: 'GP20', rate: 1400, dg3: 'INCL', remarks: 'Subject to BAF' },
-        { carrier: 'COSCO', validity: '31ST AUG', port: 'ADELAIDE', country: 'Australia', type: 'GP40', rate: 2800, dg3: 'INCL', remarks: 'Subject to BAF' },
-        { carrier: 'COSCO', validity: '31ST AUG', port: 'ADELAIDE', country: 'Australia', type: 'GP40HC', rate: 2800, dg3: 'INCL', remarks: 'Subject to BAF' },
-        { carrier: 'COSCO', validity: '31ST AUG', port: 'ADELAIDE', country: 'Australia', type: 'TK20LD', rate: 200, dg3: 'INCL', remarks: 'Subject to BAF' },
-
-        { carrier: 'HMM', validity: '30TH SEP', port: 'JAKARTA', country: 'Indonesia', type: 'GP20', rate: 400, dg3: '30' },
-        { carrier: 'HMM', validity: '30TH SEP', port: 'JAKARTA', country: 'Indonesia', type: 'GP40', rate: 800, dg3: '30' },
-        { carrier: 'HMM', validity: '30TH SEP', port: 'JAKARTA', country: 'Indonesia', type: 'GP40HC', rate: 800, dg3: '30' },
-        { carrier: 'HMM', validity: '30TH SEP', port: 'JAKARTA', country: 'Indonesia', type: 'TK20LD', rate: 30, dg3: '30' }
-    ];
-
-    // Form elements
-    const countrySelect = document.getElementById('countrySelect');
-    const portSelect = document.getElementById('portSelect');
-    const typeSelect = document.getElementById('typeSelect');
-    const tableBody = document.getElementById('rateTableBody');
-
-    // Build the country select on initial setup
-    function setupFilters() {
-        // Collect distinct countries
-        const countries = [];
-        manifestRows.forEach(item => {
-            if (!countries.includes(item.country)) {
-                countries.push(item.country);
-            }
-        });
-        countries.sort();
-
-        // Populate countries select
-        countries.forEach(country => {
-            const opt = document.createElement('option');
-            opt.value = country;
+                <tr class="rate-row" data-country="Australia" data-port="BRISBANE" data-type="GP20">
+                    <td><strong>ANL</strong></td><td>30TH SEP</td><td>BRISBANE <small style="color:#718096;display:block;">(Australia)</small></td><td><span class="badge">GP20</span></td><td><strong>$1900</strong></td><td>-</td><td>-</td><td>318</td><td>-</td><td>-</td><td>0</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
+                </tr>
+                <tr class="rate-row" data-country="Australia" data-port="BRISBANE" data-type="GP40">
