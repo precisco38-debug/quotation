@@ -72,7 +72,7 @@ if uploaded_file is not None:
     filename = uploaded_file.name
     st.success(f"Selected file: `{filename}`")
     
-    valid_file_pattern = re.compile(r"^([a-zA-Z0-9]+)(\d{4})([a-zA-Z]+)\.(pdf|xlsx)$")
+    valid_file_pattern = re.compile(r"^([a-zA-Z0-9]+)(\d{4})([a-zA-Z]+)\.(pdf|xlsx)\$")
     match = valid_file_pattern.match(filename)
     
     if not match:
@@ -98,91 +98,94 @@ if uploaded_file is not None:
                         st.error("❌ Critical: No text content could be decoded.")
                         st.stop()
                     
-                    # Target advanced structured processing engine model 
+                    # Direct and reliable LLM initialization
                     llm = ChatOpenAI(model="gpt-4o-mini", temperature=0, openai_api_key=openai_api_key)
                     
-                    # Force response model schema to bind strictly to standard JSON keys
-                    shipping_tool = {
-                        "name": "render_shipping_metrics",
-                        "description": "Output shipping quote parameters precisely inside object fields.",
-                        "parameters": {
-                            "type": "object",
-                            "properties": {
-                                "ocean_freight": {"type": "string", "description": "Ocean Freight Rate (USD)"},
-                                "othc": {"type": "string", "description": "Origin Terminal Handling Charges (OTHC)"},
-                                "dthc": {"type": "string", "description": "Destination Terminal Handling Charges (DTHC)"},
-                                "baf": {"type": "string", "description": "Bunker Adjustment Factor (BAF)"},
-                                "doc_fee": {"type": "string", "description": "Documentation Fee"},
-                                "pss": {"type": "string", "description": "Peak Season Surcharge (PSS)"},
-                                "transit_time": {"type": "string", "description": "Estimated Transit Time (Days)"},
-                                "validity": {"type": "string", "description": "Validity Period"}
-                            },
-                            "required": ["ocean_freight", "othc", "dthc", "baf", "doc_fee", "pss", "transit_time", "validity"]
-                        }
-                    }
-                    
-                    structured_llm = llm.bind_tools([shipping_tool])
-                    
                     prompt = ChatPromptTemplate.from_messages([
-                        ("system", "You are an expert logistics analyst. Parse structural cost metrics out of messy text profiles. Look for all related container ocean freights, surcharges, and local fees. If any field is completely missing or not referenced, write 'Not Mentioned'."),
+                        ("system", (
+                            "You are an expert logistics analyst. Parse structural cost metrics out of messy text profiles.\n"
+                            "You MUST respond ONLY with a clean JSON object containing the exact keys listed below. "
+                            "Do not include markdown blocks, backticks (```json), or introductory/concluding text.\n\n"
+                            "REQUIRED JSON STRUCTURE:\n"
+                            "{\n"
+                            '  "ocean_freight": "[Value]",\n'
+                            '  "othc": "[Value]",\n'
+                            '  "dthc": "[Value]",\n'
+                            '  "baf": "[Value]",\n'
+                            '  "doc_fee": "[Value]",\n'
+                            '  "pss": "[Value]",\n'
+                            '  "transit_time": "[Value]",\n'
+                            '  "validity": "[Value]"\n'
+                            "}\n\n"
+                            "Rules:\n- Extract real values carefully from the document content.\n- Use 'Not Mentioned' if data is missing."
+                        )),
                         ("user", "{document_text}")
                     ])
                     
-                    chain = prompt | structured_llm
+                    chain = prompt | llm
                     response = chain.invoke({"document_text": raw_content})
                     
-                    # FIX: Correct array indexing layer using explicit item matching check loops
-                    if response.tool_calls and len(response.tool_calls) > 0:
-                        data_dict = response.tool_calls[0]["args"]
+                    # Safely clean markdown wrappers if any exist
+                    clean_json_text = response.content.replace("```json", "").replace("```", "").strip()
+                    data_dict = json.loads(clean_json_text)
+                    
+                    # Define human-readable labels
+                    metric_mapping = [
+                        ("1. Ocean Freight Rate (USD)", data_dict.get("ocean_freight", "Not Mentioned")),
+                        ("2. Origin Terminal Handling Charges (OTHC)", data_dict.get("othc", "Not Mentioned")),
+                        ("3. Destination Terminal Handling Charges (DTHC)", data_dict.get("dthc", "Not Mentioned")),
+                        ("4. Bunker Adjustment Factor (BAF)", data_dict.get("baf", "Not Mentioned")),
+                        ("5. Documentation Fee", data_dict.get("doc_fee", "Not Mentioned")),
+                        ("6. Peak Season Surcharge (PSS)", data_dict.get("pss", "Not Mentioned")),
+                        ("7. Estimated Transit Time (Days)", data_dict.get("transit_time", "Not Mentioned")),
+                        ("8. Validity Period", data_dict.get("validity", "Not Mentioned"))
+                    ]
+                    
+                    st.success("Extraction Complete!")
+                    
+                    # 1. Output Layout Component: Vertical Mobile Table
+                    df_vertical = pd.DataFrame(metric_mapping, columns=["Metric", "Extracted Value"])
+                    st.subheader("📋 1. Mobile Vertical View")
+                    st.dataframe(df_vertical, use_container_width=True, hide_index=True)
+                    
+                    # 2. Output Layout Component: PC Horizontal Spreadsheet View
+                    horiz_headers = [
+                        "File Name", "Liner", "Year", "Month", 
+                        "Ocean Freight Rate (USD)", "Origin THC (OTHC)", "Destination THC (DTHC)", 
+                        "Bunker Surcharge (BAF)", "Documentation Fee", "Peak Season Surcharge (PSS)", 
+                        "Transit Time (Days)", "Validity Period"
+                    ]
+                    
+                    horiz_values = [
+                        filename, liner, year, month,
+                        data_dict.get("ocean_freight", "Not Mentioned"), 
+                        data_dict.get("othc", "Not Mentioned"), 
+                        data_dict.get("dthc", "Not Mentioned"),
+                        data_dict.get("baf", "Not Mentioned"), 
+                        data_dict.get("doc_fee", "Not Mentioned"), 
+                        data_dict.get("pss", "Not Mentioned"),
+                        data_dict.get("transit_time", "Not Mentioned"), 
+                        data_dict.get("validity", "Not Mentioned")
+                    ]
+                    
+                    df_horizontal = pd.DataFrame([horiz_values], columns=horiz_headers)
+                    st.subheader("📋 2. PC Horizontal Spreadsheet Record View")
+                    st.dataframe(df_horizontal, use_container_width=True, hide_index=True)
+                    
+                    # 3. Handle File Downloading Export
+                    excel_buffer = io.BytesIO()
+                    with pd.ExcelWriter(excel_buffer, engine='openpyxl') as writer:
+                        df_horizontal.to_excel(writer, index=False, sheet_name='QuotationData')
+                    excel_data = excel_buffer.getvalue()
+                    
+                    st.markdown("")
+                    st.download_button(
+                        label="📥 Download Record as Excel Spreadsheet File",
+                        data=excel_data,
+                        file_name=f"{liner}_{year}_{month}_Record.xlsx",
+                        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        use_container_width=True
+                    )
                         
-                        # Set display metric labels mapped explicitly to values
-                        metric_mapping = [
-                            ("1. Ocean Freight Rate (USD)", data_dict.get("ocean_freight")),
-                            ("2. Origin Terminal Handling Charges (OTHC)", data_dict.get("othc")),
-                            ("3. Destination Terminal Handling Charges (DTHC)", data_dict.get("dthc")),
-                            ("4. Bunker Adjustment Factor (BAF)", data_dict.get("baf")),
-                            ("5. Documentation Fee", data_dict.get("doc_fee")),
-                            ("6. Peak Season Surcharge (PSS)", data_dict.get("pss")),
-                            ("7. Estimated Transit Time (Days)", data_dict.get("transit_time")),
-                            ("8. Validity Period", data_dict.get("validity"))
-                        ]
-                        
-                        st.success("Extraction Complete!")
-                        
-                        # 1. Output Layout Layout Component: Vertical Mobile List Table
-                        df_vertical = pd.DataFrame(metric_mapping, columns=["Metric", "Extracted Value"])
-                        st.subheader("📋 1. Mobile Vertical View")
-                        st.dataframe(df_vertical, use_container_width=True, hide_index=True)
-                        
-                        # 2. Output Layout Layout Component: Wide Horizontal Record Row Grid Spreadsheet
-                        horiz_headers = ["File Name", "Liner", "Year", "Month", 
-                                         "Ocean Freight Rate (USD)", "Origin THC (OTHC)", "Destination THC (DTHC)", 
-                                         "Bunker Surcharge (BAF)", "Documentation Fee", "Peak Season Surcharge (PSS)", 
-                                         "Transit Time (Days)", "Validity Period"]
-                        
-                        horiz_values = [filename, liner, year, month,
-                                        data_dict.get("ocean_freight"), data_dict.get("othc"), data_dict.get("dthc"),
-                                        data_dict.get("baf"), data_dict.get("doc_fee"), data_dict.get("pss"),
-                                        data_dict.get("transit_time"), data_dict.get("validity")]
-                        
-                        df_horizontal = pd.DataFrame([horiz_values], columns=horiz_headers)
-                        st.subheader("📋 2. PC Horizontal Spreadsheet Record View")
-                        st.dataframe(df_horizontal, use_container_width=True, hide_index=True)
-                        
-                        # 3. Handle File Downloading Export
-                        excel_buffer = io.BytesIO()
-                        with pd.ExcelWriter(excel_buffer, engine='openpyxl') as writer:
-                            df_horizontal.to_excel(writer, index=False, sheet_name='QuotationData')
-                        excel_data = excel_buffer.getvalue()
-                        
-                        st.markdown("")
-                        st.download_button(
-                            label="📥 Download Record as Excel Spreadsheet File",
-                            data=excel_data,
-                            file_name=f"{liner}_{year}_{month}_Record.xlsx",
-                            mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                            use_container_width=True
-                        )
-                        
-                        # Embedded data layer verification check block
-                        with st.expander("👀 View Decoded Text Content Used by AI"):
+                except Exception as e:
+                    st.error(f"Error parsing file elements: {e}")
