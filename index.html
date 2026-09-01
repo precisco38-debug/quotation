@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Self-Help: Shipping Rates Query</title>
+    <title>Customer Self-Help: Shipping Rates Query System</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -40,7 +40,7 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 14px;
-            min-width: 200px;
+            min-width: 220px;
             background-color: #fff;
         }
         .btn-clear {
@@ -92,6 +92,13 @@
             font-size: 16px;
             color: #6c757d;
         }
+        .badge {
+            background: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: bold;
+            font-size: 11px;
+        }
     </style>
 </head>
 <body>
@@ -133,8 +140,7 @@
                     <th>PORT</th>
                     <th>COUNTRY</th>
                     <th>CONTAINER TYPE</th>
-                    <th>BASE RATE (USD)</th>
-                    <th>ESTIMATED TOTAL (USD)</th>
+                    <th>RATE (USD)</th>
                     <th>GRI</th>
                     <th>HWS</th>
                     <th>BAF</th>
@@ -168,15 +174,15 @@
     </div>
 
     <script>
-        // Port-to-Country Mapping dictionary
+        // Comprehensive Port-to-Country Mapping dictionary for mapping dropdown options
         const countryMapping = {
             "ADELAIDE": "Australia", "BRISBANE": "Australia", "FREMENTLE": "Australia", "MELBOURNE": "Australia", "SYDNEY": "Australia", "TOWNSVILLE": "Australia", "DARWIN": "Australia", "PORT HEDLAND": "Australia", "DAMPIER": "Australia",
             "AUCKLAND": "New Zealand", "LYTTELTON": "New Zealand", "WELLINGTON": "New Zealand", "NAPIER": "New Zealand", "TAURANGA": "New Zealand", "NELSON": "New Zealand",
             "BUSAN": "South Korea", "INCHEON": "South Korea", "GWANGYANG": "South Korea", "ULSAN": "South Korea", "POHANG": "South Korea", "KWANG YANG": "South Korea",
-            "SHANGHAI": "China", "QINGDAO": "China", "NINGBO": "China", "XINGANG": "China", "YANTIAN": "China", "XIAMEN": "China", "WUHAN": "China", "NANJING": "China", "HUANGPU": "China", "NANSHA": "China", "CHANGSHU": "China", "LIAN YUN GANG": "China", "ZHANG JIA GANG": "China", "ZHANJIANG": "China", "ZHUHAI": "China", "QINZHOU": "China", "CHENGDU": "China", "CHONGQING": "China", "KUNMING": "China", "DALIAN": "China", "SHEKOU": "China", "FUZHOU": "China", "HONG KONG": "Hong Kong", "MACAU": "Macau", "TAICHUNG": "Taiwan", "KAOHSIUNG": "Taiwan", "TAIPEI": "Taiwan", "KEELUNG": "Taiwan", "TAOYUAN": "Taiwan", "YUGANG": "China", "JIAOXIN": "China", "ZHANGJIAGANG": "China", "YANTAI": "China", "LIANYUNGANG": "China", "WUDU": "China", "JIANGYIN": "China", "GAOLAN": "China", "RONGQI": "China", "SAN SHAN": "China", "ZHAO QING": "China", "LIAN HUA SAN": "China", "SHANTOU": "China", "SHIMIZU": "Japan", "YOKOHAMA": "Japan", "TOKYO": "Japan", "NAGOYA": "Japan", "KOBE": "Japan", "OSAKA": "Japan", "MOJI": "Japan", "HAKATA": "Japan", "YOKKAICHI": "Japan", "NIIGATA": "Japan", "TOMAKOMAI": "Japan", "NAHA": "Japan", "CHIBA": "Japan",
-            "NHAVA SHEVA": "India", "MUNDRA": "India", "CHENNAI": "India", "COCHIN": "India", "KOLKATA": "India", "VIZAG": "India", "TUTICORIN": "India", "PIPAVAV": "India", "KATTUPALLI": "India", "HALDIA": "India", "BENGALURU": "India", "BANGALORE": "India", "CALCUTTA": "India", "DADRI": "India", "HAZIRA": "India", "HYDERABAD": "India", "LUDHINA": "India", "AHMEDABAD": "India", "KANPUR": "India", "MULUND": "India", "NEW DELHI": "India", "TUMB": "India", "GANGGAVARAM": "India", "MANGALORE": "India", "MUMBAI": "India", "PIPAVAV": "India", "ANKLESHWAR": "India", "DELHI": "India", "GARHI HARSARU": "India", "JAIPUR": "India", "LUHDHIANA": "India", "MORBI": "India", "VARNAMA": "India",
-            "JAKARTA": "Indonesia", "SURABAYA": "Indonesia", "SEMARANG": "Indonesia", "BELAWAN": "Indonesia", "PALEMBANG": "Indonesia", "PONTIANAK": "Indonesia", "BALIKPAPAN": "Indonesia", "BANJARMASIN": "Indonesia", "PANJANG": "Indonesia", "BATAM": "Indonesia", "MAKASSAR": "Indonesia", "PADANG": "Indonesia", "SAMARINDA": "Indonesia", "BITUNG": "Indonesia", "PATIMBAN": "Indonesia", "BANJAMASIN": "Indonesia",
-            "HO CHI MINH": "Vietnam", "HAIPHONG": "Vietnam", "DANANG": "Vietnam", "QUI NHON": "Vietnam", "VUNG TAU": "Vietnam", "CAT LAI": "Vietnam", "PHUOC LONG": "Vietnam", "CAI MEP": "Vietnam", "HIEP PHOUC": "Vietnam", "BINH DUONG": "Vietnam", "TRANSIMEX": "Vietnam", "CAIMEP": "Vietnam", "QUY NHON": "Vietnam", "QUI NHƠN": "Vietnam",
+            "SHANGHAI": "China", "QINGDAO": "China", "NINGBO": "China", "XINGANG": "China", "YANTIAN": "China", "XIAMEN": "China", "WUHAN": "China", "NANJING": "China", "HUANGPU": "China", "NANSHA": "China", "CHANGSHU": "China", "LIAN YUN GANG": "China", "ZHANG JIA GANG": "China", "ZHANJIANG": "China", "ZHUHAI": "China", "QINZHOU": "China", "CHENGDU": "China", "CHONGQING": "China", "KUNMING": "China", "DALIAN": "China", "SHEKOU": "China", "FUZHOU": "China", "HONG KONG": "Hong Kong", "MACAU": "Macau", "TAICHUNG": "Taiwan", "KAOHSIUNG": "Taiwan", "TAIPEI": "Taiwan", "KEELUNG": "Taiwan", "TAOYUAN": "Taiwan", "JIAOXIN": "China", "ZHANGJIAGANG": "China", "YANTAI": "China", "LIANYUNGANG": "China", "WUDU": "China", "JIANGYIN": "China", "GAOLAN": "China", "RONGQI": "China", "SAN SHAN": "China", "ZHAO QING": "China", "LIAN HUA SAN": "China", "SHANTOU": "China", "YUGANG": "China",
+            "NHAVA SHEVA": "India", "MUNDRA": "India", "CHENNAI": "India", "COCHIN": "India", "KOLKATA": "India", "VIZAG": "India", "TUTICORIN": "India", "PIPAVAV": "India", "KATTUPALLI": "India", "HALDIA": "India", "BENGALURU": "India", "BANGALORE": "India", "CALCUTTA": "India", "DADRI": "India", "HAZIRA": "India", "HYDERABAD": "India", "LUDHINA": "India", "AHMEDABAD": "India", "KANPUR": "India", "MULUND": "India", "NEW DELHI": "India", "TUMB": "India", "GANGGAVARAM": "India", "MANGALORE": "India", "MUMBAI": "India", "ANKLESHWAR": "India", "DELHI": "India", "GARHI HARSARU": "India", "JAIPUR": "India", "LUHDHIANA": "India", "MORBI": "India", "VARNAMA": "India", "KATTUPALLI": "India", "PIPIAVAV": "India",
+            "JAKARTA": "Indonesia", "SURABAYA": "Indonesia", "SEMARANG": "Indonesia", "BELAWAN": "Indonesia", "PALEMBANG": "Indonesia", "PONTIANAK": "Indonesia", "BALIKPAPAN": "Indonesia", "BANJARMASIN": "Indonesia", "PANJANG": "Indonesia", "BATAM": "Indonesia", "MAKASSAR": "Indonesia", "PADANG": "Indonesia", "SAMARINDA": "Indonesia", "BITUNG": "Indonesia", "PATIMBAN": "Indonesia", "BANJAMASIN": "Indonesia", "HAKARTA": "Indonesia",
+            "HO CHI MINH": "Vietnam", "HAIPHONG": "Vietnam", "DANANG": "Vietnam", "QUI NHON": "Vietnam", "VUNG TAU": "Vietnam", "CAT LAI": "Vietnam", "PHUOC LONG": "Vietnam", "CAI MEP": "Vietnam", "HIEP PHOUC": "Vietnam", "BINH DUONG": "Vietnam", "TRANSIMEX": "Vietnam", "CAIMEP": "Vietnam", "QUY NHON": "Vietnam", "QUI NHƠN": "Vietnam", "CITY": "Vietnam",
             "LAEM CHABANG": "Thailand", "BANGKOK": "Thailand", "LAT KRABANG": "Thailand", "SONGKHLA": "Thailand", "SAHATHAI": "Thailand", "PAT ": "Thailand", "SAMUT PRAKAN": "Thailand", "BMT": "Thailand", "KRUNG THEP": "Thailand",
-            "PORT KELANG": "Malaysia", "PENANG": "Malaysia", "PASIR GUDANG": "Malaysia", "KUANTAN": "Malaysia", "TANJUNG PELEPAS": "Malaysia", "LABUAN": "Malaysia", "SIBU": "Malaysia", "PORTKLANG": "Malaysia", "PORT KLANG": "Malaysia",
+            "PORT KELANG": "Malaysia", "PENANG": "Malaysia", "PASIR GUDANG": "Malaysia", "KUANTAN": "Malaysia", "TANJUNG PELEPAS": "Malaysia", "LABUAN": "Malaysia", "SIBU": "Malaysia", "PORTKLANG": "Malaysia", "PORT KLANG": "Malaysia", "WEST": "Malaysia", "NORTH": "Malaysia",
             "MANILA": "Philippines", "CEBU": "Philippines", "DAVAO": "Philippines", "GENERAL SANTOS": "Philippines", "SUBIC": "Philippines", "CAGAYAN": "Philippines", "BATANGAS": "Philippines", "CAGAYAH": "Philippines", "ZAMBOANGA": "Philippines", "ILO ILO": "Philippines", "LUZON": "Philippines", "PANABO": "Philippines",
