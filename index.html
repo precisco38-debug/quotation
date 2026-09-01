@@ -69,11 +69,6 @@
             background-color: white;
             font-size: 14px;
             outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .form-group select:focus {
-            border-color: var(--secondary-color);
         }
 
         .table-responsive {
@@ -98,8 +93,6 @@
             font-size: 12px;
             letter-spacing: 0.5px;
             text-transform: uppercase;
-            position: sticky;
-            top: 0;
         }
 
         td {
@@ -123,16 +116,12 @@
         }
 
         .badge {
-            background-color: #e2e8f0;
+            background-color: #feebc8;
+            color: #c05621;
             padding: 2px 6px;
             border-radius: 4px;
             font-size: 11px;
             font-weight: bold;
-        }
-        
-        .badge-container {
-            background-color: #feebc8;
-            color: #c05621;
         }
     </style>
 </head>
@@ -157,7 +146,7 @@
         <div class="form-group">
             <label for="typeSelect">Container Type</label>
             <select id="typeSelect">
-                <option value="ALL">All Types (GP20, GP40, GP40HC, TK20LD)</option>
+                <option value="ALL">All Types</option>
                 <option value="GP20">GP20</option>
                 <option value="GP40">GP40</option>
                 <option value="GP40HC">GP40HC</option>
@@ -201,21 +190,64 @@
                 </tr>
             </thead>
             <tbody id="rateTableBody">
-                <!-- Dynamic rows parsed from manifest will build here -->
+                <!-- Data populated dynamically via script -->
             </tbody>
         </table>
     </div>
 </div>
 
 <script>
-    // Manifest structured source mapping matching database indexes
-    const rawData = [
-        { carrier: 'ANL', validity: '30TH SEP', port: 'ADELAIDE', country: 'Australia', gri: '', hws: '', baf: '318', oth: '', ams: '', dg3: '0', dg2: '', thc20: '', thc40: '', dis_dg2: '', seal: '', blf: '', bls: '', swb: '', ttl_dg3: '', ttl_dg2: '', ttl_sgd: '', cancellation: '', service: '', tt: '', direct_via: '', detention: '', remarks: '', rates: { GP20: 1900, GP40: 3800, GP40HC: 3800, TK20LD: 1900 } },
-        { carrier: 'ANL', validity: '30TH SEP', port: 'BRISBANE', country: 'Australia', gri: '', hws: '', baf: '318', oth: '', ams: '', dg3: '0', dg2: '', thc20: '', thc40: '', dis_dg2: '', seal: '', blf: '', bls: '', swb: '', ttl_dg3: '', ttl_dg2: '', ttl_sgd: '', cancellation: '', service: '', tt: '', direct_via: '', detention: '', remarks: '', rates: { GP20: 1900, GP40: 3800, GP40HC: 3800, TK20LD: 1900 } },
-        { carrier: 'ANL', validity: '30TH SEP', port: 'FREMANTLE', country: 'Australia', gri: '', hws: '', baf: '318', oth: '', ams: '', dg3: '0', dg2: '', thc20: '', thc40: '', dis_dg2: '', seal: '', blf: '', bls: '', swb: '', ttl_dg3: '', ttl_dg2: '', ttl_sgd: '', cancellation: '', service: '', tt: '', direct_via: '', detention: '', remarks: '', rates: { GP20: 1900, GP40: 3800, GP40HC: 3800, TK20LD: 1900 } },
-        { carrier: 'ANL', validity: '30TH SEP', port: 'MELBOURNE', country: 'Australia', gri: '', hws: '', baf: '318', oth: '', ams: '', dg3: '0', dg2: '', thc20: '', thc40: '', dis_dg2: '', seal: '', blf: '', bls: '', swb: '', ttl_dg3: '', ttl_dg2: '', ttl_sgd: '', cancellation: '', service: '', tt: '', direct_via: '', detention: '', remarks: '', rates: { GP20: 1900, GP40: 3800, GP40HC: 3800, TK20LD: 1900 } },
-        { carrier: 'ANL', validity: '30TH SEP', port: 'SYDNEY', country: 'Australia', gri: '', hws: '', baf: '318', oth: '', ams: '', dg3: '0', dg2: '', thc20: '', thc40: '', dis_dg2: '', seal: '', blf: '', bls: '', swb: '', ttl_dg3: '', ttl_dg2: '', ttl_sgd: '', cancellation: '', service: '', tt: '', direct_via: '', detention: '', remarks: '', rates: { GP20: 1900, GP40: 3800, GP40HC: 3800, TK20LD: 1900 } },
-        { carrier: 'ANL', validity: '31ST AUG', port: 'AUCKLAND', country: 'New Zealand', gri: '', hws: '', baf: '50', oth: '', ams: '', dg3: '50', dg2: '', thc20: '', thc40: '', dis_dg2: '', seal: '', blf: '', bls: '', swb: '', ttl_dg3: '', ttl_dg2: '', ttl_sgd: '', cancellation: '', service: '', tt: '', direct_via: '', detention: '', remarks: '', rates: { GP20: 1214, GP40: 2428, GP40HC: 2428, TK20LD: 1214 } },
-        { carrier: 'ANL', validity: '31ST AUG', port: 'LYTTELTON', country: 'New Zealand', gri: '', hws: '', baf: '50', oth: '', ams: '', dg3: '50', dg2: '', thc20: '', thc40: '', dis_dg2: '', seal: '', blf: '', bls: '', swb: '', ttl_dg3: '', ttl_dg2: '', ttl_sgd: '', cancellation: '', service: '', tt: '', direct_via: '', detention: '', remarks: '', rates: { GP20: 1214, GP40: 2428, GP40HC: 2428, TK20LD: 1214 } },
-        { carrier: 'ANL', validity: '31ST AUG', port: 'WELLINGTON', country: 'New Zealand', gri: '', hws: '', baf: '50', oth: '', ams: '', dg3: '50', dg2: '', thc20: '', thc40: '', dis_dg2: '', seal: '', blf: '', bls: '', swb: '', ttl_dg3: '', ttl_dg2: '', ttl_sgd: '', cancellation: '', service: '', tt: '', direct_via: '', detention: '', remarks: '', rates: { GP20: 1214, GP40: 2428, GP40HC: 2428, TK20LD: 1214 } },
-        { carrier: 'BENLINE', validity: '30TH SEP', port: 'SHANGHAI', country: 'China', gri: '', hws: '100', baf: '718', oth: '29', ams: '', dg3: '200', dg2: '', thc20: '', thc40: '', dis_dg2: '', seal: '', blf: '', bls: '', swb: '', ttl_dg3: '', ttl_dg2: '', ttl_sgd: '', cancellation: '', service: '', tt: '', direct_via: '', detention: '', remarks: '', rates: { GP20: 2529, GP40: 5058, GP40HC: 4149, TK20LD: 2529 } },
+    // Flattened structural matrix from manifest source index files
+    const manifestRows = [
+        { carrier: 'ANL', validity: '30TH SEP', port: 'ADELAIDE', country: 'Australia', type: 'GP20', rate: 1900, baf: '318', dg3: '0' },
+        { carrier: 'ANL', validity: '30TH SEP', port: 'ADELAIDE', country: 'Australia', type: 'GP40', rate: 3800, baf: '318', dg3: '0' },
+        { carrier: 'ANL', validity: '30TH SEP', port: 'ADELAIDE', country: 'Australia', type: 'GP40HC', rate: 3800, baf: '318', dg3: '0' },
+        { carrier: 'ANL', validity: '30TH SEP', port: 'ADELAIDE', country: 'Australia', type: 'TK20LD', rate: 1900, baf: '318', dg3: '0' },
+        
+        { carrier: 'ANL', validity: '30TH SEP', port: 'BRISBANE', country: 'Australia', type: 'GP20', rate: 1900, baf: '318', dg3: '0' },
+        { carrier: 'ANL', validity: '30TH SEP', port: 'BRISBANE', country: 'Australia', type: 'GP40', rate: 3800, baf: '318', dg3: '0' },
+        { carrier: 'ANL', validity: '30TH SEP', port: 'BRISBANE', country: 'Australia', type: 'GP40HC', rate: 3800, baf: '318', dg3: '0' },
+        { carrier: 'ANL', validity: '30TH SEP', port: 'BRISBANE', country: 'Australia', type: 'TK20LD', rate: 1900, baf: '318', dg3: '0' },
+
+        { carrier: 'ANL', validity: '31ST AUG', port: 'AUCKLAND', country: 'New Zealand', type: 'GP20', rate: 1214, baf: '50', dg3: '50' },
+        { carrier: 'ANL', validity: '31ST AUG', port: 'AUCKLAND', country: 'New Zealand', type: 'GP40', rate: 2428, baf: '50', dg3: '50' },
+        { carrier: 'ANL', validity: '31ST AUG', port: 'AUCKLAND', country: 'New Zealand', type: 'GP40HC', rate: 2428, baf: '50', dg3: '50' },
+        { carrier: 'ANL', validity: '31ST AUG', port: 'AUCKLAND', country: 'New Zealand', type: 'TK20LD', rate: 1214, baf: '50', dg3: '50' },
+
+        { carrier: 'BENLINE', validity: '30TH SEP', port: 'SHANGHAI', country: 'China', type: 'GP20', rate: 2529, hws: '100', baf: '718', oth: '29', dg3: '200' },
+        { carrier: 'BENLINE', validity: '30TH SEP', port: 'SHANGHAI', country: 'China', type: 'GP40', rate: 5058, hws: '100', baf: '718', oth: '29', dg3: '200' },
+        { carrier: 'BENLINE', validity: '30TH SEP', port: 'SHANGHAI', country: 'China', type: 'GP40HC', rate: 4149, hws: '100', baf: '718', oth: '29', dg3: '200' },
+        { carrier: 'BENLINE', validity: '30TH SEP', port: 'SHANGHAI', country: 'China', type: 'TK20LD', rate: 2529, hws: '100', baf: '718', oth: '29', dg3: '200' },
+
+        { carrier: 'COSCO', validity: '31ST AUG', port: 'ADELAIDE', country: 'Australia', type: 'GP20', rate: 1400, dg3: 'INCL', remarks: 'Subject to BAF' },
+        { carrier: 'COSCO', validity: '31ST AUG', port: 'ADELAIDE', country: 'Australia', type: 'GP40', rate: 2800, dg3: 'INCL', remarks: 'Subject to BAF' },
+        { carrier: 'COSCO', validity: '31ST AUG', port: 'ADELAIDE', country: 'Australia', type: 'GP40HC', rate: 2800, dg3: 'INCL', remarks: 'Subject to BAF' },
+        { carrier: 'COSCO', validity: '31ST AUG', port: 'ADELAIDE', country: 'Australia', type: 'TK20LD', rate: 200, dg3: 'INCL', remarks: 'Subject to BAF' },
+
+        { carrier: 'HMM', validity: '30TH SEP', port: 'JAKARTA', country: 'Indonesia', type: 'GP20', rate: 400, dg3: '30' },
+        { carrier: 'HMM', validity: '30TH SEP', port: 'JAKARTA', country: 'Indonesia', type: 'GP40', rate: 800, dg3: '30' },
+        { carrier: 'HMM', validity: '30TH SEP', port: 'JAKARTA', country: 'Indonesia', type: 'GP40HC', rate: 800, dg3: '30' },
+        { carrier: 'HMM', validity: '30TH SEP', port: 'JAKARTA', country: 'Indonesia', type: 'TK20LD', rate: 30, dg3: '30' }
+    ];
+
+    // Form elements
+    const countrySelect = document.getElementById('countrySelect');
+    const portSelect = document.getElementById('portSelect');
+    const typeSelect = document.getElementById('typeSelect');
+    const tableBody = document.getElementById('rateTableBody');
+
+    // Build the country select on initial setup
+    function setupFilters() {
+        // Collect distinct countries
+        const countries = [];
+        manifestRows.forEach(item => {
+            if (!countries.includes(item.country)) {
+                countries.push(item.country);
+            }
+        });
+        countries.sort();
+
+        // Populate countries select
+        countries.forEach(country => {
+            const opt = document.createElement('option');
+            opt.value = country;
