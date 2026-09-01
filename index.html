@@ -35,12 +35,13 @@
             font-weight: 600;
             font-size: 14px;
         }
-        .filter-group input, .filter-group select {
+        .filter-group select {
             padding: 8px 12px;
             border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 14px;
-            min-width: 180px;
+            min-width: 200px;
+            background-color: #fff;
         }
         .btn-clear {
             padding: 8px 15px;
@@ -60,6 +61,7 @@
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-height: 600px;
         }
         table {
             width: 100%;
@@ -74,6 +76,7 @@
             white-space: nowrap;
             position: sticky;
             top: 0;
+            z-index: 10;
         }
         td {
             padding: 10px;
@@ -97,23 +100,25 @@
 
     <div class="filter-container">
         <div class="filter-group">
+            <label for="countrySelect">Country of Port</label>
+            <select id="countrySelect">
+                <option value="">All Countries</option>
+            </select>
+        </div>
+        <div class="filter-group">
             <label for="portSelect">Port Name</label>
             <select id="portSelect">
                 <option value="">All Ports</option>
             </select>
         </div>
         <div class="filter-group">
-            <label for="countryInput">Country of Port</label>
-            <input type="text" id="countryInput" placeholder="e.g. Australia, China">
-        </div>
-        <div class="filter-group">
             <label for="typeSelect">Container Type</label>
             <select id="typeSelect">
                 <option value="">All Types</option>
-                <option value="GP20">GP20</option>
-                <option value="GP40">GP40</option>
-                <option value="GP40HC">GP40HC</option>
-                <option value="TK20LD">TK20LD</option>
+                <option value="GP20">GP20 (20ft Standard)</option>
+                <option value="GP40">GP40 (40ft Standard)</option>
+                <option value="GP40HC">GP40HC (40ft High-Cube)</option>
+                <option value="TK20LD">TK20LD (Tank 20ft)</option>
             </select>
         </div>
         <button class="btn-clear" onclick="clearFilters()">Clear Filters</button>
@@ -128,7 +133,8 @@
                     <th>PORT</th>
                     <th>COUNTRY</th>
                     <th>CONTAINER TYPE</th>
-                    <th>RATE (USD)</th>
+                    <th>BASE RATE (USD)</th>
+                    <th>ESTIMATED TOTAL (USD)</th>
                     <th>GRI</th>
                     <th>HWS</th>
                     <th>BAF</th>
@@ -155,35 +161,22 @@
                 </tr>
             </thead>
             <tbody id="tableBody">
-                <!-- Dynamic rows injected here -->
+                <!-- Data injected dynamically -->
             </tbody>
         </table>
         <div id="noResults" class="no-results" style="display: none;">No matching shipping rates found.</div>
     </div>
 
     <script>
-        // Mapping reference to assign countries loosely based on port keywords
+        // Port-to-Country Mapping dictionary
         const countryMapping = {
             "ADELAIDE": "Australia", "BRISBANE": "Australia", "FREMENTLE": "Australia", "MELBOURNE": "Australia", "SYDNEY": "Australia", "TOWNSVILLE": "Australia", "DARWIN": "Australia", "PORT HEDLAND": "Australia", "DAMPIER": "Australia",
             "AUCKLAND": "New Zealand", "LYTTELTON": "New Zealand", "WELLINGTON": "New Zealand", "NAPIER": "New Zealand", "TAURANGA": "New Zealand", "NELSON": "New Zealand",
             "BUSAN": "South Korea", "INCHEON": "South Korea", "GWANGYANG": "South Korea", "ULSAN": "South Korea", "POHANG": "South Korea", "KWANG YANG": "South Korea",
-            "SHANGHAI": "China", "QINGDAO": "China", "NINGBO": "China", "XINGANG": "China", "YANTIAN": "China", "XIAMEN": "China", "WUHAN": "China", "NANJING": "China", "HUANGPU": "China", "NANSHA": "China", "CHANGSHU": "China", "LIAN YUN GANG": "China", "ZHANG JIA GANG": "China", "ZHANJIANG": "China", "ZHUHAI": "China", "QINZHOU": "China", "CHENGDU": "China", "CHONGQING": "China", "KUNMING": "China", "DALIAN": "China", "SHEKOU": "China", "FUZHOU": "China", "HONG KONG": "Hong Kong", "MACAU": "Macau", "TAICHUNG": "Taiwan", "KAOHSIUNG": "Taiwan", "TAIPEI": "Taiwan", "KEELUNG": "Taiwan", "TAOYUAN": "Taiwan",
-            "NHAVA SHEVA": "India", "MUNDRA": "India", "CHENNAI": "India", "COCHIN": "India", "KOLKATA": "India", "VIZAG": "India", "TUTICORIN": "India", "PIPAVAV": "India", "KATTUPALLI": "India", "HALDIA": "India", "BENGALURU": "India", "BANGALORE": "India", "CALCUTTA": "India", "DADRI": "India", "HAZIRA": "India", "HYDERABAD": "India", "LUDHINA": "India", "AHMEDABAD": "India", "KANPUR": "India", "MULUND": "India", "NEW DELHI": "India", "TUMB": "India", "GANGGAVARAM": "India", "MANGALORE": "India",
-            "JAKARTA": "Indonesia", "SURABAYA": "Indonesia", "SEMARANG": "Indonesia", "BELAWAN": "Indonesia", "PALEMBANG": "Indonesia", "PONTIANAK": "Indonesia", "BALIKPAPAN": "Indonesia", "BANJARMASIN": "Indonesia", "PANJANG": "Indonesia", "BATAM": "Indonesia", "MAKASSAR": "Indonesia", "PADANG": "Indonesia", "SAMARINDA": "Indonesia", "BITUNG": "Indonesia", "PATIMBAN": "Indonesia",
-            "HO CHI MINH": "Vietnam", "HAIPHONG": "Vietnam", "DANANG": "Vietnam", "QUI NHON": "Vietnam", "VUNG TAU": "Vietnam", "CAT LAI": "Vietnam", "PHUOC LONG": "Vietnam", "CAI MEP": "Vietnam",
-            "LAEM CHABANG": "Thailand", "BANGKOK": "Thailand", "LAT KRABANG": "Thailand", "SONGKHLA": "Thailand",
-            "PORT KELANG": "Malaysia", "PENANG": "Malaysia", "PASIR GUDANG": "Malaysia", "KUANTAN": "Malaysia", "TANJUNG PELEPAS": "Malaysia", "LABUAN": "Malaysia", "SIBU": "Malaysia",
-            "MANILA": "Philippines", "CEBU": "Philippines", "DAVAO": "Philippines", "GENERAL SANTOS": "Philippines", "SUBIC": "Philippines", "CAGAYAN": "Philippines", "BATANGAS": "Philippines",
-            "KARACHI": "Pakistan", "JEBEL ALI": "UAE", "SHARJAH": "UAE", "DAMMAN": "Saudi Arabia", "DAMMAM": "Saudi Arabia", "RIYADH": "Saudi Arabia", "JEDDAH": "Saudi Arabia", "KHOR FAKKAN": "UAE", "SOHAR": "Oman", "HAMAD": "Qatar", "SHUAIBA": "Kuwait", "KUWAIT": "Kuwait", "SHUWAIKH": "Kuwait", "UMM QASR": "Iraq", "BAHRAIN": "Bahrain", "DOHA": "Qatar", "ABU DHABI": "UAE", "AJMAN": "UAE", "UMM AL QUWAIN": "UAE", "RAS AL KHAIMAH": "UAE",
-            "CHITTAGONG": "Bangladesh", "DHAKA": "Bangladesh", "CHATTOGRAM": "Bangladesh", "MONGLA": "Bangladesh", "PANGAON": "Bangladesh",
-            "COLOMBO": "Sri Lanka", "MALE": "Maldives", "MALDIVES": "Maldives",
-            "YANGON": "Myanmar", "THILAWA": "Myanmar", "SIHANOUKVILLE": "Cambodia", "PHNOM PENH": "Cambodia", "MUARA": "Brunei", "DILI": "East Timor",
-            "MOMBASA": "Kenya", "DAR ES SALAAM": "Tanzania", "MAPUTO": "Mozambique", "BEIRA": "Mozambique", "PORT SUDAN": "Sudan", "DJIBOUTI": "Djibouti", "AQABA": "Jordan", "SOKHNA": "Egypt", "ADEN": "Yemen"
-        };
-
-        // Raw array parsing data directly from the freight sheet
-        const rawCSV = [
-            ["ANL","30TH SEP","ADELAIDE","",1900,3800,3800,1900,"","","","","0","100","250","370","","25","145","70","0","2085.185","2185.185","","","S/C: QGNC038287","14","","",""],
-            ["ANL","30TH SEP","BRISBANE","",1900,3800,3800,1900,"","","","","0","100","250","370","","25","145","70","0","2085.185","2185.185","","","S/C: QGNC038287","14","","",""],
-            ["ANL","30TH SEP","FREMENTLE","",1900,3800,3800,1900,"","","","","0","100","250","370","","25","145","70","0","2085.185","2185.185","","","S/C: QGNC038287","14","","",""],
-            ["ANL","30TH SEP","MELBOURNE","",1900,3800,3800,1900,"","","","","0","100","250","370","","25","145","70","0","2085.185","2185.185","","","S/C: QGNC038287","14","","",""],
+            "SHANGHAI": "China", "QINGDAO": "China", "NINGBO": "China", "XINGANG": "China", "YANTIAN": "China", "XIAMEN": "China", "WUHAN": "China", "NANJING": "China", "HUANGPU": "China", "NANSHA": "China", "CHANGSHU": "China", "LIAN YUN GANG": "China", "ZHANG JIA GANG": "China", "ZHANJIANG": "China", "ZHUHAI": "China", "QINZHOU": "China", "CHENGDU": "China", "CHONGQING": "China", "KUNMING": "China", "DALIAN": "China", "SHEKOU": "China", "FUZHOU": "China", "HONG KONG": "Hong Kong", "MACAU": "Macau", "TAICHUNG": "Taiwan", "KAOHSIUNG": "Taiwan", "TAIPEI": "Taiwan", "KEELUNG": "Taiwan", "TAOYUAN": "Taiwan", "YUGANG": "China", "JIAOXIN": "China", "ZHANGJIAGANG": "China", "YANTAI": "China", "LIANYUNGANG": "China", "WUDU": "China", "JIANGYIN": "China", "GAOLAN": "China", "RONGQI": "China", "SAN SHAN": "China", "ZHAO QING": "China", "LIAN HUA SAN": "China", "SHANTOU": "China", "SHIMIZU": "Japan", "YOKOHAMA": "Japan", "TOKYO": "Japan", "NAGOYA": "Japan", "KOBE": "Japan", "OSAKA": "Japan", "MOJI": "Japan", "HAKATA": "Japan", "YOKKAICHI": "Japan", "NIIGATA": "Japan", "TOMAKOMAI": "Japan", "NAHA": "Japan", "CHIBA": "Japan",
+            "NHAVA SHEVA": "India", "MUNDRA": "India", "CHENNAI": "India", "COCHIN": "India", "KOLKATA": "India", "VIZAG": "India", "TUTICORIN": "India", "PIPAVAV": "India", "KATTUPALLI": "India", "HALDIA": "India", "BENGALURU": "India", "BANGALORE": "India", "CALCUTTA": "India", "DADRI": "India", "HAZIRA": "India", "HYDERABAD": "India", "LUDHINA": "India", "AHMEDABAD": "India", "KANPUR": "India", "MULUND": "India", "NEW DELHI": "India", "TUMB": "India", "GANGGAVARAM": "India", "MANGALORE": "India", "MUMBAI": "India", "PIPAVAV": "India", "ANKLESHWAR": "India", "DELHI": "India", "GARHI HARSARU": "India", "JAIPUR": "India", "LUHDHIANA": "India", "MORBI": "India", "VARNAMA": "India",
+            "JAKARTA": "Indonesia", "SURABAYA": "Indonesia", "SEMARANG": "Indonesia", "BELAWAN": "Indonesia", "PALEMBANG": "Indonesia", "PONTIANAK": "Indonesia", "BALIKPAPAN": "Indonesia", "BANJARMASIN": "Indonesia", "PANJANG": "Indonesia", "BATAM": "Indonesia", "MAKASSAR": "Indonesia", "PADANG": "Indonesia", "SAMARINDA": "Indonesia", "BITUNG": "Indonesia", "PATIMBAN": "Indonesia", "BANJAMASIN": "Indonesia",
+            "HO CHI MINH": "Vietnam", "HAIPHONG": "Vietnam", "DANANG": "Vietnam", "QUI NHON": "Vietnam", "VUNG TAU": "Vietnam", "CAT LAI": "Vietnam", "PHUOC LONG": "Vietnam", "CAI MEP": "Vietnam", "HIEP PHOUC": "Vietnam", "BINH DUONG": "Vietnam", "TRANSIMEX": "Vietnam", "CAIMEP": "Vietnam", "QUY NHON": "Vietnam", "QUI NHƠN": "Vietnam",
+            "LAEM CHABANG": "Thailand", "BANGKOK": "Thailand", "LAT KRABANG": "Thailand", "SONGKHLA": "Thailand", "SAHATHAI": "Thailand", "PAT ": "Thailand", "SAMUT PRAKAN": "Thailand", "BMT": "Thailand", "KRUNG THEP": "Thailand",
+            "PORT KELANG": "Malaysia", "PENANG": "Malaysia", "PASIR GUDANG": "Malaysia", "KUANTAN": "Malaysia", "TANJUNG PELEPAS": "Malaysia", "LABUAN": "Malaysia", "SIBU": "Malaysia", "PORTKLANG": "Malaysia", "PORT KLANG": "Malaysia",
+            "MANILA": "Philippines", "CEBU": "Philippines", "DAVAO": "Philippines", "GENERAL SANTOS": "Philippines", "SUBIC": "Philippines", "CAGAYAN": "Philippines", "BATANGAS": "Philippines", "CAGAYAH": "Philippines", "ZAMBOANGA": "Philippines", "ILO ILO": "Philippines", "LUZON": "Philippines", "PANABO": "Philippines",
