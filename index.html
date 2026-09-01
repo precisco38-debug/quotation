@@ -1,318 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shipping Rate Enquiry</title>
-    <style>
-        :root {
-            --primary: #0f172a;
-            --accent: #2563eb;
-            --bg: #f8fafc;
-            --card: #ffffff;
-            --border: #e2e8f0;
-            --text: #334155;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            margin: 0;
-            padding: 24px;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .header {
-            margin-bottom: 24px;
-        }
-
-        .header h1 {
-            color: var(--primary);
-            margin: 0 0 8px 0;
-            font-size: 1.8rem;
-        }
-
-        .filter-card {
-            background: var(--card);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            border: 1px solid var(--border);
-            margin-bottom: 24px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .form-group label {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: #64748b;
-            text-transform: uppercase;
-        }
-
-        select {
-            padding: 10px;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            font-size: 0.95rem;
-            outline: none;
-            background-color: #fff;
-        }
-
-        select:focus {
-            border-color: var(--accent);
-        }
-
-        .table-wrapper {
-            background: var(--card);
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            overflow-x: auto;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 0.85rem;
-            text-align: left;
-            white-space: nowrap;
-        }
-
-        th {
-            background-color: var(--primary);
-            color: #fff;
-            padding: 12px;
-            font-weight: 500;
-        }
-
-        td {
-            padding: 12px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        tr:hover {
-            background-color: #f1f5f9;
-        }
-
-        .badge-type {
-            display: inline-block;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            background: #e0e7ff;
-            color: #3730a3;
-        }
-
-        .badge-val {
-            display: inline-block;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            background: #e2e8f0;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shipping Rate Enquiry</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+  <style>
+    :root {
+      --primary: #0056b3;
+      --bg: #f8f9fa;
+      --border: #dee2e6;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 20px;
+      background-color: var(--bg);
+      color: #333;
+    }
+    h2 { color: var(--primary); }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    .filter-group {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+      min-width: 180px;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 5px;
+      font-size: 0.9em;
+    }
+    select, input[type="file"] {
+      padding: 8px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+    }
+    .table-container {
+      overflow-x: auto;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85em;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      text-align: left;
+      white-space: nowrap;
+    }
+    th {
+      background-color: var(--primary);
+      color: white;
+      position: sticky;
+      top: 0;
+    }
+    tr:nth-child(even) { background-color: #f2f2f2; }
+    .no-data {
+      padding: 20px;
+      text-align: center;
+      color: #666;
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="header">
-        <h1>Shipping Rate Enquiry Portal</h1>
-        <p>Enquire ocean rates by country, destination port, and specific container type.</p>
+  <h2>Shipping Rate Enquiry</h2>
+
+  <div class="card">
+    <div class="filter-group">
+      <div class="field">
+        <label for="csvFile">1. Load Data (CSV):</label>
+        <input type="file" id="csvFile" accept=".csv" />
+      </div>
+      <div class="field">
+        <label for="countrySelect">2. Select Country:</label>
+        <select id="countrySelect" disabled>
+          <option value="ALL">-- Select Country --</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="portSelect">3. Select Port:</label>
+        <select id="portSelect" disabled>
+          <option value="ALL">All Ports</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="containerSelect">4. Container Type Filter:</label>
+        <select id="containerSelect" disabled>
+          <option value="ALL">All Container Types</option>
+          <option value="GP20">GP20</option>
+          <option value="GP40">GP40</option>
+          <option value="GP40HC">GP40HC</option>
+          <option value="TK20LD">TK20LD</option>
+        </select>
+      </div>
     </div>
+  </div>
 
-    <div class="filter-card">
-        <div class="form-group">
-            <label for="countrySelect">Country / Region</label>
-            <select id="countrySelect" onchange="updatePorts()">
-                <option value="ALL">All Countries</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="portSelect">Port (Default: All)</label>
-            <select id="portSelect" onchange="filterData()">
-                <option value="ALL">All Ports</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="containerSelect">Container Type</label>
-            <select id="containerSelect" onchange="filterData()">
-                <option value="ALL">All Container Types</option>
-                <option value="GP20">GP20 (20' Standard)</option>
-                <option value="GP40">GP40 (40' Standard)</option>
-                <option value="GP40HC">GP40HC (40' High Cube)</option>
-                <option value="TK20LD">TK20LD (20' Tank Laden)</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="table-wrapper">
-        <table id="rateTable">
-            <thead>
-                <tr>
-                    <th>Carrier</th>
-                    <th>Validity</th>
-                    <th>Port</th>
-                    <th>Container Type</th>
-                    <th>Freight Rate</th>
-                    <th>GRI</th>
-                    <th>HWS</th>
-                    <th>BAF</th>
-                    <th>OTH</th>
-                    <th>AMS</th>
-                    <th>DG3</th>
-                    <th>DG2</th>
-                    <th>THC20</th>
-                    <th>THC40</th>
-                    <th>DIS - DG2</th>
-                    <th>SEAL</th>
-                    <th>BLF</th>
-                    <th>BLS</th>
-                    <th>SWB</th>
-                    <th>TTL DG3 USD</th>
-                    <th>TTL DG2 USD</th>
-                    <th>TTL SGD</th>
-                    <th>Cancellation (USD)</th>
-                    <th>Remarks</th>
-                    <th>Detention @ POD</th>
-                    <th>Direct / Via</th>
-                    <th>Service</th>
-                    <th>Frequency T/T</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody">
-            </tbody>
-        </table>
-    </div>
-</div>
-
-<script>
-    // Expanded data structure transposing container types into row objects
-    const rateData = [
-        // ADELAIDE
-        { country: "Australia", carrier: "ANL", validity: "30TH SEP", port: "ADELAIDE", containerType: "GP20", rate: 1900, gri: "", hws: "", baf: "", oth: "", ams: "", dg3: 0, dg2: 100, thc20: 250, thc40: 370, dis_dg2: "", seal: 25, blf: 145, bls: 70, swb: 0, ttl_dg3_usd: 2085.18, ttl_dg2_usd: 2185.18, ttl_sgd: "", cancellation_usd: "", remarks: "S/C: QGNC038287", detention: 14, direct_via: "", service: "", freq_tt: "" },
-        { country: "Australia", carrier: "ANL", validity: "30TH SEP", port: "ADELAIDE", containerType: "GP40", rate: 3800, gri: "", hws: "", baf: "", oth: "", ams: "", dg3: 0, dg2: 100, thc20: 250, thc40: 370, dis_dg2: "", seal: 25, blf: 145, bls: 70, swb: 0, ttl_dg3_usd: 2085.18, ttl_dg2_usd: 2185.18, ttl_sgd: "", cancellation_usd: "", remarks: "S/C: QGNC038287", detention: 14, direct_via: "", service: "", freq_tt: "" },
-        { country: "Australia", carrier: "ANL", validity: "30TH SEP", port: "ADELAIDE", containerType: "GP40HC", rate: 3800, gri: "", hws: "", baf: "", oth: "", ams: "", dg3: 0, dg2: 100, thc20: 250, thc40: 370, dis_dg2: "", seal: 25, blf: 145, bls: 70, swb: 0, ttl_dg3_usd: 2085.18, ttl_dg2_usd: 2185.18, ttl_sgd: "", cancellation_usd: "", remarks: "S/C: QGNC038287", detention: 14, direct_via: "", service: "", freq_tt: "" },
-        { country: "Australia", carrier: "ANL", validity: "30TH SEP", port: "ADELAIDE", containerType: "TK20LD", rate: 1900, gri: "", hws: "", baf: "", oth: "", ams: "", dg3: 0, dg2: 100, thc20: 250, thc40: 370, dis_dg2: "", seal: 25, blf: 145, bls: 70, swb: 0, ttl_dg3_usd: 2085.18, ttl_dg2_usd: 2185.18, ttl_sgd: "", cancellation_usd: "", remarks: "S/C: QGNC038287", detention: 14, direct_via: "", service: "", freq_tt: "" },
-
-        // BRISBANE
-        { country: "Australia", carrier: "ANL", validity: "30TH SEP", port: "BRISBANE", containerType: "GP20", rate: 1900, gri: "", hws: "", baf: "", oth: "", ams: "", dg3: 0, dg2: 100, thc20: 250, thc40: 370, dis_dg2: "", seal: 25, blf: 145, bls: 70, swb: 0, ttl_dg3_usd: 2085.18, ttl_dg2_usd: 2185.18, ttl_sgd: "", cancellation_usd: "", remarks: "S/C: QGNC038287", detention: 14, direct_via: "", service: "", freq_tt: "" },
-        { country: "Australia", carrier: "ANL", validity: "30TH SEP", port: "BRISBANE", containerType: "GP40", rate: 3800, gri: "", hws: "", baf: "", oth: "", ams: "", dg3: 0, dg2: 100, thc20: 250, thc40: 370, dis_dg2: "", seal: 25, blf: 145, bls: 70, swb: 0, ttl_dg3_usd: 2085.18, ttl_dg2_usd: 2185.18, ttl_sgd: "", cancellation_usd: "", remarks: "S/C: QGNC038287", detention: 14, direct_via: "", service: "", freq_tt: "" },
-        { country: "Australia", carrier: "ANL", validity: "30TH SEP", port: "BRISBANE", containerType: "GP40HC", rate: 3800, gri: "", hws: "", baf: "", oth: "", ams: "", dg3: 0, dg2: 100, thc20: 250, thc40: 370, dis_dg2: "", seal: 25, blf: 145, bls: 70, swb: 0, ttl_dg3_usd: 2085.18, ttl_dg2_usd: 2185.18, ttl_sgd: "", cancellation_usd: "", remarks: "S/C: QGNC038287", detention: 14, direct_via: "", service: "", freq_tt: "" },
-
-        // HONG KONG
-        { country: "Hong Kong", carrier: "YANGMING", validity: "30TH SEP", port: "HONG KONG", containerType: "GP20", rate: 135, gri: "", hws: "", baf: "", oth: "", ams: "", dg3: "", dg2: "", thc20: 65, thc40: 65, dis_dg2: "", seal: 18, blf: 180, bls: 180, swb: 0, ttl_dg3_usd: 65, ttl_dg2_usd: "", ttl_sgd: "", cancellation_usd: "", remarks: "CASE ID: IAPS29543000", detention: "", direct_via: "", service: "", freq_tt: "" },
-
-        // GAOLAN
-        { country: "China", carrier: "YANGMING", validity: "30TH SEP", port: "GAOLAN", containerType: "GP20", rate: 410, gri: "", hws: "", baf: 30, oth: "", ams: "", dg3: "", dg2: "", thc20: 65, thc40: 65, dis_dg2: "", seal: 18, blf: 180, bls: 180, swb: 0, ttl_dg3_usd: 65, ttl_dg2_usd: "", ttl_sgd: "", cancellation_usd: "", remarks: "CASE ID: IAPS29543000", detention: "", direct_via: "", service: "", freq_tt: "" },
-
-        // LAEM CHABANG
-        { country: "Thailand", carrier: "YANGMING", validity: "30TH SEP", port: "LAEM CHABANG", containerType: "GP20", rate: 205, gri: "", hws: "", baf: "", oth: "", ams: "", dg3: "", dg2: "", thc20: 65, thc40: 65, dis_dg2: "", seal: 18, blf: 180, bls: 180, swb: 0, ttl_dg3_usd: 65, ttl_dg2_usd: "", ttl_sgd: "", cancellation_usd: "", remarks: "CASE ID: IAPS29543000", detention: "", direct_via: "", service: "", freq_tt: "" }
-    ];
-
-    window.onload = function() {
-        const countrySelect = document.getElementById("countrySelect");
-        const countries = [...new Set(rateData.map(item => item.country))];
-        
-        countries.forEach(country => {
-            const opt = document.createElement("option");
-            opt.value = country;
-            opt.textContent = country;
-            countrySelect.appendChild(opt);
-        });
-
-        updatePorts();
-    };
-
-    function updatePorts() {
-        const selectedCountry = document.getElementById("countrySelect").value;
-        const portSelect = document.getElementById("portSelect");
-        
-        portSelect.innerHTML = '<option value="ALL">All Ports</option>';
-        
-        const filteredPorts = rateData
-            .filter(item => selectedCountry === "ALL" || item.country === selectedCountry)
-            .map(item => item.port);
-
-        const uniquePorts = [...new Set(filteredPorts)];
-
-        uniquePorts.forEach(port => {
-            const opt = document.createElement("option");
-            opt.value = port;
-            opt.textContent = port;
-            portSelect.appendChild(opt);
-        });
-
-        filterData();
-    }
-
-    function filterData() {
-        const country = document.getElementById("countrySelect").value;
-        const port = document.getElementById("portSelect").value;
-        const container = document.getElementById("containerSelect").value;
-        
-        const tbody = document.getElementById("tableBody");
-        tbody.innerHTML = "";
-
-        const filtered = rateData.filter(item => {
-            const matchCountry = (country === "ALL" || item.country === country);
-            const matchPort = (port === "ALL" || item.port === port);
-            const matchContainer = (container === "ALL" || item.containerType === container);
-            return matchCountry && matchPort && matchContainer;
-        });
-
-        filtered.forEach(row => {
-            const tr = document.createElement("tr");
-
-            tr.innerHTML = `
-                <td><strong>${row.carrier}</strong></td>
-                <td><span class="badge-val">${row.validity}</span></td>
-                <td><strong>${row.port}</strong></td>
-                <td><span class="badge-type">${row.containerType}</span></td>
-                <td><strong>${row.rate ? '$' + row.rate : '-'}</strong></td>
-                <td>${row.gri}</td>
-                <td>${row.hws}</td>
-                <td>${row.baf}</td>
-                <td>${row.oth}</td>
-                <td>${row.ams}</td>
-                <td>${row.dg3}</td>
-                <td>${row.dg2}</td>
-                <td>${row.thc20}</td>
-                <td>${row.thc40}</td>
-                <td>${row.dis_dg2}</td>
-                <td>${row.seal}</td>
-                <td>${row.blf}</td>
-                <td>${row.bls}</td>
-                <td>${row.swb}</td>
-                <td>${row.ttl_dg3_usd}</td>
-                <td>${row.ttl_dg2_usd}</td>
-                <td>${row.ttl_sgd}</td>
-                <td>${row.cancellation_usd}</td>
-                <td>${row.remarks}</td>
-                <td>${row.detention}</td>
-                <td>${row.direct_via}</td>
-                <td>${row.service}</td>
-                <td>${row.freq_tt}</td>
-            `;
-            tbody.appendChild(tr);
-        });
-    }
-</script>
-
-</body>
-</html>
+  <div class="table-container">
+    <table id="rateTable">
+      <thead>
+        <tr>
+          <th>Carrier</th>
+          <th>Validity</th>
+          <th>Port</th>
+          <th>Country</th>
+          <th>Container Type</th>
+          <th>Base Rate</th>
+          <th>GRI</th>
+          <th>HWS</th>
+          <th>BAF</th>
