@@ -120,12 +120,13 @@
 <body>
 
 <div class="container">
-    <h1>Precisco Self-Help Freight Query Interface</h1>
+    <h1>Customer Self-Help Freight Query Interface</h1>
     
     <div class="filter-section">
         <div class="form-group">
             <label for="countrySelect">Country of Port</label>
-            <select id="countrySelect">
+            <!-- Hardcoded country values matching data parameters -->
+            <select id="countrySelect" onchange="syncPortOptions()">
                 <option value="" disabled selected hidden>Select a Country...</option>
                 <option value="Australia">Australia</option>
                 <option value="China">China</option>
@@ -136,13 +137,27 @@
         </div>
         <div class="form-group">
             <label for="portSelect">Port Name</label>
-            <select id="portSelect">
+            <!-- Hardcoded port elements grouped by CSS class flags to prevent JS injection failures -->
+            <select id="portSelect" onchange="updateTableDisplay()">
                 <option value="ALL">All Ports</option>
+                <!-- Australia Ports -->
+                <option value="ADELAIDE" class="port-opt Australia">ADELAIDE</option>
+                <option value="BRISBANE" class="port-opt Australia">BRISBANE</option>
+                <!-- China Ports -->
+                <option value="SHANGHAI" class="port-opt China">SHANGHAI</option>
+                <option value="QINGDAO" class="port-opt China">QINGDAO</option>
+                <option value="XINGANG" class="port-opt China">XINGANG</option>
+                <!-- Indonesia Ports -->
+                <option value="JAKARTA" class="port-opt Indonesia">JAKARTA</option>
+                <!-- New Zealand Ports -->
+                <option value="AUCKLAND" class="port-opt New Zealand">AUCKLAND</option>
+                <!-- South Korea Ports -->
+                <option value="BUSAN" class="port-opt South Korea">BUSAN</option>
             </select>
         </div>
         <div class="form-group">
             <label for="typeSelect">Container Type</label>
-            <select id="typeSelect">
+            <select id="typeSelect" onchange="updateTableDisplay()">
                 <option value="ALL">All Types</option>
                 <option value="GP20">GP20</option>
                 <option value="GP40">GP40</option>
@@ -198,7 +213,7 @@
 </div>
 
 <script>
-    // Explicit static database matching manifest entities
+    // Manifest flat database structure
     const shippingDatabase = [
         // Australia Corridor
         { carrier: 'ANL', validity: '30TH SEP', port: 'ADELAIDE', country: 'Australia', type: 'GP20', rate: 1900, baf: '318', dg3: '0' },
@@ -224,26 +239,3 @@
         { carrier: 'ANL', validity: '31ST AUG', port: 'AUCKLAND', country: 'New Zealand', type: 'GP20', rate: 1214, baf: '50', dg3: '50' },
         { carrier: 'ANL', validity: '31ST AUG', port: 'AUCKLAND', country: 'New Zealand', type: 'GP40', rate: 2428, baf: '50', dg3: '50' },
 
-        // Indonesia Corridor
-        { carrier: 'HMM', validity: '30TH SEP', port: 'JAKARTA', country: 'Indonesia', type: 'GP20', rate: 400, dg3: '30' },
-        
-        // South Korea Corridor
-        { carrier: 'BENLINE', validity: '30TH SEP', port: 'BUSAN', country: 'South Korea', type: 'GP20', rate: 3343, hws: '100', baf: '718', oth: '83', dg3: '300' }
-    ];
-
-    const countrySelect = document.getElementById('countrySelect');
-    const portSelect = document.getElementById('portSelect');
-    const typeSelect = document.getElementById('typeSelect');
-    const tableBody = document.getElementById('rateTableBody');
-
-    // Rebuilds port dropdown dynamically using an array scan method to prevent browser loading errors
-    function handleCountryChange() {
-        const selectedCountry = countrySelect.value;
-        
-        // Clear all previous options entirely
-        portSelect.innerHTML = '';
-        
-        // Append default option
-        const defaultOpt = document.createElement('option');
-        defaultOpt.value = 'ALL';
-        defaultOpt.textContent = 'All Ports';
