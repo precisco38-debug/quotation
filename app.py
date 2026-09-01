@@ -1,6 +1,7 @@
 import os
 import re
 import io
+import json
 import pdfplumber
 import pandas as pd
 import streamlit as st
@@ -97,48 +98,79 @@ if uploaded_file is not None:
                         st.error("❌ Critical: No text content could be decoded.")
                         st.stop()
                     
+                    # Target advanced structured processing engine model 
                     llm = ChatOpenAI(model="gpt-4o-mini", temperature=0, openai_api_key=openai_api_key)
                     
-                    # Unified extraction format template request block
+                    # Force response model schema to bind strictly to standard JSON keys
+                    structured_llm = llm.bind_to_tool(
+                        {
+                            "name": "render_shipping_metrics",
+                            "description": "Output shipping quote parameters precisely inside object fields.",
+                            "parameters": {
+                                "type": "object",
+                                "properties": {
+                                    "ocean_freight": {"type": "string", "description": "Ocean Freight Rate (USD)"},
+                                    "othc": {"type": "string", "description": "Origin Terminal Handling Charges (OTHC)"},
+                                    "dthc": {"type": "string", "description": "Destination Terminal Handling Charges (DTHC)"},
+                                    "baf": {"type": "string", "description": "Bunker Adjustment Factor (BAF)"},
+                                    "doc_fee": {"type": "string", "description": "Documentation Fee"},
+                                    "pss": {"type": "string", "description": "Peak Season Surcharge (PSS)"},
+                                    "transit_time": {"type": "string", "description": "Estimated Transit Time (Days)"},
+                                    "validity": {"type": "string", "description": "Validity Period"}
+                                },
+                                "required": ["ocean_freight", "othc", "dthc", "baf", "doc_fee", "pss", "transit_time", "validity"]
+                            }
+                        }
+                    )
+                    
                     prompt = ChatPromptTemplate.from_messages([
-                        ("system", (
-                            "You are an expert logistics analyst. Convert messy shipping quotes into a strict layout.\n"
-                            "You MUST respond ONLY with a clean semicolon (;) separated string format using this text profile template structure:\n"
-                            "Ocean Freight Rate (USD);[parsed value]\n"
-                            "Origin Terminal Handling Charges (OTHC);[parsed value]\n"
-                            "Destination Terminal Handling Charges (DTHC);[parsed value]\n"
-                            "Bunker Adjustment Factor (BAF);[parsed value]\n"
-                            "Documentation Fee;[parsed value]\n"
-                            "Peak Season Surcharge (PSS);[parsed value]\n"
-                            "Estimated Transit Time (Days);[parsed value]\n"
-                            "Validity Period;[parsed value]\n\n"
-                            "Rules:\n- Never alter heading names.\n- Use 'Not Mentioned' if data is missing."
-                        )),
+                        ("system", "You are an expert logistics analyst. Parse structural cost metrics out of messy text profiles. If any field is completely missing, write 'Not Mentioned'."),
                         ("user", "{document_text}")
                     ])
                     
-                    chain = prompt | llm
+                    chain = prompt | structured_llm
                     response = chain.invoke({"document_text": raw_content})
                     
-                    csv_lines = [line.split(";") for line in response.content.strip().split("\n") if ";" in line]
-                    
-                    if csv_lines:
-                        # 1. Build a Vertical Mobile-Friendly Table Block Structure
-                        df_vertical = pd.DataFrame(csv_lines, columns=["Metric", "Extracted Value"])
+                    # Parse tool inputs safely bypassing text splitting loop vulnerabilities
+                    tool_calls = response.tool_calls
+                    if tool_calls:
+                        data_dict = tool_calls[0]["args"]
+                        
+                        # Set display metric labels mapped explicitly to values
+                        metric_mapping = [
+                            ("1. Ocean Freight Rate (USD)", data_dict.get("ocean_freight")),
+                            ("2. Origin Terminal Handling Charges (OTHC)", data_dict.get("othc")),
+                            ("3. Destination Terminal Handling Charges (DTHC)", data_dict.get("dthc")),
+                            ("4. Bunker Adjustment Factor (BAF)", data_dict.get("baf")),
+                            ("5. Documentation Fee", data_dict.get("doc_fee")),
+                            ("6. Peak Season Surcharge (PSS)", data_dict.get("pss")),
+                            ("7. Estimated Transit Time (Days)", data_dict.get("transit_time")),
+                            ("8. Validity Period", data_dict.get("validity"))
+                        ]
                         
                         st.success("Extraction Complete!")
+                        
+                        # 1. Output Layout Layout Component: Vertical Mobile List Table
+                        df_vertical = pd.DataFrame(metric_mapping, columns=["Metric", "Extracted Value"])
                         st.subheader("📋 1. Mobile Vertical View")
                         st.dataframe(df_vertical, use_container_width=True, hide_index=True)
                         
-                        # 2. Build a Wide Horizontal Row Layout Spreadsheet Block
-                        horiz_headers = ["File Name", "Liner", "Year", "Month"] + [row[0] for row in csv_lines]
-                        horiz_values = [filename, liner, year, month] + [row[1] for row in csv_lines]
-                        df_horizontal = pd.DataFrame([horiz_values], columns=horiz_headers)
+                        # 2. Output Layout Layout Component: Wide Horizontal Record Row Grid Spreadsheet
+                        horiz_headers = ["File Name", "Liner", "Year", "Month", 
+                                         "Ocean Freight Rate (USD)", "Origin THC (OTHC)", "Destination THC (DTHC)", 
+                                         "Bunker Surcharge (BAF)", "Documentation Fee", "Peak Season Surcharge (PSS)", 
+                                         "Transit Time (Days)", "Validity Period"]
                         
+                        horiz_values = [filename, liner, year, month,
+                                        data_dict.get("ocean_freight"), data_dict.get("othc"), data_dict.get("dthc"),
+                                        data_dict.get("baf"), data_dict.get("doc_fee"), data_dict.get("pss"),
+                                        data_dict.get("transit_time"), data_dict.get("validity")]
+                        
+                        df_horizontal = pd.DataFrame([horiz_values], columns=horiz_headers)
                         st.subheader("📋 2. PC Horizontal Spreadsheet Record View")
                         st.dataframe(df_horizontal, use_container_width=True, hide_index=True)
                         
-                        # 3. Export to Excel File Action Logic
+                        # 3. Handle File Downloading Export
                         excel_buffer = io.BytesIO()
                         with pd.ExcelWriter(excel_buffer, engine='openpyxl') as writer:
                             df_horizontal.to_excel(writer, index=False, sheet_name='QuotationData')
@@ -152,7 +184,7 @@ if uploaded_file is not None:
                             use_container_width=True
                         )
                     else:
-                        st.error("AI returned faulty processing blocks. Try re-clicking the extraction button.")
+                        st.error("AI structured parser anomaly. Please try re-running the extraction request.")
                         
                 except Exception as e:
                     st.error(f"Error parsing file elements: {e}")
