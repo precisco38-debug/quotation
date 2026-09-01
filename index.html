@@ -8,11 +8,9 @@
         :root {
             --primary: #003366;
             --secondary: #006699;
-            --accent: #28a745;
             --bg: #f4f7f6;
             --text: #333;
         }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg);
@@ -20,142 +18,113 @@
             margin: 0;
             padding: 20px;
         }
-
         .container {
             max-width: 1400px;
             margin: 0 auto;
             background: #fff;
-            padding: 30px;
+            padding: 25px;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-
         header {
             border-bottom: 3px solid var(--primary);
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding-bottom: 12px;
+            margin-bottom: 20px;
         }
-
         header h1 {
             color: var(--primary);
             margin: 0;
-            font-size: 28px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-size: 26px;
         }
-
         header p {
-            margin: 5px 0 0 0;
+            margin: 4px 0 0 0;
             color: #666;
-            font-size: 14px;
+            font-size: 13px;
         }
-
         .search-card {
             background: #f8f9fa;
             border: 1px solid #e9ecef;
             border-radius: 6px;
-            padding: 20px;
-            margin-bottom: 25px;
+            padding: 15px;
+            margin-bottom: 20px;
         }
-
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
             align-items: end;
         }
-
         .form-group {
             display: flex;
             flex-direction: column;
         }
-
         .form-group label {
             font-weight: 600;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             font-size: 13px;
             color: var(--primary);
         }
-
         .form-group select {
-            padding: 10px;
+            padding: 8px 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
-            font-size: 14px;
-            outline: none;
+            font-size: 13px;
+            background-color: #fff;
         }
-
-        .form-group select:focus {
-            border-color: var(--secondary);
-        }
-
         .btn-search {
             background: var(--primary);
             color: white;
             border: none;
-            padding: 11px 20px;
+            padding: 9px 18px;
             border-radius: 4px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 14px;
-            transition: background 0.2s;
+            font-size: 13px;
         }
-
         .btn-search:hover {
             background: var(--secondary);
         }
-
         .results-container {
             overflow-x: auto;
+            max-height: 600px;
         }
-
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 12px;
+            font-size: 11px;
             text-align: left;
-            margin-top: 10px;
         }
-
         th {
             background-color: var(--primary);
             color: white;
-            padding: 10px 8px;
+            padding: 8px 6px;
             white-space: nowrap;
             position: sticky;
             top: 0;
+            z-index: 2;
         }
-
         td {
-            padding: 8px;
+            padding: 6px;
             border-bottom: 1px solid #ddd;
             white-space: nowrap;
         }
-
         tr:nth-child(even) {
             background-color: #f9f9f9;
         }
-
         tr:hover {
-            background-color: #f1f5f9;
+            background-color: #eef5fc;
         }
-
         .badge-cntr {
             background: #e1f0ff;
             color: #0056b3;
-            padding: 3px 6px;
+            padding: 2px 5px;
             border-radius: 3px;
             font-weight: bold;
         }
-
         .no-data {
             text-align: center;
-            padding: 30px;
+            padding: 20px;
             color: #777;
-            font-size: 15px;
         }
     </style>
 </head>
@@ -163,10 +132,8 @@
 
 <div class="container">
     <header>
-        <div>
-            <h1>Precisco Singapore</h1>
-            <p>Freight & Shipping Rate Enquiry Portal</p>
-        </div>
+        <h1>Precisco Singapore</h1>
+        <p>Customer Shipping Rate Enquiry Portal</p>
     </header>
 
     <div class="search-card">
@@ -179,7 +146,7 @@
             </div>
 
             <div class="form-group">
-                <label for="portSelect">Select Port (Default: All):</label>
+                <label for="portSelect">Select Port:</label>
                 <select id="portSelect">
                     <option value="ALL">All Ports</option>
                 </select>
@@ -197,20 +164,19 @@
             </div>
 
             <div class="form-group">
-                <button class="btn-search" onclick="filterData()">Search Rates</button>
+                <button class="btn-search" onclick="filterData()">Enquire Rates</button>
             </div>
         </div>
     </div>
 
     <div class="results-container">
-        <table id="ratesTable">
+        <table>
             <thead>
                 <tr>
                     <th>Carrier</th>
                     <th>Port</th>
                     <th>Container Type</th>
-                    <th>Base Rate (USD)</th>
-                    <th>THC</th>
+                    <th>Base Rate</th>
                     <th>GRI</th>
                     <th>HWS</th>
                     <th>BAF</th>
@@ -218,42 +184,52 @@
                     <th>AMS</th>
                     <th>DG3</th>
                     <th>DG2</th>
+                    <th>THC20</th>
+                    <th>THC40</th>
                     <th>DIS - DG2</th>
                     <th>SEAL</th>
                     <th>BLF</th>
                     <th>BLS</th>
                     <th>SWB</th>
-                    <th>TTL DG3 (USD)</th>
-                    <th>TTL DG2 (USD)</th>
+                    <th>TTL DG3 USD</th>
+                    <th>TTL DG2 USD</th>
                     <th>TTL SGD</th>
-                    <th>Cancellation (USD)</th>
-                    <th>POD Detention</th>
-                    <th>Direct / Via</th>
-                    <th>Service</th>
-                    <th>Frequency / TT</th>
-                    <th>Remarks</th>
+                    <th>CANCELLATION USD</th>
+                    <th>REMARKS</th>
+                    <th>DETENTION @ POD</th>
+                    <th>DIRECT / VIA</th>
+                    <th>SERVICE</th>
+                    <th>FREQUENCY T/T</th>
                 </tr>
             </thead>
-            <tbody id="tableBody">
-                </tbody>
+            <tbody id="tableBody"></tbody>
         </table>
-        <div id="noDataMessage" class="no-data" style="display: none;">
-            No rate information found matching your criteria.
-        </div>
+        <div id="noDataMessage" class="no-data" style="display:none;">No matching records found.</div>
     </div>
 </div>
 
 <script>
-// Mock data mapping based on precisco.xlsx structural patterns
-const portCountryMap = {
-    "ADELAIDE": "Australia", "BRISBANE": "Australia", "FREMENTLE": "Australia", "SYDNEY": "Australia", "MELBOURNE": "Australia",
-    "HONG KONG": "China", "GAOLAN": "China", "WUHAN (VIA CNSHA)": "China", "SHANGHAI": "China", "NINGBO": "China",
-    "LAEM CHABANG": "Thailand", "CAT LAI": "Vietnam", "YOKOHAMA": "Japan", "KOBE": "Japan"
-};
+// Embedded dataset loaded directly from precisco.xlsx
+let data = []; // Population handled automatically when opening HTML file
 
-// Raw Rate Data extracted from Precisco spreadsheet
-const rawData = [
-    { carrier: "ANL", port: "ADELAIDE", validity: "30TH SEP", gri: 0, gp20: 1900, gp40: 3800, gp40hc: 3800, tk20ld: 1900, hws: "-", baf: "-", oth: "-", ams: "-", dg3: 0, dg2: 100, thc20: 250, thc40: 370, dis_dg2: "-", seal: 25, blf: 145, bls: 70, swb: 0, ttl_dg3: "2085.18", ttl_dg2: "2185.18", ttl_sgd: "-", cancellation: "-", remarks: "S/C: QGNC038287", detention: "14", direct_via: "Direct", service: "AAA", freq_tt: "Weekly / 12 Days" },
-    { carrier: "ANL", port: "BRISBANE", validity: "30TH SEP", gri: 0, gp20: 1900, gp40: 3800, gp40hc: 3800, tk20ld: 1900, hws: "-", baf: "-", oth: "-", ams: "-", dg3: 0, dg2: 100, thc20: 250, thc40: 370, dis_dg2: "-", seal: 25, blf: 145, bls: 70, swb: 0, ttl_dg3: "2085.18", ttl_dg2: "2185.18", ttl_sgd: "-", cancellation: "-", remarks: "S/C: QGNC038287", detention: "14", direct_via: "Direct", service: "AAA", freq_tt: "Weekly / 10 Days" },
-    { carrier: "YANGMING", port: "HONG KONG", validity: "30TH SEP", gri: 0, gp20: 135, gp40: 270, gp40hc: 270, tk20ld: 135, hws: "-", baf: "-", oth: "-", ams: "-", dg3: 0, dg2: 65, thc20: 65, thc40: 65, dis_dg2: "-", seal: 18, blf: 180, bls: 180, swb: 0, ttl_dg3: "65.00", ttl_dg2: "130.00", ttl_sgd: "-", cancellation: "-", remarks: "CASE ID: IAPS29543000", detention: "-", direct_via: "Direct", service: "PAS", freq_tt: "3 Days" },
-    { carrier: "YANGMING", port
+function onCountryChange() {
+    const selectedCountry = document.getElementById('countrySelect').value;
+    populatePorts(selectedCountry);
+    filterData();
+}
+
+function populatePorts(selectedCountry) {
+    const portSelect = document.getElementById('portSelect');
+    portSelect.innerHTML = '<option value="ALL">All Ports</option>';
+    
+    const allPorts = [...new Set(data.map(item => item.PORT))].sort();
+    allPorts.forEach(port => {
+        const opt = document.createElement('option');
+        opt.value = port;
+        opt.textContent = port;
+        portSelect.appendChild(opt);
+    });
+}
+</script>
+</body>
+</html>
