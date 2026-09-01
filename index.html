@@ -3,134 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Self-Help: Shipping Rates Query System</title>
+    <title>Shipping Rates Query System</title>
     <style>
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            margin: 20px;
-            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f9;
             color: #333;
-        }
-        h2 {
-            color: #0056b3;
-            margin-bottom: 20px;
-        }
-        .filter-container {
-            background-color: #fff;
+            margin: 0;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            align-items: flex-end;
         }
-        .filter-group {
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #0275d8;
+            margin-top: 0;
+        }
+        .search-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+        }
+        .form-group {
             display: flex;
             flex-direction: column;
-            gap: 5px;
         }
-        .filter-group label {
+        label {
+            margin-bottom: 8px;
             font-weight: 600;
-            font-size: 14px;
+            color: #495057;
         }
-        .filter-group select {
-            padding: 8px 12px;
-            border: 1px solid #ccc;
+        select, input {
+            padding: 10px;
+            border: 1px solid #ced4da;
             border-radius: 4px;
             font-size: 14px;
-            min-width: 240px;
-            background-color: #fff;
-            cursor: pointer;
         }
-        .btn-clear {
-            padding: 8px 15px;
-            background-color: #6c757d;
-            color: #fff;
+        button {
+            background-color: #0275d8;
+            color: white;
             border: none;
+            padding: 12px 20px;
             border-radius: 4px;
             cursor: pointer;
+            font-weight: bold;
             font-size: 14px;
-            height: 38px;
+            align-self: flex-end;
         }
-        .btn-clear:hover {
-            background-color: #5a6268;
+        button:hover {
+            background-color: #025aa5;
         }
         .table-responsive {
             overflow-x: auto;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            max-height: 600px;
         }
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
             font-size: 13px;
+        }
+        th, td {
+            padding: 12px;
             text-align: left;
+            border-bottom: 1px solid #dee2e6;
         }
         th {
-            background-color: #0056b3;
+            background-color: #0275d8;
             color: white;
-            padding: 12px 10px;
-            white-space: nowrap;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-        td {
-            padding: 10px;
-            border-bottom: 1px solid #dee2e6;
             white-space: nowrap;
         }
         tr:hover {
             background-color: #f1f3f5;
         }
-        .no-results {
-            padding: 20px;
-            text-align: center;
-            font-size: 16px;
-            color: #6c757d;
-        }
         .badge {
-            background: #e9ecef;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-weight: bold;
-            font-size: 11px;
+            background-color: #e9ecef;
             color: #495057;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
 
-    <h2>Presico Shipping Rates Query System</h2>
-
-    <div class="filter-container">
-        <div class="filter-group">
-            <label for="countrySelect">Country of Port</label>
-            <select id="countrySelect">
-                <option value="">All Countries</option>
+<div class="container">
+    <h1>Shipping Rates Query & Self-Help System</h1>
+    <p>Query global logistics and container carrier rates across multiple routes instantly.</p>
+    
+    <div class="search-section">
+        <div class="form-group">
+            <label for="portName">Port Name</label>
+            <input type="text" id="portName" placeholder="e.g. ADELAIDE, AUCKLAND, SHANGHAI...">
+        </div>
+        <div class="form-group">
+            <label for="country">Country</label>
+            <select id="country">
+                <option value="all">All Countries</option>
+                <option value="Australia">Australia</option>
+                <option value="New Zealand">New Zealand</option>
+                <option value="China">China</option>
+                <option value="Korea">South Korea</option>
+                <option value="Japan">Japan</option>
+                <option value="Vietnam">Vietnam</option>
             </select>
         </div>
-        <div class="filter-group">
-            <label for="portSelect">Port Name</label>
-            <select id="portSelect">
-                <option value="">All Ports</option>
+        <div class="form-group">
+            <label for="containerType">Container Type</label>
+            <select id="containerType">
+                <option value="all">All Types</option>
+                <option value="GP20">GP20</option>
+                <option value="GP40">GP40</option>
+                <option value="GP40HC">GP40HC</option>
+                <option value="TK20LD">TK20LD</option>
             </select>
         </div>
-        <div class="filter-group">
-            <label for="typeSelect">Container Type</label>
-            <select id="typeSelect">
-                <option value="">All Types</option>
-                <option value="GP20">GP20 (20ft Standard)</option>
-                <option value="GP40">GP40 (40ft Standard)</option>
-                <option value="GP40HC">GP40HC (40ft High-Cube)</option>
-                <option value="TK20LD">TK20LD (Tank 20ft)</option>
-            </select>
-        </div>
-        <button class="btn-clear" onclick="clearFilters()">Clear Filters</button>
+        <button onclick="searchRates()">Search Rates</button>
     </div>
 
     <div class="table-responsive">
@@ -140,10 +137,9 @@
                     <th>CARRIER</th>
                     <th>Validity</th>
                     <th>PORT</th>
-                    <th>COUNTRY</th>
-                    <th>CONTAINER TYPE</th>
-                    <th>RATE (USD)</th>
                     <th>GRI</th>
+                    <th>Container Type</th>
+                    <th>Rate (USD)</th>
                     <th>HWS</th>
                     <th>BAF</th>
                     <th>OTH</th>
@@ -152,39 +148,76 @@
                     <th>DG2</th>
                     <th>THC20</th>
                     <th>THC40</th>
-                    <th>DIS - DG2</th>
-                    <th>SEAL</th>
-                    <th>BLF</th>
-                    <th>BLS</th>
-                    <th>SWB</th>
-                    <th>TTL DG3 USD</th>
-                    <th>TTL DG2 USD</th>
-                    <th>TTL SGD</th>
-                    <th>CANCELLATION USD</th>
+                    <th>TTL USD</th>
                     <th>REMARKS</th>
-                    <th>DETENTION @ POD</th>
-                    <th>DIRECT / VIA</th>
-                    <th>SERVICE</th>
-                    <th>FREQUENCY T/T</th>
                 </tr>
             </thead>
             <tbody id="tableBody">
-                <!-- Data injected dynamically -->
+                <!-- Dynamic Content goes here -->
             </tbody>
         </table>
-        <div id="noResults" class="no-results" style="display: none;">No matching shipping rates found.</div>
     </div>
+</div>
 
-    <script>
-        // Mapping reference to assign countries based on clean port string values
-        const countryMapping = {
-            "ADELAIDE": "Australia", "BRISBANE": "Australia", "FREMENTLE": "Australia", "MELBOURNE": "Australia", "SYDNEY": "Australia", "TOWNSVILLE": "Australia", "DARWIN": "Australia", "PORT HEDLAND": "Australia", "DAMPIER": "Australia",
-            "AUCKLAND": "New Zealand", "LYTTELTON": "New Zealand", "WELLINGTON": "New Zealand", "NAPIER": "New Zealand", "TAURANGA": "New Zealand", "NELSON": "New Zealand",
-            "BUSAN": "South Korea", "INCHEON": "South Korea", "GWANGYANG": "South Korea", "ULSAN": "South Korea", "POHANG": "South Korea", "KWANG YANG": "South Korea",
-            "SHANGHAI": "China", "QINGDAO": "China", "NINGBO": "China", "XINGANG": "China", "YANTIAN": "China", "XIAMEN": "China", "WUHAN": "China", "NANJING": "China", "HUANGPU": "China", "NANSHA": "China", "CHANGSHU": "China", "LIAN YUN GANG": "China", "ZHANG JIA GANG": "China", "ZHANJIANG": "China", "ZHUHAI": "China", "QINZHOU": "China", "CHENGDU": "China", "CHONGQING": "China", "KUNMING": "China", "DALIAN": "China", "SHEKOU": "China", "FUZHOU": "China", "HONG KONG": "Hong Kong", "MACAU": "Macau", "TAICHUNG": "Taiwan", "KAOHSIUNG": "Taiwan", "TAIPEI": "Taiwan", "KEELUNG": "Taiwan", "TAOYUAN": "Taiwan", "JIAOXIN": "China", "ZHANGJIAGANG": "China", "YANTAI": "China", "LIANYUNGANG": "China", "WUDU": "China", "JIANGYIN": "China", "GAOLAN": "China", "RONGQI": "China", "SAN SHAN": "China", "ZHAO QING": "China", "LIAN HUA SAN": "China", "SHANTOU": "China", "YUGANG": "China", "BEIHAI": "China", "NANTONG": "China", "WUHU": "China", "TIANJIN": "China", "YINGKOU": "China", "JIUJIANG": "China", "YUEYANG": "China",
-            "NHAVA SHEVA": "India", "MUNDRA": "India", "CHENNAI": "India", "COCHIN": "India", "KOLKATA": "India", "VIZAG": "India", "TUTICORIN": "India", "PIPAVAV": "India", "KATTUPALLI": "India", "HALDIA": "India", "BENGALURU": "India", "BANGALORE": "India", "CALCUTTA": "India", "DADRI": "India", "HAZIRA": "India", "HYDERABAD": "India", "LUDHINA": "India", "AHMEDABAD": "India", "KANPUR": "India", "MULUND": "India", "NEW DELHI": "India", "TUMB": "India", "GANGGAVARAM": "India", "MANGALORE": "India", "MUMBAI": "India", "ANKLESHWAR": "India", "DELHI": "India", "GARHI HARSARU": "India", "JAIPUR": "India", "LUHDHIANA": "India", "MORBI": "India", "VARNAMA": "India", "PIPIAVAV": "India", "KOCHI": "India", "RAJULA": "India",
-            "JAKARTA": "Indonesia", "SURABAYA": "Indonesia", "SEMARANG": "Indonesia", "BELAWAN": "Indonesia", "PALEMBANG": "Indonesia", "PONTIANAK": "Indonesia", "BALIKPAPAN": "Indonesia", "BANJARMASIN": "Indonesia", "PANJANG": "Indonesia", "BATAM": "Indonesia", "MAKASSAR": "Indonesia", "PADANG": "Indonesia", "SAMARINDA": "Indonesia", "BITUNG": "Indonesia", "PATIMBAN": "Indonesia", "BANJAMASIN": "Indonesia", "HAKARTA": "Indonesia", "KUALA TANJUNG": "Indonesia",
-            "HO CHI MINH": "Vietnam", "HAIPHONG": "Vietnam", "DANANG": "Vietnam", "QUI NHON": "Vietnam", "VUNG TAU": "Vietnam", "CAT LAI": "Vietnam", "PHUOC LONG": "Vietnam", "CAI MEP": "Vietnam", "HIEP PHOUC": "Vietnam", "BINH DUONG": "Vietnam", "TRANSIMEX": "Vietnam", "CAIMEP": "Vietnam", "QUY NHON": "Vietnam", "QUI NHƠN": "Vietnam", "CITY": "Vietnam", "LACH HUYEN": "Vietnam",
-            "LAEM CHABANG": "Thailand", "BANGKOK": "Thailand", "LAT KRABANG": "Thailand", "SONGKHLA": "Thailand", "SAHATHAI": "Thailand", "PAT ": "Thailand", "SAMUT PRAKAN": "Thailand", "BMT": "Thailand", "KRUNG THEP": "Thailand",
-            "PORT KELANG": "Malaysia", "PENANG": "Malaysia", "PASIR GUDANG": "Malaysia", "KUANTAN": "Malaysia", "TANJUNG PELEPAS": "Malaysia", "LABUAN": "Malaysia", "SIBU": "Malaysia", "PORTKLANG": "Malaysia", "PORT KLANG": "Malaysia", "WEST": "Malaysia", "NORTH": "Malaysia",
-            "MANILA": "Philippines", "CEBU": "Philippines", "DAVAO": "Philippines", "GENERAL SANTOS": "Philippines", "SUBIC": "Philippines", "CAGAYAN": "Philippines", "BATANGAS": "Philippines", "CAGAYAH": "Philippines", "ZAMBOANGA": "Philippines", "ILO ILO": "Philippines", "LUZON": "Philippines", "PANABO": "Philippines", "CEBU": "Philippines",
+<script>
+    const shippingData = [
+        { carrier: "ANL", validity: "30TH SEP", port: "ADELAIDE", country: "Australia", gri: "", type: "GP20", rate: 1900, hws: 0, baf: 0, oth: 0, ams: 0, dg3: 0, dg2: 0, thc20: 150, thc40: 250, remarks: "Direct Service" },
+        { carrier: "ANL", validity: "30TH SEP", port: "ADELAIDE", country: "Australia", gri: "", type: "GP40", rate: 3800, hws: 0, baf: 0, oth: 0, ams: 0, dg3: 0, dg2: 0, thc20: 150, thc40: 250, remarks: "Direct Service" },
+        { carrier: "ANL", validity: "30TH SEP", port: "ADELAIDE", country: "Australia", gri: "", type: "GP40HC", rate: 3800, hws: 0, baf: 0, oth: 0, ams: 0, dg3: 0, dg2: 0, thc20: 150, thc40: 250, remarks: "Direct Service" },
+        { carrier: "ANL", validity: "30TH SEP", port: "BRISBANE", country: "Australia", gri: "", type: "GP20", rate: 1900, hws: 0, baf: 0, oth: 0, ams: 0, dg3: 0, dg2: 0, thc20: 150, thc40: 250, remarks: "Direct Service" },
+        { carrier: "ANL", validity: "31ST AUG", port: "AUCKLAND", country: "New Zealand", gri: "", type: "GP20", rate: 1214, hws: 50, baf: 100, oth: 0, ams: 0, dg3: 50, dg2: 0, thc20: 180, thc40: 280, remarks: "Subject to BAF" },
+        { carrier: "ANL", validity: "31ST AUG", port: "AUCKLAND", country: "New Zealand", gri: "", type: "GP40", rate: 2428, hws: 50, baf: 100, oth: 0, ams: 0, dg3: 50, dg2: 0, thc20: 180, thc40: 280, remarks: "Subject to BAF" },
+        { carrier: "BENLINE", validity: "30TH SEP", port: "SHANGHAI", country: "China", gri: "", type: "GP20", rate: 1350, hws: 0, baf: 318, oth: 50, ams: 0, dg3: 50, dg2: 0, thc20: 120, thc40: 200, remarks: "Weekly Service" },
+        { carrier: "COSCO", validity: "31ST AUG", port: "MELBOURNE", country: "Australia", gri: "INCL", type: "GP20", rate: 2529, hws: 100, baf: 718, oth: 29, ams: 0, dg3: 200, dg2: 0, thc20: 150, thc40: 250, remarks: "GRI Included" },
+        { carrier: "EVERGREEN", validity: "31ST AUG", port: "TOKYO", country: "Japan", gri: "30", type: "GP20", rate: 1874, hws: 100, baf: 718, oth: 14, ams: 0, dg3: 200, dg2: 0, thc20: 160, thc40: 260, remarks: "Fast transit" }
+    ];
+
+    function searchRates() {
+        const portInput = document.getElementById('portName').value.toUpperCase();
+        const countryInput = document.getElementById('country').value;
+        const typeInput = document.getElementById('containerType').value;
+        
+        const tableBody = document.getElementById('tableBody');
+        tableBody.innerHTML = '';
+
+        const filteredData = shippingData.filter(item => {
+            const matchesPort = portInput === '' || item.port.includes(portInput);
+            const matchesCountry = countryInput === 'all' || item.country === countryInput;
+            const matchesType = typeInput === 'all' || item.type === typeInput;
+            return matchesPort && matchesCountry && matchesType;
+        });
+
+        filteredData.forEach(item => {
+            const ttlUsd = item.rate + item.hws + item.baf + item.oth + item.ams + item.dg3 + item.dg2;
+            const row = `<tr>
+                <td><strong>${item.carrier}</strong></td>
+                <td>${item.validity}</td>
+                <td>${item.port}</td>
+                <td>${item.gri}</td>
+                <td><span class="badge">${item.type}</span></td>
+                <td>$${item.rate}</td>
+                <td>$${item.hws}</td>
+                <td>$${item.baf}</td>
+                <td>$${item.oth}</td>
+                <td>$${item.ams}</td>
+                <td>$${item.dg3}</td>
+                <td>$${item.dg2}</td>
+                <td>$${item.thc20}</td>
+                <td>$${item.thc40}</td>
+                <td><strong>$${ttlUsd}</strong></td>
+                <td>${item.remarks}</td>
+            </tr>`;
+            tableBody.innerHTML += row;
+        });
+
+        if (filteredData.length === 0) {
+            tableBody.innerHTML = '<tr><td colspan="16" style="text-align:center; color: #888;">No rates found matching your query criteria.</td></tr>';
+        }
+    }
+
+    // Initial render
+    window.onload = searchRates;
+</script>
+
+</body>
+</html>
