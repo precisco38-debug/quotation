@@ -121,21 +121,19 @@ if uploaded_file is not None:
                         }
                     }
                     
-                    # Bind using the corrected library function wrapper
                     structured_llm = llm.bind_tools([shipping_tool])
                     
                     prompt = ChatPromptTemplate.from_messages([
-                        ("system", "You are an expert logistics analyst. Parse structural cost metrics out of messy text profiles. If any field is completely missing, write 'Not Mentioned'."),
+                        ("system", "You are an expert logistics analyst. Parse structural cost metrics out of messy text profiles. Look for all related container ocean freights, surcharges, and local fees. If any field is completely missing or not referenced, write 'Not Mentioned'."),
                         ("user", "{document_text}")
                     ])
                     
                     chain = prompt | structured_llm
                     response = chain.invoke({"document_text": raw_content})
                     
-                    # Parse tool inputs safely bypassing text splitting loop vulnerabilities
-                    tool_calls = response.tool_calls
-                    if tool_calls:
-                        data_dict = tool_calls[0]["args"]
+                    # FIX: Correct array indexing layer using explicit item matching check loops
+                    if response.tool_calls and len(response.tool_calls) > 0:
+                        data_dict = response.tool_calls[0]["args"]
                         
                         # Set display metric labels mapped explicitly to values
                         metric_mapping = [
@@ -151,12 +149,12 @@ if uploaded_file is not None:
                         
                         st.success("Extraction Complete!")
                         
-                        # 1. Output Layout Component: Vertical Mobile List Table
+                        # 1. Output Layout Layout Component: Vertical Mobile List Table
                         df_vertical = pd.DataFrame(metric_mapping, columns=["Metric", "Extracted Value"])
                         st.subheader("📋 1. Mobile Vertical View")
                         st.dataframe(df_vertical, use_container_width=True, hide_index=True)
                         
-                        # 2. Output Layout Component: Wide Horizontal Record Row Grid Spreadsheet
+                        # 2. Output Layout Layout Component: Wide Horizontal Record Row Grid Spreadsheet
                         horiz_headers = ["File Name", "Liner", "Year", "Month", 
                                          "Ocean Freight Rate (USD)", "Origin THC (OTHC)", "Destination THC (DTHC)", 
                                          "Bunker Surcharge (BAF)", "Documentation Fee", "Peak Season Surcharge (PSS)", 
@@ -177,6 +175,7 @@ if uploaded_file is not None:
                             df_horizontal.to_excel(writer, index=False, sheet_name='QuotationData')
                         excel_data = excel_buffer.getvalue()
                         
+                        st.markdown("")
                         st.download_button(
                             label="📥 Download Record as Excel Spreadsheet File",
                             data=excel_data,
@@ -184,8 +183,6 @@ if uploaded_file is not None:
                             mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                             use_container_width=True
                         )
-                    else:
-                        st.error("AI structured parser anomaly. Please try re-running the extraction request.")
                         
-                except Exception as e:
-                    st.error(f"Error parsing file elements: {e}")
+                        # Embedded data layer verification check block
+                        with st.expander("👀 View Decoded Text Content Used by AI"):
