@@ -125,8 +125,8 @@
     <div class="filter-section">
         <div class="form-group">
             <label for="countrySelect">Country of Port</label>
-            <!-- Hardcoded country values matching data parameters -->
-            <select id="countrySelect" onchange="syncPortOptions()">
+            <!-- Country filter drop down box -->
+            <select id="countrySelect" onchange="onCountrySelected()">
                 <option value="" disabled selected hidden>Select a Country...</option>
                 <option value="Australia">Australia</option>
                 <option value="China">China</option>
@@ -137,22 +137,9 @@
         </div>
         <div class="form-group">
             <label for="portSelect">Port Name</label>
-            <!-- Hardcoded port elements grouped by CSS class flags to prevent JS injection failures -->
+            <!-- Port name options filtered and built entirely using programmatic methods -->
             <select id="portSelect" onchange="updateTableDisplay()">
                 <option value="ALL">All Ports</option>
-                <!-- Australia Ports -->
-                <option value="ADELAIDE" class="port-opt Australia">ADELAIDE</option>
-                <option value="BRISBANE" class="port-opt Australia">BRISBANE</option>
-                <!-- China Ports -->
-                <option value="SHANGHAI" class="port-opt China">SHANGHAI</option>
-                <option value="QINGDAO" class="port-opt China">QINGDAO</option>
-                <option value="XINGANG" class="port-opt China">XINGANG</option>
-                <!-- Indonesia Ports -->
-                <option value="JAKARTA" class="port-opt Indonesia">JAKARTA</option>
-                <!-- New Zealand Ports -->
-                <option value="AUCKLAND" class="port-opt New Zealand">AUCKLAND</option>
-                <!-- South Korea Ports -->
-                <option value="BUSAN" class="port-opt South Korea">BUSAN</option>
             </select>
         </div>
         <div class="form-group">
@@ -213,9 +200,9 @@
 </div>
 
 <script>
-    // Manifest flat database structure
+    // Manifest structured reference master database
     const shippingDatabase = [
-        // Australia Corridor
+        // Australia Ports
         { carrier: 'ANL', validity: '30TH SEP', port: 'ADELAIDE', country: 'Australia', type: 'GP20', rate: 1900, baf: '318', dg3: '0' },
         { carrier: 'ANL', validity: '30TH SEP', port: 'ADELAIDE', country: 'Australia', type: 'GP40', rate: 3800, baf: '318', dg3: '0' },
         { carrier: 'ANL', validity: '30TH SEP', port: 'ADELAIDE', country: 'Australia', type: 'GP40HC', rate: 3800, baf: '318', dg3: '0' },
@@ -227,7 +214,7 @@
         { carrier: 'COSCO', validity: '31ST AUG', port: 'ADELAIDE', country: 'Australia', type: 'GP20', rate: 1400, dg3: 'INCL', remarks: 'Subject to BAF' },
         { carrier: 'COSCO', validity: '31ST AUG', port: 'ADELAIDE', country: 'Australia', type: 'GP40', rate: 2800, dg3: 'INCL', remarks: 'Subject to BAF' },
         
-        // China Corridor
+        // China Ports
         { carrier: 'BENLINE', validity: '30TH SEP', port: 'SHANGHAI', country: 'China', type: 'GP20', rate: 2529, hws: '100', baf: '718', oth: '29', dg3: '200' },
         { carrier: 'BENLINE', validity: '30TH SEP', port: 'SHANGHAI', country: 'China', type: 'GP40', rate: 5058, hws: '100', baf: '718', oth: '29', dg3: '200' },
         { carrier: 'BENLINE', validity: '30TH SEP', port: 'SHANGHAI', country: 'China', type: 'GP40HC', rate: 4149, hws: '100', baf: '718', oth: '29', dg3: '200' },
@@ -235,7 +222,27 @@
         { carrier: 'BENLINE', validity: '30TH SEP', port: 'QINGDAO', country: 'China', type: 'GP20', rate: 1874, hws: '100', baf: '718', oth: '14', dg3: '200' },
         { carrier: 'BENLINE', validity: '30TH SEP', port: 'XINGANG', country: 'China', type: 'GP20', rate: 3243, hws: '100', baf: '718', oth: '83', dg3: '300' },
 
-        // New Zealand Corridor
+        // New Zealand Ports
         { carrier: 'ANL', validity: '31ST AUG', port: 'AUCKLAND', country: 'New Zealand', type: 'GP20', rate: 1214, baf: '50', dg3: '50' },
         { carrier: 'ANL', validity: '31ST AUG', port: 'AUCKLAND', country: 'New Zealand', type: 'GP40', rate: 2428, baf: '50', dg3: '50' },
 
+        // Indonesia Ports
+        { carrier: 'HMM', validity: '30TH SEP', port: 'JAKARTA', country: 'Indonesia', type: 'GP20', rate: 400, dg3: '30' },
+        
+        // South Korea Ports
+        { carrier: 'BENLINE', validity: '30TH SEP', port: 'BUSAN', country: 'South Korea', type: 'GP20', rate: 3343, hws: '100', baf: '718', oth: '83', dg3: '300' }
+    ];
+
+    const countrySelect = document.getElementById('countrySelect');
+    const portSelect = document.getElementById('portSelect');
+    const typeSelect = document.getElementById('typeSelect');
+    const tableBody = document.getElementById('rateTableBody');
+
+    // Step 1: Triggered when Country changes
+    function onCountrySelected() {
+        const selectedCountry = countrySelect.value;
+        
+        // Clear old ports completely
+        portSelect.innerHTML = '';
+        
+        // Insert standard layout option default
