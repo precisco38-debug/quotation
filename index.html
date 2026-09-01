@@ -100,7 +100,7 @@
         }
 
         .rate-row {
-            display: table-row;
+            display: none; /* Initially hide all rows to start blank */
         }
 
         tr:nth-child(even) {
@@ -111,12 +111,8 @@
             background-color: #edf2f7;
         }
 
-        .no-results-row {
+        #initialMessageRow, #noResultsRow {
             display: none;
-            padding: 30px;
-            text-align: center;
-            color: #718096;
-            font-weight: 500;
         }
 
         .badge {
@@ -132,14 +128,14 @@
 <body>
 
 <div class="container">
-    <h1>Customer Self-Help Freight Query Interface</h1>
+    <h1>Precisco Self-Help Freight Query Interface</h1>
     
     <div class="filter-section">
-        <!-- Native dropdown options prevent JavaScript dynamic rendering errors -->
         <div class="form-group">
             <label for="countrySelect">Country of Port</label>
             <select id="countrySelect">
-                <option value="ALL">All Countries</option>
+                <!-- Removed "All Countries" option. Initial display forces user to pick. -->
+                <option value="" disabled selected hidden>Select a Country...</option>
                 <option value="Australia">Australia</option>
                 <option value="China">China</option>
                 <option value="Indonesia">Indonesia</option>
@@ -213,7 +209,6 @@
                 </tr>
             </thead>
             <tbody id="rateTableBody">
-                <!-- Static layout mapping separated container types onto unique rows -->
                 <!-- Australia Corridor -->
                 <tr class="rate-row" data-country="Australia" data-port="ADELAIDE" data-type="GP20">
                     <td><strong>ANL</strong></td><td>30TH SEP</td><td>ADELAIDE <small style="color:#718096;display:block;">(Australia)</small></td><td><span class="badge">GP20</span></td><td><strong>$1900</strong></td><td>-</td><td>-</td><td>318</td><td>-</td><td>-</td><td>0</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td>
